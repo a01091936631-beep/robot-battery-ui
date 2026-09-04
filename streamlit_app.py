@@ -31,7 +31,28 @@ st.markdown(
       .block-container{max-width:100%;padding:8px 4px 18px;}
       iframe{border:0!important;border-radius:28px;}
     
-/* ===== Home visual adjustment: mission moved right ===== */
+/* ===== Home visual adjustment: bigger station + mission moved right ===== */
+#homePage .house{
+  left:76px!important;
+  top:112px!important;
+  width:94px!important;
+  height:80px!important;
+  border-radius:38px 38px 9px 9px!important;
+  box-shadow:0 8px 14px rgba(54,36,23,.24)!important;
+}
+#homePage .house:before{
+  left:27px!important;
+  bottom:0!important;
+  width:40px!important;
+  height:44px!important;
+  border-radius:20px 20px 0 0!important;
+}
+#homePage .house:after{
+  top:13px!important;
+  left:27px!important;
+  font-size:8.5px!important;
+  letter-spacing:.2px!important;
+}
 #homePage .mission{
   left:auto!important;
   right:10px!important;
@@ -853,33 +874,14 @@ button,input{font-family:inherit} button{cursor:pointer}
 .wall-light{position:absolute;top:-80px;left:50%;width:420px;height:280px;transform:translateX(-50%);border-radius:50%;background:radial-gradient(circle,rgba(255,248,226,.88),rgba(255,240,205,.18) 60%,transparent 74%)}
 .floor{position:absolute;left:0;right:0;bottom:0;height:170px;background:repeating-linear-gradient(90deg,rgba(106,63,26,.1) 0,rgba(106,63,26,.1) 2px,transparent 2px,transparent 66px),repeating-linear-gradient(0deg,transparent 0,transparent 38px,rgba(106,63,26,.09) 39px,rgba(106,63,26,.09) 41px),linear-gradient(180deg,#d9b174,#c78e48)}
 .plant{position:absolute;z-index:3;left:14px;top:70px;font-size:74px;filter:drop-shadow(0 7px 5px rgba(68,41,21,.18))}
-.house.pretty-house{position:absolute;z-index:4;left:74px;top:96px;width:116px;height:104px;background:transparent!important;border-radius:0!important;box-shadow:none!important;filter:drop-shadow(0 10px 11px rgba(71,43,19,.24));overflow:visible}
-.house.pretty-house:before,.house.pretty-house:after{content:none!important}
-.house.pretty-house span{position:absolute;display:block;pointer-events:none}
-.pretty-house-shadow{left:13px;right:9px;bottom:3px;height:16px;border-radius:50%;background:rgba(73,43,18,.16);filter:blur(2px)}
-.pretty-house-back{left:14px;top:32px;width:86px;height:56px;border-radius:15px 15px 12px 12px;background:linear-gradient(150deg,#f4c87d,#d58a3c);opacity:.72;transform:skewY(-5deg)}
-.pretty-house-roof{left:7px;top:6px;width:104px;height:54px;border-radius:24px 24px 8px 8px;background:
-  repeating-linear-gradient(90deg,rgba(120,73,31,.16) 0,rgba(120,73,31,.16) 2px,transparent 2px,transparent 13px),
-  linear-gradient(145deg,#f7ddb0 0%,#e3a85e 62%,#c98235 100%);clip-path:polygon(50% 0,100% 62%,88% 100%,12% 100%,0 62%);box-shadow:inset 0 2px 0 rgba(255,244,216,.72),0 4px 6px rgba(104,62,26,.14)}
-.pretty-house-front{left:13px;top:43px;width:92px;height:51px;border-radius:13px 13px 14px 14px;background:
-  linear-gradient(90deg,rgba(255,255,255,.22),transparent 45%,rgba(123,72,27,.10)),
-  linear-gradient(180deg,#ffe6b8 0%,#f1bd72 58%,#d79243 100%);border:1px solid rgba(130,82,38,.16);box-shadow:inset 0 2px 0 rgba(255,247,226,.55)}
-.pretty-house-door{left:40px;top:54px;width:38px;height:38px;border-radius:24px 24px 7px 7px;background:
-  radial-gradient(circle at 50% 95%,rgba(255,209,91,.95),rgba(191,105,35,.78) 54%,rgba(78,46,25,.82));box-shadow:inset 0 3px 5px rgba(255,237,175,.36),0 0 10px rgba(255,179,68,.30);z-index:2}
-.pretty-house-glow{left:45px;top:66px;width:28px;height:16px;border-radius:50%;background:radial-gradient(circle,rgba(255,222,123,.82),rgba(255,175,55,.20) 70%,transparent);filter:blur(2px);z-index:3}
-.pretty-house-window{left:50px;top:32px;width:22px;height:22px;border-radius:50%;background:linear-gradient(145deg,#fff6d9,#f1bd72);border:3px solid rgba(139,82,34,.46);box-shadow:inset 0 0 0 1px rgba(255,255,255,.50),0 2px 4px rgba(90,52,24,.13);z-index:3}
-.pretty-house-window:before{content:"";position:absolute;left:50%;top:2px;bottom:2px;width:2px;background:rgba(139,82,34,.45);transform:translateX(-50%);border-radius:3px}
-.pretty-house-window:after{content:"";position:absolute;left:2px;right:2px;top:50%;height:2px;background:rgba(139,82,34,.45);transform:translateY(-50%);border-radius:3px}
-.pretty-house-heart{left:22px;top:67px;width:14px;height:14px;border-radius:7px;background:#fff4de;color:#ef735f;text-align:center;line-height:14px;font-size:11px;font-weight:900;box-shadow:0 2px 4px rgba(99,57,25,.14);z-index:4}
-.pretty-house-lamp{right:15px;top:62px;width:16px;height:18px;border-radius:8px;background:linear-gradient(180deg,#fff1a9,#f0a43d);color:#fff5c7;text-align:center;line-height:18px;font-size:11px;box-shadow:0 0 10px rgba(255,185,55,.65),inset 0 1px 0 rgba(255,255,255,.68);z-index:4}
-.pretty-house-logo{left:34px;bottom:2px;width:52px;height:14px;border-radius:7px;background:linear-gradient(180deg,#ffe5ae,#e6ad60);color:#7a522e;text-align:center;line-height:14px;font-size:6.4px;font-weight:950;letter-spacing:.25px;box-shadow:0 2px 4px rgba(79,47,21,.12);z-index:5}
-.pretty-house-base{left:10px;right:7px;bottom:6px;height:9px;border-radius:999px;background:linear-gradient(180deg,#f0c783,#be7932);box-shadow:0 2px 4px rgba(76,45,19,.16);z-index:1}
-
+.house{position:absolute;z-index:3;left:88px;top:128px;width:68px;height:58px;border-radius:29px 29px 7px 7px;background:linear-gradient(145deg,#a38b71,#74614d);box-shadow:0 6px 11px rgba(54,36,23,.22)}
+.house:before{content:"";position:absolute;left:19px;bottom:0;width:31px;height:32px;border-radius:16px 16px 0 0;background:#403b35}
+.house:after{content:"HOME";position:absolute;top:11px;left:16px;color:rgba(255,255,255,.56);font-size:7px;font-weight:900}
 .sofa{position:absolute;z-index:2;right:-8px;top:72px;width:139px;height:105px;border-radius:28px 0 8px 8px;background:linear-gradient(145deg,#71847f,#354e4a);box-shadow:0 10px 14px rgba(54,37,23,.27)}
 .sofa:before{content:"";position:absolute;top:-18px;left:10px;width:80px;height:48px;border-radius:17px 17px 7px 7px;background:#74867f}
-.speech{position:absolute;z-index:20;top:17px;left:58%;width:177px;min-height:74px;padding:14px 12px;transform:translateX(-50%);border-radius:14px;background:rgba(255,255,255,.98);box-shadow:0 7px 16px rgba(58,37,21,.18);text-align:center;font-size:12px;line-height:1.55;font-weight:800}
+.speech{position:absolute;z-index:20;top:17px;left:50%;width:177px;min-height:74px;padding:14px 12px;transform:translateX(-50%);border-radius:14px;background:rgba(255,255,255,.98);box-shadow:0 7px 16px rgba(58,37,21,.18);text-align:center;font-size:12px;line-height:1.55;font-weight:800}
 .speech strong{color:var(--green);font-size:14px}
-.speech:after{content:"";position:absolute;left:42%;bottom:-15px;border-width:16px 10px 0 4px;border-style:solid;border-color:white transparent transparent transparent}
+.speech:after{content:"";position:absolute;left:52%;bottom:-15px;border-width:16px 10px 0 4px;border-style:solid;border-color:white transparent transparent transparent}
 .mode-chip{position:absolute;z-index:18;top:106px;left:50%;padding:7px 13px;transform:translateX(-50%);border-radius:18px;background:rgba(255,248,229,.95);box-shadow:0 4px 10px rgba(72,46,23,.16);font-size:9px;font-weight:900}
 .rug{position:absolute;z-index:4;left:50%;bottom:12px;width:255px;height:92px;transform:translateX(-50%);border-radius:50%;background:radial-gradient(ellipse,rgba(241,224,197,.91),rgba(191,151,103,.79));box-shadow:inset 0 0 18px rgba(103,70,43,.14)}
 .clean-path{position:absolute;z-index:5;left:50%;bottom:41px;width:292px;height:78px;transform:translateX(-50%);overflow:hidden;border:2px dashed rgba(255,255,255,.36);border-radius:50%;opacity:0}
@@ -2093,7 +2095,28 @@ body,button,input,select{
 .direct-clean-section.condition-panel.manual-mode .condition-title:before{content:none!important;}
 
 
-/* ===== Home visual adjustment: mission moved right ===== */
+/* ===== Home visual adjustment: bigger station + mission moved right ===== */
+#homePage .house{
+  left:76px!important;
+  top:112px!important;
+  width:94px!important;
+  height:80px!important;
+  border-radius:38px 38px 9px 9px!important;
+  box-shadow:0 8px 14px rgba(54,36,23,.24)!important;
+}
+#homePage .house:before{
+  left:27px!important;
+  bottom:0!important;
+  width:40px!important;
+  height:44px!important;
+  border-radius:20px 20px 0 0!important;
+}
+#homePage .house:after{
+  top:13px!important;
+  left:27px!important;
+  font-size:8.5px!important;
+  letter-spacing:.2px!important;
+}
 #homePage .mission{
   left:auto!important;
   right:10px!important;
@@ -2132,21 +2155,7 @@ body,button,input,select{
       <section class="page active" id="homePage">
         <div class="room" id="room">
           <div class="wall-light"></div><div class="floor"></div>
-          <div class="plant">🪴</div>
-          <div class="house pretty-house" aria-label="로보킹 하우스">
-            <span class="pretty-house-shadow"></span>
-            <span class="pretty-house-back"></span>
-            <span class="pretty-house-roof"></span>
-            <span class="pretty-house-front"></span>
-            <span class="pretty-house-window"></span>
-            <span class="pretty-house-door"></span>
-            <span class="pretty-house-glow"></span>
-            <span class="pretty-house-heart">♥</span>
-            <span class="pretty-house-lamp">✦</span>
-            <span class="pretty-house-logo">ROBOKING</span>
-            <span class="pretty-house-base"></span>
-          </div>
-          <div class="sofa"></div>
+          <div class="plant">🪴</div><div class="house"></div><div class="sofa"></div>
           <div class="speech" id="speech"><strong>배가 든든해요!</strong><br>청소를 준비할게요!</div>
           <div class="mode-chip" id="modeChip">✨ 로보킹 맞춤 준비</div>
           <div class="rug"></div>

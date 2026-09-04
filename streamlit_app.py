@@ -308,7 +308,7 @@ def _make_demo_runs():
             labels_by_count = {
                 4: ["거실", "주방", "침실", "현관"],
                 6: ["침실", "주방", "거실", "서재", "현관", "다용도"],
-                8: ["침실1", "침실2", "주방", "거실", "현관", "아이방", "서재", "다용도"],
+                8: ["침실1", "침실2", "주방", "거실", "아이방", "현관", "서재", "다용도"],
             }
             floors = ["마루/타일", "장판/PVC", "저파일 러그", "고파일 카펫", "마루/타일", "장판/PVC", "저파일 러그", "마루/타일"]
             dirts = ["낮음", "보통", "높음", "낮음", "보통", "높음", "낮음", "보통"]
@@ -2493,7 +2493,7 @@ body,button,input,select{
             <div class="reward-card coupon-card" id="cardCouponLg5"><div class="reward-icon">🎟</div><div class="reward-title">LG 생활가전 5% 쿠폰</div><div class="reward-desc">LG 생활가전 1개를 구매할 때 사용할 수 있는 기본 할인 쿠폰이에요.</div><div class="coupon-benefit">혜택: 단일 제품 5% 할인</div><div class="reward-status" id="statusCouponLg5"></div><button class="reward-btn" id="btnCouponLg5" data-action="couponLg5">300 코인</button></div>
             <div class="reward-card coupon-card" id="cardCouponCleanKit"><div class="reward-icon">🧹</div><div class="reward-title">로보킹 클린 키트 쿠폰</div><div class="reward-desc">필터, 브러시, 물걸레 패드처럼 자주 바꾸는 소모품을 준비할 때 사용해요.</div><div class="coupon-benefit">혜택: 소모품 키트 구매 할인</div><div class="reward-status" id="statusCouponCleanKit"></div><button class="reward-btn" id="btnCouponCleanKit" data-action="couponCleanKit">180 코인</button></div>
             <div class="reward-card coupon-card" id="cardCouponBatteryCare"><div class="reward-icon">🔋</div><div class="reward-title">배터리 케어 쿠폰</div><div class="reward-desc">로보킹을 오래 쓰기 위해 배터리 점검이나 관리 서비스를 받을 때 사용해요.</div><div class="coupon-benefit">혜택: 배터리 점검/케어 서비스</div><div class="reward-status" id="statusCouponBatteryCare"></div><button class="reward-btn" id="btnCouponBatteryCare" data-action="couponBatteryCare">250 코인</button></div>
-            <div class="reward-card coupon-card" id="cardCouponMoveIn"><div class="reward-icon">📺</div><div class="reward-title">OTT 제휴 50% 할인 쿠폰</div><div class="reward-desc">청소가 끝난 뒤 영화나 드라마를 더 가볍게 즐길 수 있어요.</div><div class="coupon-benefit">혜택: 제휴 OTT 첫 달 50% 할인</div><div class="reward-status" id="statusCouponMoveIn"></div><button class="reward-btn" id="btnCouponMoveIn" data-action="couponMoveIn">300 코인</button></div>
+            <div class="reward-card coupon-card" id="cardCouponMoveIn"><div class="reward-icon">📺</div><div class="reward-title">제휴 OTT 50% 할인 쿠폰</div><div class="reward-desc">넷플릭스, 디즈니플러스, 유튜브 프리미엄 등 제휴 OTT를 더 가볍게 즐길 수 있어요.</div><div class="coupon-benefit">혜택: 넷플릭스·디즈니+·유튜브 프리미엄 50% 할인</div><div class="reward-status" id="statusCouponMoveIn"></div><button class="reward-btn" id="btnCouponMoveIn" data-action="couponMoveIn">300 코인</button></div>
           </div>
         </div>
       </section>
@@ -2618,7 +2618,7 @@ const couponItems={
   lg5:{name:"LG 생활가전 5% 쿠폰",icon:"🎟",cost:300,benefit:"LG 생활가전 1개 구매 시 5% 할인",message:"LG 생활가전 5% 쿠폰을 보관함에 담았어요."},
   cleanKit:{name:"로보킹 클린 키트 쿠폰",icon:"🧹",cost:180,benefit:"필터·브러시·물걸레 패드 등 소모품 키트 할인",message:"로보킹 클린 키트 쿠폰을 보관함에 담았어요."},
   batteryCare:{name:"배터리 케어 쿠폰",icon:"🔋",cost:250,benefit:"배터리 점검 또는 관리 서비스 혜택",message:"배터리 케어 쿠폰을 보관함에 담았어요."},
-  moveIn:{name:"OTT 제휴 50% 할인 쿠폰",icon:"📺",cost:300,benefit:"제휴 OTT 첫 달 50% 할인",message:"OTT 제휴 50% 할인 쿠폰을 보관함에 담았어요."}
+  moveIn:{name:"제휴 OTT 50% 할인 쿠폰",icon:"📺",cost:300,benefit:"넷플릭스·디즈니플러스·유튜브 프리미엄 등 제휴 OTT 첫 달 50% 할인",message:"제휴 OTT 50% 할인 쿠폰을 보관함에 담았어요."}
 };
 function loadCoupons(){
   try{
@@ -3474,7 +3474,7 @@ const MAP_LAYOUTS={
   medium:{viewBox:"0 0 236 174",label:"중형 집 구조 맵",route:"M48 42 C96 52, 114 94, 182 98 C170 128, 118 138, 64 146",
     rooms:[[14,14,92,50,12,1,"침실"],[110,14,112,50,12,2,"주방"],[14,68,124,58,12,3,"거실"],[142,68,80,58,12,4,"서재"],[14,130,92,32,10,5,"현관"],[110,130,112,32,10,6,"다용도"]]},
   large:{viewBox:"0 0 246 172",label:"대형 집 구조 맵",route:"M46 34 C96 44, 146 36, 202 36 C174 76, 162 98, 210 92 C166 126, 102 142, 54 140",
-    rooms:[[12,12,72,44,11,1,"침실1"],[88,12,72,44,11,2,"침실2"],[164,12,70,44,11,3,"주방"],[12,60,106,58,12,4,"거실"],[122,60,58,58,12,5,"현관"],[184,60,50,58,12,6,"아이방"],[12,122,106,38,10,7,"서재"],[122,122,112,38,10,8,"다용도"]]}
+    rooms:[[12,12,72,44,11,1,"침실1"],[88,12,72,44,11,2,"침실2"],[164,12,70,44,11,3,"주방"],[12,60,106,58,12,4,"거실"],[122,60,58,58,12,5,"아이방"],[184,60,50,58,12,6,"현관"],[12,122,106,38,10,7,"서재"],[122,122,112,38,10,8,"다용도"]]}
 };
 function currentMapLayout(){
   const area=(activeRun && activeRun.areaPyung) ? activeRun.areaPyung : state.areaPyung;

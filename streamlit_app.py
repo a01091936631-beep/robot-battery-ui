@@ -2493,7 +2493,7 @@ body,button,input,select{
             <div class="reward-card coupon-card" id="cardCouponLg5"><div class="reward-icon">🎟</div><div class="reward-title">LG 생활가전 5% 쿠폰</div><div class="reward-desc">LG 생활가전 1개를 구매할 때 사용할 수 있는 기본 할인 쿠폰이에요.</div><div class="coupon-benefit">혜택: 단일 제품 5% 할인</div><div class="reward-status" id="statusCouponLg5"></div><button class="reward-btn" id="btnCouponLg5" data-action="couponLg5">300 코인</button></div>
             <div class="reward-card coupon-card" id="cardCouponCleanKit"><div class="reward-icon">🧹</div><div class="reward-title">로보킹 클린 키트 쿠폰</div><div class="reward-desc">필터, 브러시, 물걸레 패드처럼 자주 바꾸는 소모품을 준비할 때 사용해요.</div><div class="coupon-benefit">혜택: 소모품 키트 구매 할인</div><div class="reward-status" id="statusCouponCleanKit"></div><button class="reward-btn" id="btnCouponCleanKit" data-action="couponCleanKit">180 코인</button></div>
             <div class="reward-card coupon-card" id="cardCouponBatteryCare"><div class="reward-icon">🔋</div><div class="reward-title">배터리 케어 쿠폰</div><div class="reward-desc">로보킹을 오래 쓰기 위해 배터리 점검이나 관리 서비스를 받을 때 사용해요.</div><div class="coupon-benefit">혜택: 배터리 점검/케어 서비스</div><div class="reward-status" id="statusCouponBatteryCare"></div><button class="reward-btn" id="btnCouponBatteryCare" data-action="couponBatteryCare">250 코인</button></div>
-            <div class="reward-card coupon-card" id="cardCouponMoveIn"><div class="reward-icon">🏠</div><div class="reward-title">이사·입주 패키지 쿠폰</div><div class="reward-desc">새집에 필요한 LG 생활가전을 2개 이상 함께 구매할 때 추가 혜택을 받아요.</div><div class="coupon-benefit">혜택: 2개 이상 구매 시 패키지 추가 할인</div><div class="reward-status" id="statusCouponMoveIn"></div><button class="reward-btn" id="btnCouponMoveIn" data-action="couponMoveIn">300 코인</button></div>
+            <div class="reward-card coupon-card" id="cardCouponMoveIn"><div class="reward-icon">📺</div><div class="reward-title">OTT 제휴 50% 할인 쿠폰</div><div class="reward-desc">청소가 끝난 뒤 영화나 드라마를 더 가볍게 즐길 수 있어요.</div><div class="coupon-benefit">혜택: 제휴 OTT 첫 달 50% 할인</div><div class="reward-status" id="statusCouponMoveIn"></div><button class="reward-btn" id="btnCouponMoveIn" data-action="couponMoveIn">300 코인</button></div>
           </div>
         </div>
       </section>
@@ -2618,7 +2618,7 @@ const couponItems={
   lg5:{name:"LG 생활가전 5% 쿠폰",icon:"🎟",cost:300,benefit:"LG 생활가전 1개 구매 시 5% 할인",message:"LG 생활가전 5% 쿠폰을 보관함에 담았어요."},
   cleanKit:{name:"로보킹 클린 키트 쿠폰",icon:"🧹",cost:180,benefit:"필터·브러시·물걸레 패드 등 소모품 키트 할인",message:"로보킹 클린 키트 쿠폰을 보관함에 담았어요."},
   batteryCare:{name:"배터리 케어 쿠폰",icon:"🔋",cost:250,benefit:"배터리 점검 또는 관리 서비스 혜택",message:"배터리 케어 쿠폰을 보관함에 담았어요."},
-  moveIn:{name:"이사·입주 패키지 쿠폰",icon:"🏠",cost:300,benefit:"LG 생활가전 2개 이상 구매 시 패키지 추가 혜택",message:"이사·입주 패키지 쿠폰을 보관함에 담았어요."}
+  moveIn:{name:"OTT 제휴 50% 할인 쿠폰",icon:"📺",cost:300,benefit:"제휴 OTT 첫 달 50% 할인",message:"OTT 제휴 50% 할인 쿠폰을 보관함에 담았어요."}
 };
 function loadCoupons(){
   try{

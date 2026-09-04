@@ -853,38 +853,33 @@ button,input{font-family:inherit} button{cursor:pointer}
 .wall-light{position:absolute;top:-80px;left:50%;width:420px;height:280px;transform:translateX(-50%);border-radius:50%;background:radial-gradient(circle,rgba(255,248,226,.88),rgba(255,240,205,.18) 60%,transparent 74%)}
 .floor{position:absolute;left:0;right:0;bottom:0;height:170px;background:repeating-linear-gradient(90deg,rgba(106,63,26,.1) 0,rgba(106,63,26,.1) 2px,transparent 2px,transparent 66px),repeating-linear-gradient(0deg,transparent 0,transparent 38px,rgba(106,63,26,.09) 39px,rgba(106,63,26,.09) 41px),linear-gradient(180deg,#d9b174,#c78e48)}
 .plant{position:absolute;z-index:3;left:14px;top:70px;font-size:74px;filter:drop-shadow(0 7px 5px rgba(68,41,21,.18))}
-.house.robo-house{position:absolute;z-index:4;left:72px;top:103px;width:116px;height:96px;border-radius:0;background:transparent;filter:drop-shadow(0 9px 10px rgba(58,36,18,.24));overflow:visible}
-.house.robo-house:before,.house.robo-house:after{content:none}
-.house.robo-house span{position:absolute;display:block;pointer-events:none}
-.house-body{left:7px;right:7px;bottom:7px;height:68px;border-radius:6px 6px 9px 9px;background:
-  linear-gradient(90deg,rgba(255,255,255,.20),rgba(255,255,255,0) 38%,rgba(116,74,34,.10)),
-  repeating-linear-gradient(90deg,rgba(136,87,40,.08) 0,rgba(136,87,40,.08) 1px,transparent 1px,transparent 15px),
-  linear-gradient(145deg,#f5d99d,#dba35c 72%,#bf7b32);border:1px solid rgba(137,86,37,.22)}
-.house-body:before{content:"";position:absolute;left:0;right:0;top:-42px;margin:auto;width:82px;height:82px;transform:rotate(45deg);transform-origin:center;border-radius:5px;background:
-  linear-gradient(135deg,rgba(255,255,255,.18),rgba(255,255,255,0) 45%,rgba(101,62,26,.10)),
-  repeating-linear-gradient(45deg,rgba(136,87,40,.07) 0,rgba(136,87,40,.07) 1px,transparent 1px,transparent 13px),
-  linear-gradient(145deg,#f7ddb0,#ddaa66 70%,#c8863c);border-left:1px solid rgba(137,86,37,.18);border-top:1px solid rgba(137,86,37,.18)}
-.house-roof{left:26px;top:0;width:83px;height:42px;transform:skewX(28deg);border-radius:6px 9px 3px 3px;background:
-  repeating-linear-gradient(90deg,rgba(126,86,46,.22) 0,rgba(126,86,46,.22) 2px,rgba(255,239,205,.55) 2px,rgba(255,239,205,.55) 7px),
-  linear-gradient(180deg,#fff1d4,#e9bd79);box-shadow:inset 0 -2px 4px rgba(120,75,32,.12)}
-.house-roof-lines{left:42px;top:4px;width:60px;height:34px;transform:skewX(28deg);background:repeating-linear-gradient(90deg,rgba(151,104,55,.26) 0,rgba(151,104,55,.26) 1px,transparent 1px,transparent 7px);opacity:.7}
-.house-glow{left:38px;bottom:18px;width:62px;height:42px;border-radius:32px 32px 4px 4px;background:radial-gradient(circle at 52% 100%,rgba(255,198,78,.85),rgba(213,116,29,.78) 63%,rgba(66,42,24,.72));box-shadow:0 0 18px rgba(255,174,55,.48)}
-.house-door{left:38px;bottom:15px;width:62px;height:49px;border-radius:34px 34px 5px 5px;background:
-  radial-gradient(circle at 50% 105%,rgba(255,196,72,.70),rgba(120,66,26,.68) 58%,rgba(50,35,24,.80)),
-  linear-gradient(180deg,rgba(255,218,140,.38),rgba(84,51,26,.86));box-shadow:inset 0 2px 5px rgba(255,233,179,.36),inset 0 -4px 6px rgba(42,28,20,.20)}
-.house-door:after{content:"";position:absolute;left:13px;right:13px;bottom:3px;height:7px;border-radius:999px;background:rgba(255,234,187,.48)}
-.house-window{left:16px;bottom:27px;width:19px;height:28px;border-radius:13px 13px 5px 5px;background:linear-gradient(180deg,rgba(124,69,28,.62),rgba(70,43,25,.78));box-shadow:inset 0 2px 3px rgba(255,219,143,.30)}
-.house-logo{left:41px;top:36px;width:45px;text-align:center;color:rgba(91,60,34,.58);font-size:6.8px;line-height:1;font-weight:950;letter-spacing:.2px}
-.house-logo i{display:block;font-style:normal;font-size:9px;margin-bottom:1px;color:rgba(91,60,34,.50)}
-.house-peg{width:6px;height:6px;border-radius:50%;background:linear-gradient(145deg,#ffe5b8,#b87534);box-shadow:inset 0 1px 1px rgba(255,255,255,.55),0 1px 2px rgba(87,48,22,.25)}
-.house-peg.p1{left:16px;top:46px}.house-peg.p2{right:14px;top:45px}.house-peg.p3{left:13px;bottom:14px}.house-peg.p4{right:13px;bottom:14px}
-.house-base{left:24px;bottom:3px;width:82px;height:9px;border-radius:999px;background:linear-gradient(180deg,#f3c985,#c9873c);box-shadow:0 3px 5px rgba(88,54,23,.18)}
+.house.pretty-house{position:absolute;z-index:4;left:74px;top:96px;width:116px;height:104px;background:transparent!important;border-radius:0!important;box-shadow:none!important;filter:drop-shadow(0 10px 11px rgba(71,43,19,.24));overflow:visible}
+.house.pretty-house:before,.house.pretty-house:after{content:none!important}
+.house.pretty-house span{position:absolute;display:block;pointer-events:none}
+.pretty-house-shadow{left:13px;right:9px;bottom:3px;height:16px;border-radius:50%;background:rgba(73,43,18,.16);filter:blur(2px)}
+.pretty-house-back{left:14px;top:32px;width:86px;height:56px;border-radius:15px 15px 12px 12px;background:linear-gradient(150deg,#f4c87d,#d58a3c);opacity:.72;transform:skewY(-5deg)}
+.pretty-house-roof{left:7px;top:6px;width:104px;height:54px;border-radius:24px 24px 8px 8px;background:
+  repeating-linear-gradient(90deg,rgba(120,73,31,.16) 0,rgba(120,73,31,.16) 2px,transparent 2px,transparent 13px),
+  linear-gradient(145deg,#f7ddb0 0%,#e3a85e 62%,#c98235 100%);clip-path:polygon(50% 0,100% 62%,88% 100%,12% 100%,0 62%);box-shadow:inset 0 2px 0 rgba(255,244,216,.72),0 4px 6px rgba(104,62,26,.14)}
+.pretty-house-front{left:13px;top:43px;width:92px;height:51px;border-radius:13px 13px 14px 14px;background:
+  linear-gradient(90deg,rgba(255,255,255,.22),transparent 45%,rgba(123,72,27,.10)),
+  linear-gradient(180deg,#ffe6b8 0%,#f1bd72 58%,#d79243 100%);border:1px solid rgba(130,82,38,.16);box-shadow:inset 0 2px 0 rgba(255,247,226,.55)}
+.pretty-house-door{left:40px;top:54px;width:38px;height:38px;border-radius:24px 24px 7px 7px;background:
+  radial-gradient(circle at 50% 95%,rgba(255,209,91,.95),rgba(191,105,35,.78) 54%,rgba(78,46,25,.82));box-shadow:inset 0 3px 5px rgba(255,237,175,.36),0 0 10px rgba(255,179,68,.30);z-index:2}
+.pretty-house-glow{left:45px;top:66px;width:28px;height:16px;border-radius:50%;background:radial-gradient(circle,rgba(255,222,123,.82),rgba(255,175,55,.20) 70%,transparent);filter:blur(2px);z-index:3}
+.pretty-house-window{left:50px;top:32px;width:22px;height:22px;border-radius:50%;background:linear-gradient(145deg,#fff6d9,#f1bd72);border:3px solid rgba(139,82,34,.46);box-shadow:inset 0 0 0 1px rgba(255,255,255,.50),0 2px 4px rgba(90,52,24,.13);z-index:3}
+.pretty-house-window:before{content:"";position:absolute;left:50%;top:2px;bottom:2px;width:2px;background:rgba(139,82,34,.45);transform:translateX(-50%);border-radius:3px}
+.pretty-house-window:after{content:"";position:absolute;left:2px;right:2px;top:50%;height:2px;background:rgba(139,82,34,.45);transform:translateY(-50%);border-radius:3px}
+.pretty-house-heart{left:22px;top:67px;width:14px;height:14px;border-radius:7px;background:#fff4de;color:#ef735f;text-align:center;line-height:14px;font-size:11px;font-weight:900;box-shadow:0 2px 4px rgba(99,57,25,.14);z-index:4}
+.pretty-house-lamp{right:15px;top:62px;width:16px;height:18px;border-radius:8px;background:linear-gradient(180deg,#fff1a9,#f0a43d);color:#fff5c7;text-align:center;line-height:18px;font-size:11px;box-shadow:0 0 10px rgba(255,185,55,.65),inset 0 1px 0 rgba(255,255,255,.68);z-index:4}
+.pretty-house-logo{left:34px;bottom:2px;width:52px;height:14px;border-radius:7px;background:linear-gradient(180deg,#ffe5ae,#e6ad60);color:#7a522e;text-align:center;line-height:14px;font-size:6.4px;font-weight:950;letter-spacing:.25px;box-shadow:0 2px 4px rgba(79,47,21,.12);z-index:5}
+.pretty-house-base{left:10px;right:7px;bottom:6px;height:9px;border-radius:999px;background:linear-gradient(180deg,#f0c783,#be7932);box-shadow:0 2px 4px rgba(76,45,19,.16);z-index:1}
 
 .sofa{position:absolute;z-index:2;right:-8px;top:72px;width:139px;height:105px;border-radius:28px 0 8px 8px;background:linear-gradient(145deg,#71847f,#354e4a);box-shadow:0 10px 14px rgba(54,37,23,.27)}
 .sofa:before{content:"";position:absolute;top:-18px;left:10px;width:80px;height:48px;border-radius:17px 17px 7px 7px;background:#74867f}
-.speech{position:absolute;z-index:20;top:17px;left:50%;width:177px;min-height:74px;padding:14px 12px;transform:translateX(-50%);border-radius:14px;background:rgba(255,255,255,.98);box-shadow:0 7px 16px rgba(58,37,21,.18);text-align:center;font-size:12px;line-height:1.55;font-weight:800}
+.speech{position:absolute;z-index:20;top:17px;left:58%;width:177px;min-height:74px;padding:14px 12px;transform:translateX(-50%);border-radius:14px;background:rgba(255,255,255,.98);box-shadow:0 7px 16px rgba(58,37,21,.18);text-align:center;font-size:12px;line-height:1.55;font-weight:800}
 .speech strong{color:var(--green);font-size:14px}
-.speech:after{content:"";position:absolute;left:52%;bottom:-15px;border-width:16px 10px 0 4px;border-style:solid;border-color:white transparent transparent transparent}
+.speech:after{content:"";position:absolute;left:42%;bottom:-15px;border-width:16px 10px 0 4px;border-style:solid;border-color:white transparent transparent transparent}
 .mode-chip{position:absolute;z-index:18;top:106px;left:50%;padding:7px 13px;transform:translateX(-50%);border-radius:18px;background:rgba(255,248,229,.95);box-shadow:0 4px 10px rgba(72,46,23,.16);font-size:9px;font-weight:900}
 .rug{position:absolute;z-index:4;left:50%;bottom:12px;width:255px;height:92px;transform:translateX(-50%);border-radius:50%;background:radial-gradient(ellipse,rgba(241,224,197,.91),rgba(191,151,103,.79));box-shadow:inset 0 0 18px rgba(103,70,43,.14)}
 .clean-path{position:absolute;z-index:5;left:50%;bottom:41px;width:292px;height:78px;transform:translateX(-50%);overflow:hidden;border:2px dashed rgba(255,255,255,.36);border-radius:50%;opacity:0}
@@ -2098,28 +2093,7 @@ body,button,input,select{
 .direct-clean-section.condition-panel.manual-mode .condition-title:before{content:none!important;}
 
 
-/* ===== Home visual adjustment: bigger station + mission moved right ===== */
-#homePage .house{
-  left:76px!important;
-  top:112px!important;
-  width:94px!important;
-  height:80px!important;
-  border-radius:38px 38px 9px 9px!important;
-  box-shadow:0 8px 14px rgba(54,36,23,.24)!important;
-}
-#homePage .house:before{
-  left:27px!important;
-  bottom:0!important;
-  width:40px!important;
-  height:44px!important;
-  border-radius:20px 20px 0 0!important;
-}
-#homePage .house:after{
-  top:13px!important;
-  left:27px!important;
-  font-size:8.5px!important;
-  letter-spacing:.2px!important;
-}
+/* ===== Home visual adjustment: mission moved right ===== */
 #homePage .mission{
   left:auto!important;
   right:10px!important;
@@ -2159,17 +2133,18 @@ body,button,input,select{
         <div class="room" id="room">
           <div class="wall-light"></div><div class="floor"></div>
           <div class="plant">🪴</div>
-          <div class="house robo-house" aria-label="로보킹 원목 하우스">
-            <span class="house-body"></span>
-            <span class="house-roof"></span>
-            <span class="house-roof-lines"></span>
-            <span class="house-glow"></span>
-            <span class="house-door"></span>
-            <span class="house-window"></span>
-            <span class="house-logo"><i>♕</i><b>ROBOKING</b></span>
-            <span class="house-peg p1"></span><span class="house-peg p2"></span>
-            <span class="house-peg p3"></span><span class="house-peg p4"></span>
-            <span class="house-base"></span>
+          <div class="house pretty-house" aria-label="로보킹 하우스">
+            <span class="pretty-house-shadow"></span>
+            <span class="pretty-house-back"></span>
+            <span class="pretty-house-roof"></span>
+            <span class="pretty-house-front"></span>
+            <span class="pretty-house-window"></span>
+            <span class="pretty-house-door"></span>
+            <span class="pretty-house-glow"></span>
+            <span class="pretty-house-heart">♥</span>
+            <span class="pretty-house-lamp">✦</span>
+            <span class="pretty-house-logo">ROBOKING</span>
+            <span class="pretty-house-base"></span>
           </div>
           <div class="sofa"></div>
           <div class="speech" id="speech"><strong>배가 든든해요!</strong><br>청소를 준비할게요!</div>

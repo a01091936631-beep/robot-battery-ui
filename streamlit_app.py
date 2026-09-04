@@ -31,28 +31,7 @@ st.markdown(
       .block-container{max-width:100%;padding:8px 4px 18px;}
       iframe{border:0!important;border-radius:28px;}
     
-/* ===== Home visual adjustment: bigger station + mission moved right ===== */
-#homePage .house{
-  left:76px!important;
-  top:112px!important;
-  width:94px!important;
-  height:80px!important;
-  border-radius:38px 38px 9px 9px!important;
-  box-shadow:0 8px 14px rgba(54,36,23,.24)!important;
-}
-#homePage .house:before{
-  left:27px!important;
-  bottom:0!important;
-  width:40px!important;
-  height:44px!important;
-  border-radius:20px 20px 0 0!important;
-}
-#homePage .house:after{
-  top:13px!important;
-  left:27px!important;
-  font-size:8.5px!important;
-  letter-spacing:.2px!important;
-}
+/* ===== Home visual adjustment: mission moved right ===== */
 #homePage .mission{
   left:auto!important;
   right:10px!important;
@@ -874,9 +853,33 @@ button,input{font-family:inherit} button{cursor:pointer}
 .wall-light{position:absolute;top:-80px;left:50%;width:420px;height:280px;transform:translateX(-50%);border-radius:50%;background:radial-gradient(circle,rgba(255,248,226,.88),rgba(255,240,205,.18) 60%,transparent 74%)}
 .floor{position:absolute;left:0;right:0;bottom:0;height:170px;background:repeating-linear-gradient(90deg,rgba(106,63,26,.1) 0,rgba(106,63,26,.1) 2px,transparent 2px,transparent 66px),repeating-linear-gradient(0deg,transparent 0,transparent 38px,rgba(106,63,26,.09) 39px,rgba(106,63,26,.09) 41px),linear-gradient(180deg,#d9b174,#c78e48)}
 .plant{position:absolute;z-index:3;left:14px;top:70px;font-size:74px;filter:drop-shadow(0 7px 5px rgba(68,41,21,.18))}
-.house{position:absolute;z-index:3;left:88px;top:128px;width:68px;height:58px;border-radius:29px 29px 7px 7px;background:linear-gradient(145deg,#a38b71,#74614d);box-shadow:0 6px 11px rgba(54,36,23,.22)}
-.house:before{content:"";position:absolute;left:19px;bottom:0;width:31px;height:32px;border-radius:16px 16px 0 0;background:#403b35}
-.house:after{content:"HOME";position:absolute;top:11px;left:16px;color:rgba(255,255,255,.56);font-size:7px;font-weight:900}
+.house.robo-house{position:absolute;z-index:4;left:72px;top:103px;width:116px;height:96px;border-radius:0;background:transparent;filter:drop-shadow(0 9px 10px rgba(58,36,18,.24));overflow:visible}
+.house.robo-house:before,.house.robo-house:after{content:none}
+.house.robo-house span{position:absolute;display:block;pointer-events:none}
+.house-body{left:7px;right:7px;bottom:7px;height:68px;border-radius:6px 6px 9px 9px;background:
+  linear-gradient(90deg,rgba(255,255,255,.20),rgba(255,255,255,0) 38%,rgba(116,74,34,.10)),
+  repeating-linear-gradient(90deg,rgba(136,87,40,.08) 0,rgba(136,87,40,.08) 1px,transparent 1px,transparent 15px),
+  linear-gradient(145deg,#f5d99d,#dba35c 72%,#bf7b32);border:1px solid rgba(137,86,37,.22)}
+.house-body:before{content:"";position:absolute;left:0;right:0;top:-42px;margin:auto;width:82px;height:82px;transform:rotate(45deg);transform-origin:center;border-radius:5px;background:
+  linear-gradient(135deg,rgba(255,255,255,.18),rgba(255,255,255,0) 45%,rgba(101,62,26,.10)),
+  repeating-linear-gradient(45deg,rgba(136,87,40,.07) 0,rgba(136,87,40,.07) 1px,transparent 1px,transparent 13px),
+  linear-gradient(145deg,#f7ddb0,#ddaa66 70%,#c8863c);border-left:1px solid rgba(137,86,37,.18);border-top:1px solid rgba(137,86,37,.18)}
+.house-roof{left:26px;top:0;width:83px;height:42px;transform:skewX(28deg);border-radius:6px 9px 3px 3px;background:
+  repeating-linear-gradient(90deg,rgba(126,86,46,.22) 0,rgba(126,86,46,.22) 2px,rgba(255,239,205,.55) 2px,rgba(255,239,205,.55) 7px),
+  linear-gradient(180deg,#fff1d4,#e9bd79);box-shadow:inset 0 -2px 4px rgba(120,75,32,.12)}
+.house-roof-lines{left:42px;top:4px;width:60px;height:34px;transform:skewX(28deg);background:repeating-linear-gradient(90deg,rgba(151,104,55,.26) 0,rgba(151,104,55,.26) 1px,transparent 1px,transparent 7px);opacity:.7}
+.house-glow{left:38px;bottom:18px;width:62px;height:42px;border-radius:32px 32px 4px 4px;background:radial-gradient(circle at 52% 100%,rgba(255,198,78,.85),rgba(213,116,29,.78) 63%,rgba(66,42,24,.72));box-shadow:0 0 18px rgba(255,174,55,.48)}
+.house-door{left:38px;bottom:15px;width:62px;height:49px;border-radius:34px 34px 5px 5px;background:
+  radial-gradient(circle at 50% 105%,rgba(255,196,72,.70),rgba(120,66,26,.68) 58%,rgba(50,35,24,.80)),
+  linear-gradient(180deg,rgba(255,218,140,.38),rgba(84,51,26,.86));box-shadow:inset 0 2px 5px rgba(255,233,179,.36),inset 0 -4px 6px rgba(42,28,20,.20)}
+.house-door:after{content:"";position:absolute;left:13px;right:13px;bottom:3px;height:7px;border-radius:999px;background:rgba(255,234,187,.48)}
+.house-window{left:16px;bottom:27px;width:19px;height:28px;border-radius:13px 13px 5px 5px;background:linear-gradient(180deg,rgba(124,69,28,.62),rgba(70,43,25,.78));box-shadow:inset 0 2px 3px rgba(255,219,143,.30)}
+.house-logo{left:41px;top:36px;width:45px;text-align:center;color:rgba(91,60,34,.58);font-size:6.8px;line-height:1;font-weight:950;letter-spacing:.2px}
+.house-logo i{display:block;font-style:normal;font-size:9px;margin-bottom:1px;color:rgba(91,60,34,.50)}
+.house-peg{width:6px;height:6px;border-radius:50%;background:linear-gradient(145deg,#ffe5b8,#b87534);box-shadow:inset 0 1px 1px rgba(255,255,255,.55),0 1px 2px rgba(87,48,22,.25)}
+.house-peg.p1{left:16px;top:46px}.house-peg.p2{right:14px;top:45px}.house-peg.p3{left:13px;bottom:14px}.house-peg.p4{right:13px;bottom:14px}
+.house-base{left:24px;bottom:3px;width:82px;height:9px;border-radius:999px;background:linear-gradient(180deg,#f3c985,#c9873c);box-shadow:0 3px 5px rgba(88,54,23,.18)}
+
 .sofa{position:absolute;z-index:2;right:-8px;top:72px;width:139px;height:105px;border-radius:28px 0 8px 8px;background:linear-gradient(145deg,#71847f,#354e4a);box-shadow:0 10px 14px rgba(54,37,23,.27)}
 .sofa:before{content:"";position:absolute;top:-18px;left:10px;width:80px;height:48px;border-radius:17px 17px 7px 7px;background:#74867f}
 .speech{position:absolute;z-index:20;top:17px;left:50%;width:177px;min-height:74px;padding:14px 12px;transform:translateX(-50%);border-radius:14px;background:rgba(255,255,255,.98);box-shadow:0 7px 16px rgba(58,37,21,.18);text-align:center;font-size:12px;line-height:1.55;font-weight:800}
@@ -2155,7 +2158,20 @@ body,button,input,select{
       <section class="page active" id="homePage">
         <div class="room" id="room">
           <div class="wall-light"></div><div class="floor"></div>
-          <div class="plant">🪴</div><div class="house"></div><div class="sofa"></div>
+          <div class="plant">🪴</div>
+          <div class="house robo-house" aria-label="로보킹 원목 하우스">
+            <span class="house-body"></span>
+            <span class="house-roof"></span>
+            <span class="house-roof-lines"></span>
+            <span class="house-glow"></span>
+            <span class="house-door"></span>
+            <span class="house-window"></span>
+            <span class="house-logo"><i>♕</i><b>ROBOKING</b></span>
+            <span class="house-peg p1"></span><span class="house-peg p2"></span>
+            <span class="house-peg p3"></span><span class="house-peg p4"></span>
+            <span class="house-base"></span>
+          </div>
+          <div class="sofa"></div>
           <div class="speech" id="speech"><strong>배가 든든해요!</strong><br>청소를 준비할게요!</div>
           <div class="mode-chip" id="modeChip">✨ 로보킹 맞춤 준비</div>
           <div class="rug"></div>

@@ -2861,6 +2861,138 @@ button,
 
 strong,b{font-weight:700;}
 
+
+
+/* ===== Compact AI cleaning card: simplified for quick use ===== */
+#aiCleanSection.ai-ready{
+  padding:12px 11px 13px!important;
+}
+#aiCleanSection.ai-ready .plan-head{
+  margin-bottom:9px!important;
+}
+#aiCleanSection.ai-ready .plan-title{
+  font-size:15px!important;
+  font-weight:800!important;
+}
+#aiCleanSection.ai-ready .plan-model{
+  padding:5px 8px!important;
+  font-size:10px!important;
+  border-radius:999px!important;
+  background:#e7f4d9!important;
+  color:#2f8b3a!important;
+}
+#aiMappedControls.ai-clean-controls{
+  display:block;
+}
+#aiCleanSection .ai-clean-intro{
+  display:flex!important;
+  align-items:center!important;
+  gap:7px!important;
+  margin:0 0 10px!important;
+  padding:8px 10px!important;
+  border:0!important;
+  border-radius:11px!important;
+  background:#f3f8ed!important;
+  box-shadow:none!important;
+}
+#aiCleanSection .ai-clean-intro-icon{
+  display:inline!important;
+  width:auto!important;
+  height:auto!important;
+  flex:0 0 auto!important;
+  background:transparent!important;
+  font-size:15px!important;
+  line-height:1!important;
+}
+#aiCleanSection .ai-clean-intro-title{
+  color:#5e4632!important;
+  font-size:11.5px!important;
+  line-height:1.35!important;
+  font-weight:600!important;
+  letter-spacing:-.15px!important;
+}
+#aiCleanSection .ai-clean-intro-desc{display:none!important;}
+#aiCleanSection .ai-clean-mode-row{
+  display:grid!important;
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  gap:7px!important;
+}
+#aiCleanSection .ai-clean-mode-btn{
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:4px!important;
+  min-width:0!important;
+  min-height:62px!important;
+  padding:7px 3px!important;
+  border:1px solid #ead9b7!important;
+  border-radius:14px!important;
+  background:#fffaf0!important;
+  color:#5a412e!important;
+  box-shadow:0 3px 8px rgba(79,48,21,.08)!important;
+  font-size:10.5px!important;
+  line-height:1.15!important;
+  font-weight:700!important;
+  white-space:nowrap!important;
+  word-break:keep-all!important;
+}
+#aiCleanSection .ai-clean-mode-btn .ai-mode-icon{
+  display:block!important;
+  font-size:20px!important;
+  line-height:1!important;
+}
+#aiCleanSection .ai-clean-mode-btn.active{
+  border-color:transparent!important;
+  background:linear-gradient(180deg,#64b84e,#47a342)!important;
+  color:#fff!important;
+  box-shadow:0 6px 12px rgba(67,126,56,.20)!important;
+}
+#aiCleanSection .ai-clean-mode-btn.danger.active{
+  background:linear-gradient(180deg,#f28f49,#e87539)!important;
+  color:#fff!important;
+}
+#aiCleanSection .ai-clean-selection-note{
+  min-height:0!important;
+  margin:8px 1px 0!important;
+  padding:0!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  color:#84684e!important;
+  font-size:10px!important;
+  line-height:1.35!important;
+  font-weight:500!important;
+  text-align:center!important;
+}
+#aiCleanSection .ai-clean-selection-note b{
+  color:#5e4632!important;
+  font-weight:600!important;
+}
+#aiCleanSection .ai-clean-now-btn{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  width:100%!important;
+  min-height:48px!important;
+  margin-top:10px!important;
+  padding:0 12px!important;
+  border:0!important;
+  border-radius:14px!important;
+  background:linear-gradient(90deg,#f18b2e,#f6a342)!important;
+  color:#fff!important;
+  box-shadow:0 7px 14px rgba(210,117,35,.22)!important;
+  font-size:14px!important;
+  line-height:1.1!important;
+  font-weight:800!important;
+  letter-spacing:-.2px!important;
+}
+#aiCleanSection .ai-clean-now-btn .ai-clean-now-main{display:inline!important;}
+#aiCleanSection .ai-clean-now-btn #aiCleanNowSub{display:none!important;}
+@media(max-width:360px){
+  #aiCleanSection .ai-clean-mode-btn{font-size:9.8px!important;min-height:58px!important;}
+  #aiCleanSection .ai-clean-mode-btn .ai-mode-icon{font-size:18px!important;}
+}
 </style>
 </head>
 
@@ -2972,24 +3104,21 @@ strong,b{font-weight:700;}
             <!-- 매핑 완료 후에는 복잡한 학습 결과 대신 이 간단한 AI 청소 UI만 표시 -->
             <div class="ai-clean-controls" id="aiMappedControls">
               <div class="ai-clean-intro">
-                <div class="ai-clean-intro-icon">✨</div>
-                <div>
-                  <div class="ai-clean-intro-title">매핑된 우리 집 정보를 바탕으로 맞춤 AI 청소를 진행해요!</div>
-                  <div class="ai-clean-intro-desc">집 구조와 각 영역의 바닥·오염 상태를 기억해 두었어요. 원하는 방식만 고르면 로보킹이 청소 범위와 필요한 배터리를 알아서 준비해요.</div>
-                </div>
+                <span class="ai-clean-intro-icon">✨</span>
+                <div class="ai-clean-intro-title">매핑한 우리 집에 맞춰 로보킹이 알아서 청소해요.</div>
               </div>
 
               <div class="ai-clean-mode-row">
-                <button type="button" class="ai-clean-mode-btn" id="aiHomeCleanBtn" data-action="aiAutoClean">🏠 집 전체 청소</button>
-                <button type="button" class="ai-clean-mode-btn" id="aiDirtyCleanBtn" data-action="dirtyOnlyClean">🔥 더러운 곳만</button>
-                <button type="button" class="ai-clean-mode-btn danger" id="aiNoGoBtn" data-action="toggleNoGoMode">🚫 금지구역 설정</button>
+                <button type="button" class="ai-clean-mode-btn" id="aiHomeCleanBtn" data-action="aiAutoClean"><span class="ai-mode-icon">🏠</span><span>집 전체청소</span></button>
+                <button type="button" class="ai-clean-mode-btn" id="aiDirtyCleanBtn" data-action="dirtyOnlyClean"><span class="ai-mode-icon">🔥</span><span>더러운곳만</span></button>
+                <button type="button" class="ai-clean-mode-btn danger" id="aiNoGoBtn" data-action="toggleNoGoMode"><span class="ai-mode-icon">🚫</span><span>금지구역설정</span></button>
               </div>
 
-              <div class="ai-clean-selection-note" id="aiCleanSelectionNote">매핑된 전체 영역을 AI가 자동으로 청소해요.</div>
+              <div class="ai-clean-selection-note" id="aiCleanSelectionNote">집 전체를 AI가 알아서 청소해요.</div>
 
               <button type="button" class="ai-clean-now-btn" id="aiCleanNowBtn" data-action="executeTopClean">
-                🧹 바로 청소하기
-                <span id="aiCleanNowSub">선택한 AI 청소 방식으로 바로 시작해요</span>
+                <span class="ai-clean-now-main">🧹 바로 청소하기</span>
+                <span id="aiCleanNowSub">선택한 방식으로 바로 시작해요</span>
               </button>
             </div>
 
@@ -4561,19 +4690,19 @@ function renderPlan(){
     if(aiNoGoBtn){
       aiNoGoBtn.classList.toggle('active',state.mapMode==='noGo');
       aiNoGoBtn.disabled=busy;
-      aiNoGoBtn.textContent=noGoCount>0 ? '🚫 금지구역 '+noGoCount+'곳' : '🚫 금지구역 설정';
+      aiNoGoBtn.innerHTML=noGoCount>0 ? '<span class="ai-mode-icon">🚫</span><span>금지구역 '+noGoCount+'곳</span>' : '<span class="ai-mode-icon">🚫</span><span>금지구역설정</span>';
     }
 
     if(aiCleanSelectionNote){
       if(state.mapMode==='noGo'){
-        aiCleanSelectionNote.innerHTML='<b>지도에서 청소하지 않을 영역을 눌러 주세요.</b><br>선택한 영역은 AI 청소에서 자동으로 제외돼요.';
+        aiCleanSelectionNote.innerHTML='<b>지도에서 제외할 영역을 눌러 주세요.</b>';
       }else if(state.smartCleanMode==='dirty'){
         const dirty=(state.selectedDirtyZones||[]);
-        aiCleanSelectionNote.innerHTML='<b>더러운 곳만 집중 청소</b>'+(dirty.length?' · '+dirty.join(', ')+'번 영역':'')+'<br>오염도가 높은 영역을 AI가 골라 우선 청소해요.';
+        aiCleanSelectionNote.innerHTML='<b>더러운 곳만 집중 청소</b>'+(dirty.length?' · '+dirty.join(', ')+'번 영역':'');
       }else if(state.smartCleanMode==='zone' && state.selectedZone){
-        aiCleanSelectionNote.innerHTML='<b>'+state.selectedZone+'번 영역 선택</b><br>세부 구역 청소는 아래 직접조건 청소에서도 설정할 수 있어요.';
+        aiCleanSelectionNote.innerHTML='<b>'+state.selectedZone+'번 영역만 청소</b>';
       }else{
-        aiCleanSelectionNote.innerHTML='<b>집 전체 AI 청소</b> · '+getDisplayZoneCount()+'개 영역'+(noGoCount?' 중 금지구역 '+noGoCount+'곳 제외':'')+'<br>매핑된 우리 집 정보를 바탕으로 전체 청소를 준비해요.';
+        aiCleanSelectionNote.innerHTML='<b>집 전체 AI 청소</b>'+(noGoCount?' · 금지구역 '+noGoCount+'곳 제외':'');
       }
     }
 
@@ -4594,7 +4723,8 @@ function renderPlan(){
       }else if(state.predicted && state.soc<state.targetSoc){
         main='🔋 필요한 만큼 충전하고 청소하기';sub='과충전 없이 필요한 배터리만 채우고 출발해요';
       }
-      aiCleanNowBtn.childNodes[0].nodeValue=main+' ';
+      const aiCleanNowMain=aiCleanNowBtn.querySelector('.ai-clean-now-main');
+      if(aiCleanNowMain)aiCleanNowMain.textContent=main;
       if(aiCleanNowSub)aiCleanNowSub.textContent=sub;
     }
   }

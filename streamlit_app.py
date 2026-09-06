@@ -1593,12 +1593,40 @@ body,button,input,select{
 .robot-aura-deco span:nth-child(2){right:2px;top:22px;animation-delay:.45s;}
 .robot-aura-deco span:nth-child(3){right:18px;bottom:22px;animation-delay:.8s;}
 .robot-aura-deco span:nth-child(4){left:22px;bottom:10px;animation-delay:1.05s;}
-.level-robot-preview{position:relative;display:inline-grid;place-items:center;min-width:112px;min-height:94px;margin:0 auto;}
-.level-robot-preview .preview-base{font-size:72px;line-height:1;animation:float 2s ease-in-out infinite;}
-.preview-head,.preview-aura{position:absolute;pointer-events:none;}
-.preview-head{top:-4px;left:50%;transform:translateX(-50%);font-size:35px;filter:drop-shadow(0 3px 3px rgba(64,38,18,.18));}
-.preview-head.hat{top:-9px;transform:translateX(-56%) rotate(-10deg);font-size:48px;}
-.preview-head.ears{top:-13px;width:92px;height:48px;}
+.level-robot-preview{position:relative;display:inline-grid;place-items:center;min-width:132px;min-height:112px;margin:0 auto;}
+.preview-shell{position:relative;width:122px;height:102px;display:grid;place-items:end center;}
+.preview-crown,.preview-head,.preview-aura{position:absolute;pointer-events:none;}
+.preview-crown{left:50%;top:-6px;transform:translateX(-50%);font-size:35px;line-height:1;filter:drop-shadow(0 3px 3px rgba(64,38,18,.18));}
+.preview-robot{
+  position:absolute;left:50%;bottom:8px;width:98px;height:54px;transform:translateX(-50%);
+  border:2px solid #a29b92;border-radius:58% 58% 39% 39%;
+  background:linear-gradient(180deg,#fffefb 0%,#e7e8e3 70%,#c5c7c1 100%);
+  box-shadow:0 8px 12px rgba(55,37,21,.18),inset 0 -5px 8px rgba(83,83,79,.10);
+  animation:float 2s ease-in-out infinite;
+}
+.preview-robot-top{
+  position:absolute;left:50%;top:-4px;width:68px;height:31px;transform:translateX(-50%);
+  border-top:2px solid rgba(119,119,114,.42);border-radius:50%;
+  background:radial-gradient(ellipse at center,#fbfbf8 0%,#d5d6d2 74%,#b8b9b3 100%);
+}
+.preview-robot-face{
+  position:absolute;z-index:3;left:50%;bottom:5px;width:69px;height:29px;transform:translateX(-50%);
+  border-radius:15px 15px 17px 17px;background:linear-gradient(180deg,#2a2c2d,#101213 76%);
+  box-shadow:inset 0 3px 4px rgba(255,255,255,.12);
+}
+.preview-eye{
+  position:absolute;top:8px;width:11px;height:11px;border:1.6px solid #f2f0dc;border-radius:50%;background:#111;
+}
+.preview-eye:after{content:"";position:absolute;top:2px;left:3px;width:3.5px;height:3.5px;border-radius:50%;background:#fff;}
+.preview-eye.left{left:11px}.preview-eye.right{right:11px}
+.preview-cheek{position:absolute;bottom:4px;width:7px;height:3px;border-radius:50%;background:#ff8d8d;opacity:.78;}
+.preview-cheek.left{left:5px}.preview-cheek.right{right:5px}
+.preview-mouth{position:absolute;left:50%;bottom:4px;width:12px;height:6px;transform:translateX(-50%);border:1.6px solid #f3d6c9;border-top:0;border-radius:0 0 8px 8px;}
+.preview-slot{position:absolute;left:50%;bottom:-1px;width:24px;height:3px;transform:translateX(-50%);border-radius:10px;background:#484a48;}
+.preview-head{top:3px;left:50%;transform:translateX(-50%);font-size:31px;line-height:1;filter:drop-shadow(0 3px 3px rgba(64,38,18,.18));}
+.preview-head.ribbon{top:1px;font-size:33px;}
+.preview-head.hat{top:-3px;transform:translateX(-56%) rotate(-10deg);font-size:43px;}
+.preview-head.ears{top:-8px;width:92px;height:48px;}
 .preview-head.ears .p-ear{position:absolute;bottom:0;filter:drop-shadow(0 2px 2px rgba(64,38,18,.14));}
 .preview-head.bunny .p-ear{width:13px;height:42px;border:2px solid #fff;border-radius:12px;background:#f5f1fb;}
 .preview-head.bunny .p-ear:after{content:"";position:absolute;left:50%;top:6px;width:5px;height:29px;transform:translateX(-50%);border-radius:8px;background:#ffc2d7;}
@@ -1607,7 +1635,7 @@ body,button,input,select{
 .preview-head.cat .p-ear:after{content:"";position:absolute;left:50%;bottom:3px;width:10px;height:10px;transform:translateX(-50%);background:linear-gradient(180deg,#ffd6a7,#ff8f80);clip-path:polygon(50% 0,8% 100%,92% 100%);}
 .preview-head.cat .p-ear.left{left:13px;transform:rotate(-15deg)}.preview-head.cat .p-ear.right{right:13px;transform:rotate(15deg)}
 .preview-aura{inset:0;font-size:18px;animation:decoTwinkle 1.5s ease-in-out infinite;}
-.preview-aura .a1{position:absolute;left:2px;top:15px}.preview-aura .a2{position:absolute;right:0;top:28px}.preview-aura .a3{position:absolute;right:12px;bottom:12px}
+.preview-aura .a1{position:absolute;left:0;top:16px}.preview-aura .a2{position:absolute;right:-2px;top:28px}.preview-aura .a3{position:absolute;right:10px;bottom:12px}
 .reward-btn.equipped{background:linear-gradient(90deg,#4a9b42,#75b84e)!important;color:#fff!important;}
 .reward-btn.owned{background:#fff2cf!important;color:#5c422f!important;border:1px solid rgba(124,83,43,.18)!important;}
 .reward-card.owned{background:rgba(255,253,240,.98)!important;border-color:rgba(75,155,66,.22)!important;}
@@ -2928,7 +2956,22 @@ body,button,input,select{
         <div class="section-title">로보킹 성장 리워드</div>
 
         <div class="panel level-panel">
-          <div class="level-robot-preview" id="levelRobotPreview"><span class="preview-base">🤖</span></div>
+          <div class="level-robot-preview" id="levelRobotPreview">
+            <div class="preview-shell">
+              <span class="preview-crown">👑</span>
+              <div class="preview-robot">
+                <div class="preview-robot-top"></div>
+                <div class="preview-robot-face">
+                  <div class="preview-eye left"></div>
+                  <div class="preview-eye right"></div>
+                  <div class="preview-cheek left"></div>
+                  <div class="preview-cheek right"></div>
+                  <div class="preview-mouth"></div>
+                </div>
+                <div class="preview-slot"></div>
+              </div>
+            </div>
+          </div>
           <div class="level-number">Lv. <span id="levelText">13</span></div>
           <div class="level-track"><div class="level-fill" id="expFill"></div></div>
           <div class="level-caption">경험치 <span id="expText">55</span> / 100</div>
@@ -4864,6 +4907,13 @@ function renderEvents(){
   const tabs={found:"evTabFound",mission:"evTabMission",photo:"evTabPhoto"};
   const panels={found:"evFoundPanel",mission:"evMissionPanel",photo:"evPhotoPanel"};
   Object.keys(tabs).forEach(k=>{const b=$(tabs[k]);if(b)b.classList.toggle("active",state.eventTab===k);const p=$(panels[k]);if(p)p.classList.toggle("hidden",state.eventTab!==k);});
+
+  // 중요: 1회차 학습이 끝나 state.profileReady가 true가 된 직후에도
+  // '오늘의 발견' 지도와 사진첩을 즉시 다시 그려야 합니다.
+  // 기존에는 최초 로딩 때만 renderFound()가 실행되어,
+  // 학습 완료 후에도 '학습 후 보기' 잠금 화면이 그대로 남아 있었습니다.
+  renderFound();
+  renderPhotos();
   renderMissions();
 }
 function switchEventTab(tab){state.eventTab=tab;render();}
@@ -4924,7 +4974,20 @@ function renderReward(){
   const preview=$("levelRobotPreview");
   if(preview){
     const head=state.equippedItems.head;
-    let html='<span class="preview-base">🤖</span>';
+    let html=''
+      +'<div class="preview-shell">'
+      +(head && head!=="crown" ? '' : '<span class="preview-crown">👑</span>')
+      +'<div class="preview-robot">'
+      +'<div class="preview-robot-top"></div>'
+      +'<div class="preview-robot-face">'
+      +'<div class="preview-eye left"></div>'
+      +'<div class="preview-eye right"></div>'
+      +'<div class="preview-cheek left"></div>'
+      +'<div class="preview-cheek right"></div>'
+      +'<div class="preview-mouth"></div>'
+      +'</div>'
+      +'<div class="preview-slot"></div>'
+      +'</div>';
     if(head && head!=="crown"){
       if(head==="bunny" || head==="cat"){
         html+='<span class="preview-head ears '+head+'"><span class="p-ear left"></span><span class="p-ear right"></span></span>';
@@ -4936,6 +4999,7 @@ function renderReward(){
       }
     }
     if(state.equippedItems.aura==="sparkle")html+='<span class="preview-aura"><span class="a1">✨</span><span class="a2">✨</span><span class="a3">✨</span></span>';
+    html+='</div>';
     preview.innerHTML=html;
   }
 

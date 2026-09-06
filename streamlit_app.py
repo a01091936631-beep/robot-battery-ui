@@ -827,6 +827,9 @@ ui_media_data = {
 }
 UI_MEDIA_JSON = json.dumps(ui_media_data, ensure_ascii=False)
 
+# 크리스마스 에디션 산타 모자 아이콘을 코드에 내장해 별도 이미지 파일 없이 동작합니다.
+SANTA_HAT_DATA_URI = 'data:image/png;base64,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'
+
 
 APP_HTML = r"""
 <!doctype html>
@@ -1143,6 +1146,119 @@ button,input{font-family:inherit} button{cursor:pointer}
   .coach-speech{font-size:12.8px;padding:12px 13px;margin-bottom:16px;}
   .coach-robo-stage{height:100px;}
   .coach-robo{width:146px;height:80px;}
+}
+
+/* ===== Christmas limited reward: Santa hat ===== */
+.reward-card.seasonal-card{
+  position:relative;
+  overflow:hidden;
+  border-color:rgba(194,64,48,.25)!important;
+  background:linear-gradient(145deg,#fff9e9,#fff0dd)!important;
+}
+.reward-card.seasonal-card:before{
+  content:"CHRISTMAS";
+  position:absolute;
+  top:8px;
+  right:8px;
+  padding:3px 7px;
+  border-radius:999px;
+  background:#c94035;
+  color:#fff;
+  font-size:8px;
+  line-height:1;
+  font-weight:1000;
+  letter-spacing:.5px;
+}
+.reward-icon.santa-reward-icon{
+  width:52px;
+  height:52px;
+  margin:0 auto;
+  display:grid;
+  place-items:center;
+  border-radius:15px;
+  background:#eee1cf;
+  box-shadow:inset 0 0 0 1px rgba(110,76,48,.08);
+}
+.santa-reward-icon img{width:35px;height:47px;object-fit:contain;display:block;}
+.robot-head-deco.santa{
+  top:-49px;
+  width:116px;
+  min-width:116px;
+  height:74px;
+  transform:translateX(-50%) rotate(-5deg);
+}
+.robot-head-deco.santa.show{display:block;animation:santaHatPop .34s ease-out;}
+.robot-head-deco.santa .santa-cap{
+  position:absolute;
+  left:28px;
+  top:7px;
+  width:62px;
+  height:46px;
+  border-radius:46px 30px 9px 9px;
+  background:linear-gradient(145deg,#e84f41 0%,#c5322d 72%,#9f2826 100%);
+  transform:rotate(-10deg) skewX(-7deg);
+  box-shadow:0 4px 5px rgba(76,38,25,.18);
+}
+.robot-head-deco.santa .santa-cap:after{
+  content:"";
+  position:absolute;
+  right:-18px;
+  top:-1px;
+  width:31px;
+  height:31px;
+  border-radius:50%;
+  background:#fffdf8;
+  box-shadow:0 3px 5px rgba(75,50,33,.13);
+}
+.robot-head-deco.santa .santa-brim{
+  position:absolute;
+  left:20px;
+  bottom:8px;
+  width:78px;
+  height:22px;
+  border-radius:18px;
+  background:linear-gradient(180deg,#fff 0%,#f2eee7 100%);
+  box-shadow:0 4px 5px rgba(75,50,33,.12);
+}
+.preview-head.santa{
+  top:-10px;
+  width:72px;
+  height:49px;
+  transform:translateX(-50%) rotate(-5deg);
+}
+.preview-head.santa .ps-cap{
+  position:absolute;
+  left:17px;
+  top:5px;
+  width:40px;
+  height:30px;
+  border-radius:30px 20px 6px 6px;
+  background:linear-gradient(145deg,#e84f41,#bd302c 80%);
+  transform:rotate(-10deg) skewX(-7deg);
+}
+.preview-head.santa .ps-cap:after{
+  content:"";
+  position:absolute;
+  right:-12px;
+  top:-1px;
+  width:20px;
+  height:20px;
+  border-radius:50%;
+  background:#fffdf8;
+}
+.preview-head.santa .ps-brim{
+  position:absolute;
+  left:11px;
+  bottom:4px;
+  width:50px;
+  height:14px;
+  border-radius:12px;
+  background:#fffdf8;
+  box-shadow:0 2px 3px rgba(75,50,33,.1);
+}
+@keyframes santaHatPop{
+  from{opacity:0;transform:translateX(-50%) translateY(8px) rotate(-5deg) scale(.72)}
+  to{opacity:1;transform:translateX(-50%) translateY(0) rotate(-5deg) scale(1)}
 }
 
 /* Animations */
@@ -2825,7 +2941,7 @@ body,button,input,select{
 
         <div class="reward-panel" id="rewardItemsPanel">
           <div class="reward-grid">
-            <div class="reward-card" id="cardFood"><div class="reward-icon">🥣</div><div class="reward-title">에너지 간식</div><div class="reward-desc">먹으면 배터리가 조금 회복돼요.</div><div class="reward-status" id="statusFood"></div><button class="reward-btn" id="btnFood" data-action="buyFood">50 코인</button></div>
+            <div class="reward-card seasonal-card" id="cardSanta"><div class="reward-icon santa-reward-icon"><img src="__SANTA_HAT_DATA_URI__" alt="산타클로스 모자"></div><div class="reward-title">산타클로스 모자</div><div class="reward-desc">크리스마스 에디션! 로보킹에게 포근한 산타 모자를 씌워줘요.</div><div class="reward-status" id="statusSanta"></div><button class="reward-btn" id="btnSanta" data-action="itemSanta">50 코인</button></div>
             <div class="reward-card" id="cardRibbon"><div class="reward-icon">🎀</div><div class="reward-title">빨간 리본</div><div class="reward-desc">머리 위에 귀엽게 달아줘요.</div><div class="reward-status" id="statusRibbon"></div><button class="reward-btn" id="btnRibbon" data-action="itemRibbon">60 코인</button></div>
             <div class="reward-card" id="cardHat"><div class="reward-icon">🧢</div><div class="reward-title">탐험가 모자</div><div class="reward-desc">로보킹 머리에 딱 맞게 씌워줘요.</div><div class="reward-status" id="statusHat"></div><button class="reward-btn" id="btnHat" data-action="itemHat">120 코인</button></div>
             <div class="reward-card" id="cardSparkle"><div class="reward-icon">✨</div><div class="reward-title">반짝이 오라</div><div class="reward-desc">로보킹 주변이 반짝여요.</div><div class="reward-status" id="statusSparkle"></div><button class="reward-btn" id="btnSparkle" data-action="itemSparkle">80 코인</button></div>
@@ -2949,10 +3065,11 @@ const intensityAliases={fast:["약","중"],standard:["중","강"],careful:["강"
 const todayStateAliases={normal:"학습 프로필 기준",dust:"오염도 높은 조건",pet:"오염도 높음 + 강한 흡입 조건",obstacle:"장애물 많은 조건"};
 
 const closetDefault={
-  owned:{ribbon:false,hat:false,bunny:false,cat:false,sparkle:false},
+  owned:{santa:false,ribbon:false,hat:false,bunny:false,cat:false,sparkle:false},
   equipped:{head:"crown",aura:null}
 };
 const shopItems={
+  santa:{name:"산타클로스 모자",icon:"🎄",cost:50,slot:"head",value:"santa",message:"메리 크리스마스! 산타 모자를 씌워 로보킹이 크리스마스 에디션으로 변신했어요."},
   ribbon:{name:"빨간 리본",icon:"🎀",cost:60,slot:"head",value:"ribbon",message:"빨간 리본을 달아줬어요! 로보킹이 더 사랑스러워졌어요."},
   hat:{name:"탐험가 모자",icon:"🧢",cost:120,slot:"head",value:"hat",message:"탐험가 모자를 씌워줬어요! 이제 진짜 모험가 로보킹이에요."},
   bunny:{name:"토끼 귀",icon:"🐰",cost:90,slot:"head",value:"bunny",message:"토끼 귀를 달아줬어요! 로보킹이 통통 튀는 기분이에요."},
@@ -4774,6 +4891,9 @@ function renderAccessories(){
     }else if(headItem==="cat"){
       head.classList.add("show","ears","cat");
       head.innerHTML='<span class="robo-ear left"></span><span class="robo-ear right"></span>';
+    }else if(headItem==="santa"){
+      head.classList.add("show","santa");
+      head.innerHTML='<span class="santa-cap"></span><span class="santa-brim"></span>';
     }else{
       const headMap={ribbon:"🎀",hat:"🧢"};
       head.textContent=headMap[headItem]||"";
@@ -4808,6 +4928,8 @@ function renderReward(){
     if(head && head!=="crown"){
       if(head==="bunny" || head==="cat"){
         html+='<span class="preview-head ears '+head+'"><span class="p-ear left"></span><span class="p-ear right"></span></span>';
+      }else if(head==="santa"){
+        html+='<span class="preview-head santa"><span class="ps-cap"></span><span class="ps-brim"></span></span>';
       }else{
         const headMap={ribbon:"🎀",hat:"🧢"};
         html+='<span class="preview-head '+head+'">'+(headMap[head]||'')+'</span>';
@@ -4826,6 +4948,7 @@ function renderReward(){
   if(itemPanel)itemPanel.classList.toggle("hidden",state.rewardTab!=="items");
   if(couponPanel)couponPanel.classList.toggle("hidden",state.rewardTab!=="coupons");
 
+  updateRewardButton("santa","Santa");
   updateRewardButton("ribbon","Ribbon");
   updateRewardButton("hat","Hat");
   updateRewardButton("bunny","Bunny");
@@ -4836,13 +4959,6 @@ function renderReward(){
   updateCouponButton("batteryCare","CouponBatteryCare");
   updateCouponButton("moveIn","CouponMoveIn");
 
-  const foodBtn=$("btnFood");
-  const foodStatus=$("statusFood");
-  if(foodBtn){
-    foodBtn.textContent=state.coins>=50?"50 코인":"50 코인 필요";
-    foodBtn.classList.toggle("need-coins",state.coins<50);
-  }
-  if(foodStatus)foodStatus.textContent="보유 간식 "+state.food+"개";
 }
 
 function updateRewardButton(key,suffix){
@@ -5701,8 +5817,8 @@ const actions={
   selectHome:()=>selectScenario("home"),selectZone1:()=>selectScenario("zone",1),selectZone2:()=>selectScenario("zone",2),selectZone3:()=>selectScenario("zone",3),selectZone4:()=>selectScenario("zone",4),selectZone5:()=>selectScenario("zone",5),selectZone6:()=>selectScenario("zone",6),selectZone7:()=>selectScenario("zone",7),selectZone8:()=>selectScenario("zone",8),
   pet:petRobot,feed:feedRobot,play:playRobot,train:trainRobot,photo:takePhoto,clean:startCleaning,charge:chargeRobot,status:showStatus,batteryCoachInfo:openBatteryCoachInfo,
   // 홈의 "청소 기록" 버튼은 실시간 케어 기록이 있는 부품 케어 탭으로 이동합니다.
-  record:()=>switchPage("batteryPage"),care:()=>switchPage("batteryPage"),event:()=>switchPage("eventPage"),decorate:decorateRobot,shop:()=>switchPage("rewardPage"),chargeFromBattery:()=>{switchPage("homePage");setTimeout(chargeRobot,220)},buyFood:buyFood,
-  itemRibbon:()=>handleRewardItem("ribbon"),itemHat:()=>handleRewardItem("hat"),itemBunny:()=>handleRewardItem("bunny"),itemCat:()=>handleRewardItem("cat"),itemSparkle:()=>handleRewardItem("sparkle"),
+  record:()=>switchPage("batteryPage"),care:()=>switchPage("batteryPage"),event:()=>switchPage("eventPage"),decorate:decorateRobot,shop:()=>switchPage("rewardPage"),chargeFromBattery:()=>{switchPage("homePage");setTimeout(chargeRobot,220)},
+  itemSanta:()=>handleRewardItem("santa"),itemRibbon:()=>handleRewardItem("ribbon"),itemHat:()=>handleRewardItem("hat"),itemBunny:()=>handleRewardItem("bunny"),itemCat:()=>handleRewardItem("cat"),itemSparkle:()=>handleRewardItem("sparkle"),
   rewardTabItems:()=>switchRewardTab("items"),rewardTabCoupons:()=>switchRewardTab("coupons"),
   couponLg5:()=>handleCoupon("lg5"),couponCleanKit:()=>handleCoupon("cleanKit"),couponBatteryCare:()=>handleCoupon("batteryCare"),couponMoveIn:()=>handleCoupon("moveIn"),
   ribbon:()=>handleRewardItem("ribbon"),sparkle:()=>handleRewardItem("sparkle"),hat:()=>handleRewardItem("hat"),
@@ -5782,5 +5898,6 @@ state.notifiedClaimable=claimableCount();
 
 APP_HTML = APP_HTML.replace("__UI_PREDICTION_DATA__", UI_PREDICTION_JSON)
 APP_HTML = APP_HTML.replace("__UI_MEDIA_DATA__", UI_MEDIA_JSON)
+APP_HTML = APP_HTML.replace("__SANTA_HAT_DATA_URI__", SANTA_HAT_DATA_URI)
 
 components.html(APP_HTML, height=1010, scrolling=False)

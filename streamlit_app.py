@@ -1359,7 +1359,7 @@ body,button,input,select{
   background:rgba(255,255,255,.95);
   box-shadow:0 7px 16px rgba(60,38,20,.22);
   text-align:center;
-  pointer-events:none;
+  pointer-events:auto;
 }
 .robot-soc-badge span{
   display:block;
@@ -1378,6 +1378,27 @@ body,button,input,select{
   font-weight:1000;
   letter-spacing:-.5px;
 }
+.battery-help-btn{
+  position:absolute;
+  top:-7px;
+  right:-7px;
+  z-index:3;
+  width:19px;
+  height:19px;
+  padding:0;
+  border:2px solid rgba(255,255,255,.96);
+  border-radius:50%;
+  background:linear-gradient(180deg,#8fcf71,#43a549);
+  color:#fff;
+  box-shadow:0 3px 8px rgba(54,38,20,.23);
+  font-size:12px;
+  line-height:15px;
+  font-weight:1000;
+  text-align:center;
+  cursor:pointer;
+}
+.battery-help-btn:active{transform:scale(.94)}
+.battery-help-btn:hover{filter:brightness(1.04)}
 .robot-soc-badge.need b{color:#ef8c32;}
 .robot-soc-badge.low b{color:#ef4e45;}
 .robot-soc-badge.ok b{color:#2f8b3a;}
@@ -2175,7 +2196,7 @@ body,button,input,select{
             <div class="robot-accessory robot-body-deco" id="robotBodyDeco"></div>
             <div class="slot"></div>
           </div>
-          <div class="robot-soc-badge" id="robotSocBadge"><span>🔋 현재 배터리</span><b>20%</b></div>
+          <div class="robot-soc-badge" id="robotSocBadge"><button type="button" class="battery-help-btn" data-action="batteryCoachInfo" aria-label="배터리 코칭 안내 보기">!</button><span>🔋 현재 배터리</span><b>20%</b></div>
 
           <div class="mission">
             <div class="mission-title">오늘의 미션</div>
@@ -2811,7 +2832,7 @@ function render(){
   if(robotSocBadge){
     const socState=state.soc<15?"low":(state.soc<state.targetSoc?"need":"ok");
     robotSocBadge.className="robot-soc-badge "+socState;
-    robotSocBadge.innerHTML="<span>🔋 현재 배터리</span><b>"+state.soc+"%</b>";
+    robotSocBadge.innerHTML="<button type=\"button\" class=\"battery-help-btn\" data-action=\"batteryCoachInfo\" aria-label=\"배터리 코칭 안내 보기\">!</button><span>🔋 현재 배터리</span><b>"+state.soc+"%</b>";
   }
 
   renderAccessories();renderPlan();renderHome();
@@ -4562,6 +4583,21 @@ function decorateRobot(){
   showToast("리워드에서 아이템을 사면 로보킹에게 계속 장착돼요.");
 }
 
+function openBatteryCoachInfo(action,event){
+  if(event){
+    event.preventDefault();
+    event.stopPropagation();
+  }
+  openModal(
+    "왜 가득 충전하지 않나요?",
+    "로보킹은 첫 매핑 학습으로 집 크기와 청소 구역을 기억해요.<br><br>"
+    + "그래서 매번 100%까지 채우지 않아도,<br>"
+    + "오늘 청소에 필요한 만큼만 준비할 수 있어요.<br><br>"
+    + "배터리를 너무 가득 채우거나 너무 낮게 쓰는 습관을 줄이면,<br>"
+    + "로보킹을 더 오래 건강하게 사용할 수 있어요."
+  );
+}
+
 function showStatus(){
   if(!state.profileReady){
     openModal("먼저 우리 집을 배울게요","아직 로보킹이 우리 집을 잘 몰라요.<br><br>1회차 학습 청소를 시작하면 방 구조와 바닥 상태를 기억하고, 다음부터 더 똑똑하게 청소를 준비할 수 있어요.");
@@ -5278,7 +5314,7 @@ const actions={
   manualCleanAndGo:manualCleanAndGo,
   aiAutoClean:aiAutoClean,dirtyOnlyClean:dirtyOnlyClean,toggleNoGoMode:toggleNoGoMode,mapZone:handleMapZoneTap,
   selectHome:()=>selectScenario("home"),selectZone1:()=>selectScenario("zone",1),selectZone2:()=>selectScenario("zone",2),selectZone3:()=>selectScenario("zone",3),selectZone4:()=>selectScenario("zone",4),selectZone5:()=>selectScenario("zone",5),selectZone6:()=>selectScenario("zone",6),selectZone7:()=>selectScenario("zone",7),selectZone8:()=>selectScenario("zone",8),
-  pet:petRobot,feed:feedRobot,play:playRobot,train:trainRobot,photo:takePhoto,clean:startCleaning,charge:chargeRobot,status:showStatus,
+  pet:petRobot,feed:feedRobot,play:playRobot,train:trainRobot,photo:takePhoto,clean:startCleaning,charge:chargeRobot,status:showStatus,batteryCoachInfo:openBatteryCoachInfo,
   // 홈의 "청소 기록" 버튼은 실시간 케어 기록이 있는 부품 케어 탭으로 이동합니다.
   record:()=>switchPage("batteryPage"),care:()=>switchPage("batteryPage"),event:()=>switchPage("eventPage"),decorate:decorateRobot,shop:()=>switchPage("rewardPage"),chargeFromBattery:()=>{switchPage("homePage");setTimeout(chargeRobot,220)},buyFood:buyFood,
   itemRibbon:()=>handleRewardItem("ribbon"),itemHat:()=>handleRewardItem("hat"),itemBunny:()=>handleRewardItem("bunny"),itemCat:()=>handleRewardItem("cat"),itemSparkle:()=>handleRewardItem("sparkle"),

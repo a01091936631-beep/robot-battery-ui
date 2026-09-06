@@ -2088,6 +2088,83 @@ body,button,input,select{
 .part-card.good .part-status{color:#2f8b3a;}.part-card.good .part-face{background:#dff3cd;}
 .part-card.check .part-status{color:#e07a1f;}.part-card.check .part-face{background:#ffe6c2;}
 .part-card.bad .part-status{color:#ef4e45;}.part-card.bad .part-face{background:#ffd9d4;}
+/* ===== Page 2 hero: user benefit first ===== */
+.care-impact-hero{
+  position:relative;
+  overflow:hidden;
+  margin-bottom:10px;
+  padding:15px 14px 13px;
+  border:1px solid rgba(71,145,60,.18);
+  background:linear-gradient(145deg,#f5ffe9 0%,#fff7dc 58%,#ffe8b7 100%);
+  box-shadow:0 10px 24px rgba(68,99,43,.15);
+}
+.care-impact-hero:before{
+  content:"";
+  position:absolute;
+  right:-36px;
+  top:-42px;
+  width:126px;
+  height:126px;
+  border-radius:50%;
+  background:rgba(255,255,255,.48);
+}
+.care-impact-top{position:relative;z-index:2;display:flex;align-items:flex-start;justify-content:space-between;gap:9px;}
+.care-impact-eyebrow{color:#4a9b42;font-size:9px;font-weight:1000;letter-spacing:1px;}
+.care-impact-title{margin-top:4px;color:#3f3025;font-size:17px;line-height:1.25;font-weight:1000;}
+.care-impact-badge{
+  flex:0 0 auto;
+  padding:5px 8px;
+  border-radius:999px;
+  background:rgba(255,255,255,.78);
+  color:#6f5940;
+  border:1px solid rgba(124,83,43,.10);
+  font-size:9px;
+  line-height:1;
+  font-weight:950;
+  white-space:nowrap;
+}
+.care-impact-copy{position:relative;z-index:2;margin-top:8px;color:#6f543d;font-size:11.5px;line-height:1.5;font-weight:850;}
+.care-impact-copy b{color:#2f8b3a;font-weight:1000;}
+.care-impact-grid{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:11px;}
+.care-impact-card{
+  min-height:118px;
+  padding:11px 9px 10px;
+  border-radius:16px;
+  background:rgba(255,255,255,.90);
+  border:1px solid rgba(124,83,43,.09);
+  box-shadow:0 6px 13px rgba(73,48,28,.09);
+  text-align:center;
+}
+.care-impact-card.life{box-shadow:inset 0 4px 0 rgba(75,155,66,.65),0 6px 13px rgba(73,48,28,.09);}
+.care-impact-card.money{box-shadow:inset 0 4px 0 rgba(239,140,50,.72),0 6px 13px rgba(73,48,28,.09);}
+.care-impact-icon{font-size:25px;line-height:1;}
+.care-impact-label{margin-top:6px;color:#76553e;font-size:10.5px;line-height:1.25;font-weight:950;}
+.care-impact-value{display:flex;align-items:baseline;justify-content:center;gap:3px;margin-top:5px;color:#2f8b3a;}
+.care-impact-card.money .care-impact-value{color:#ef7f2d;}
+.care-impact-value strong{font-size:27px;line-height:1;font-weight:1000;letter-spacing:-.8px;}
+.care-impact-value span{font-size:11px;font-weight:950;}
+.care-impact-sub{margin-top:5px;color:#876a4d;font-size:9.5px;line-height:1.25;font-weight:900;}
+.care-impact-foot{
+  position:relative;
+  z-index:2;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin-top:9px;
+  padding:8px 9px;
+  border-radius:12px;
+  background:rgba(235,248,222,.92);
+  color:#3a7f38;
+  font-size:10.5px;
+  line-height:1.4;
+  font-weight:900;
+  text-align:center;
+}
+.care-impact-foot b{font-weight:1000;color:#2f8b3a;}
+.care-impact-disclaimer{margin-top:7px;color:#90765c;font-size:8.5px;line-height:1.4;font-weight:800;text-align:center;}
+.care-subhead{display:flex;align-items:center;justify-content:space-between;margin:11px 2px 7px;color:#4b3324;font-size:13px;font-weight:1000;}
+.care-subhead small{color:#8d7054;font-size:9.5px;font-weight:850;}
+
 .care-summary{margin-top:9px;padding:14px;}
 .care-lead{font-size:12px;line-height:1.55;font-weight:850;color:#6f4f38;}
 .care-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:10px;}
@@ -2578,20 +2655,51 @@ body,button,input,select{
       <!-- ===================== PAGE 2 · 부품 케어 ===================== -->
       <section class="page" id="batteryPage">
         <div class="section-kicker">PARTS CARE</div>
-        <div class="section-title">부품 상태 확인</div>
+        <div class="section-title">부품 케어</div>
 
+        <div class="panel care-impact-hero">
+          <div class="care-impact-top">
+            <div>
+              <div class="care-impact-eyebrow">BATTERY CARE EFFECT</div>
+              <div class="care-impact-title">🔋 배터리를 오래 쓰면<br>교체 부담도 줄어들어요</div>
+            </div>
+            <div class="care-impact-badge">사용 패턴 기준 예상</div>
+          </div>
+          <div class="care-impact-copy">
+            필요한 만큼만 충전하고 15% 잔량을 지키는 습관으로<br>
+            <b>배터리 수명과 교체 비용을 함께 아끼고 있어요.</b>
+          </div>
+          <div class="care-impact-grid">
+            <div class="care-impact-card life">
+              <div class="care-impact-icon">⏳</div>
+              <div class="care-impact-label">예상 배터리 수명</div>
+              <div class="care-impact-value"><strong id="careLifeMonths">+6</strong><span>개월</span></div>
+              <div class="care-impact-sub">교체 시점을 더 늦게</div>
+            </div>
+            <div class="care-impact-card money">
+              <div class="care-impact-icon">💰</div>
+              <div class="care-impact-label">예상 교체 비용 절감</div>
+              <div class="care-impact-value"><strong id="careCostSaved">60,000</strong><span>원</span></div>
+              <div class="care-impact-sub">불필요한 교체 부담 감소</div>
+            </div>
+          </div>
+          <div class="care-impact-foot">✨ 지금까지 <b id="careProtectionCount">5회</b>&nbsp; 배터리 보호 습관을 지켰어요</div>
+          <div class="care-impact-disclaimer">※ 현재 충전·청소 사용 패턴을 바탕으로 한 예상 효과입니다.</div>
+        </div>
+
+        <div class="care-subhead"><span>현재 부품 상태</span><small>누르면 상세 확인</small></div>
         <div class="parts-grid" id="partsGrid"></div>
 
         <div class="panel care-summary">
-          <div class="panel-head"><div class="panel-title">배터리 수명 지키기</div><div class="badge">과충전 방지</div></div>
-          <div class="care-lead">완충(100%) 대신 청소에 필요한 만큼만 채우고, 15%를 남기고 쉬어가요. 이렇게 배터리 수명을 늘리고 있어요.</div>
+          <div class="panel-head"><div class="panel-title">이렇게 배터리를 보호하고 있어요</div><div class="badge">자동 케어</div></div>
+          <div class="care-lead">100% 완충을 반복하지 않고 청소에 필요한 만큼만 채우며, 15% 아래로 내려가기 전에 쉬어가요.</div>
           <div class="care-stats">
             <div class="care-stat"><span>맞춤 충전</span><b id="careAcceptText">4</b><small>회</small></div>
-            <div class="care-stat"><span>잔량 15% 보호</span><b id="careReserveText">1</b><small>회</small></div>
-            <div class="care-stat"><span>덜 채운 충전량</span><b id="careSavedText">76</b><small>%</small></div>
+            <div class="care-stat"><span>15% 잔량 보호</span><b id="careReserveText">1</b><small>회</small></div>
+            <div class="care-stat"><span>누적 충전 절약</span><b id="careSavedText">76</b><small>%</small></div>
           </div>
           <div class="care-health-row">
-            <span>배터리 건강도</span>
+            <span>현재 배터리 건강도</span>
             <div class="care-health-track"><div class="care-health-fill" id="careHealthFill" style="width:100%"></div></div>
             <b id="careHealthText">100%</b>
           </div>
@@ -4250,6 +4358,15 @@ function renderCare(){
   const a=$("careAcceptText"); if(a)a.textContent=state.acceptCount;
   const r=$("careReserveText"); if(r)r.textContent=state.reserveGuardCount;
   const s=$("careSavedText"); if(s)s.textContent=Math.round(state.savedChargePct);
+
+  // 공모전 UI용 예상 혜택 값. 실제 제품에서는 배터리 열화 모델과 서비스 부품 단가를 연결하면 됩니다.
+  const protectionCount=Math.max(0,Number(state.acceptCount||0)+Number(state.reserveGuardCount||0));
+  const estimatedLifeMonths=clamp(Math.round(Number(state.savedChargePct||0)/13),1,12);
+  const estimatedCostSaved=Math.max(10000,estimatedLifeMonths*10000);
+  const lm=$("careLifeMonths"); if(lm)lm.textContent="+"+estimatedLifeMonths;
+  const cs=$("careCostSaved"); if(cs)cs.textContent=estimatedCostSaved.toLocaleString("ko-KR");
+  const pc=$("careProtectionCount"); if(pc)pc.textContent=protectionCount+"회";
+
   const hf=$("careHealthFill"); if(hf)hf.style.width=clamp(state.health,0,100)+"%";
   const ht=$("careHealthText"); if(ht)ht.textContent=clamp(Math.round(state.health),0,100)+"%";
   const note=$("careNote");

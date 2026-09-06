@@ -61,6 +61,10 @@ st.markdown(
   z-index:18!important;
 }
 
+
+/* ===== Reward page simplification: level card removed, items shown immediately ===== */
+#rewardPage .reward-folder-tabs{margin-top:2px!important;}
+#rewardPage .section-title{margin-bottom:8px!important;}
 </style>
     """,
     unsafe_allow_html=True,
@@ -2956,28 +2960,6 @@ body,button,input,select{
         <div class="section-kicker">REWARD</div>
         <div class="section-title">로보킹 성장 리워드</div>
 
-        <div class="panel level-panel">
-          <div class="level-robot-preview" id="levelRobotPreview">
-            <div class="preview-shell">
-              <span class="preview-crown">👑</span>
-              <div class="preview-robot">
-                <div class="preview-robot-top"></div>
-                <div class="preview-robot-face">
-                  <div class="preview-eye left"></div>
-                  <div class="preview-eye right"></div>
-                  <div class="preview-cheek left"></div>
-                  <div class="preview-cheek right"></div>
-                  <div class="preview-mouth"></div>
-                </div>
-                <div class="preview-slot"></div>
-              </div>
-            </div>
-          </div>
-          <div class="level-number">Lv. <span id="levelText">13</span></div>
-          <div class="level-track"><div class="level-fill" id="expFill"></div></div>
-          <div class="level-caption">경험치 <span id="expText">55</span> / 100</div>
-        </div>
-
         <div class="reward-folder-tabs">
           <button class="reward-folder-btn active" id="rewardTabItems" data-action="rewardTabItems">꾸미기 아이템</button>
           <button class="reward-folder-btn" id="rewardTabCoupons" data-action="rewardTabCoupons">LG 혜택 쿠폰</button>
@@ -4968,9 +4950,11 @@ function renderAccessories(){
 }
 
 function renderReward(){
-  $("levelText").textContent=state.level;
-  $("expText").textContent=state.exp;
-  $("expFill").style.width=state.exp+"%";
+  // 리워드 페이지에서는 레벨/경험치 패널을 표시하지 않습니다.
+  // 레벨 데이터 자체는 기존 미션/성장 로직에서 그대로 유지됩니다.
+  const levelText=$("levelText"); if(levelText)levelText.textContent=state.level;
+  const expText=$("expText"); if(expText)expText.textContent=state.exp;
+  const expFill=$("expFill"); if(expFill)expFill.style.width=state.exp+"%";
 
   const preview=$("levelRobotPreview");
   if(preview){

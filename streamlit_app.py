@@ -842,16 +842,16 @@ APP_HTML = r"""
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap');
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 :root{
   --brown:#4b3324;--brown2:#735139;--cream:#fff8e8;--green:#62aa49;
   --green2:#2f8b3a;--orange:#ff9535;--red:#ef4e45;--yellow:#ffd44f;
   --shadow:0 8px 18px rgba(72,44,20,.15)
 }
-html,body{margin:0;min-height:100%;font-family:"Noto Sans KR","Noto Sans","Apple SD Gothic Neo","Malgun Gothic",Arial,sans-serif;color:var(--brown);background:transparent}
+html,body{margin:0;min-height:100%;font-family:"Pretendard","Apple SD Gothic Neo","Malgun Gothic",Arial,sans-serif;color:var(--brown);background:transparent}
 body{display:flex;justify-content:center;align-items:flex-start;padding:8px}
-button,input{font-family:inherit} button{cursor:pointer}
+button,input,select{font-family:inherit} button{cursor:pointer}
 .phone{position:relative;width:min(100%,420px);height:960px;overflow:hidden;border:8px solid #242321;border-radius:40px;background:#dfb46b;box-shadow:0 30px 80px rgba(50,33,18,.28),0 8px 20px rgba(50,33,18,.16)}
 .notch{position:absolute;z-index:100;top:0;left:50%;width:126px;height:25px;transform:translateX(-50%);border-radius:0 0 18px 18px;background:#242321}
 .screen{position:relative;width:100%;height:100%;overflow:hidden;background:linear-gradient(180deg,#d2ab7b 0%,#e8c793 44%,#e1b36c 100%)}
@@ -2588,6 +2588,117 @@ body,button,input,select{
   width:96px!important;
   z-index:18!important;
 }
+
+
+
+/* ===== Typography refinement: Pretendard + NanumSquare Neo-like hierarchy ===== */
+html,body,button,input,select{
+  font-family:"Pretendard","Apple SD Gothic Neo","Malgun Gothic",Arial,sans-serif!important;
+  font-synthesis:none;
+}
+body{font-weight:500!important;letter-spacing:-.018em;}
+
+/* 큰 제목: 또렷하지만 과하게 두껍지 않게 */
+.app-title,
+.section-title,
+.home-section-title,
+.modal-title{
+  font-weight:800!important;
+  letter-spacing:-.035em!important;
+}
+
+/* 소제목/카드 제목 */
+.brand,
+.panel-title,
+.plan-title,
+.learn-title,
+.condition-title,
+.mini-title,
+.reward-title,
+.sched-title,
+.sub-title,
+.theme-name,
+.found-card-title,
+.found-name,
+.mission-summary .ms-title,
+.mission-head .m-name,
+.photo-info .p-title,
+.note-title,
+.summary-title,
+.mission-title{
+  font-weight:700!important;
+  letter-spacing:-.025em!important;
+}
+
+/* 버튼/탭/선택 UI */
+button,
+.nav-btn,
+.reward-btn,
+.reward-folder-btn,
+.scope-btn,
+.learn-btn,
+.predict-btn,
+.clean-execute-btn,
+.start-clean-primary,
+.manual-clean-btn,
+.manual-combo-btn,
+.map-action-btn,
+.sched-opt,
+.day-chip,
+.theme-btn,
+.tier-btn,
+.condition-select,
+.coin-pill,
+.badge,
+.home-section-badge,
+.plan-model,
+.learn-pill,
+.profile-chip{
+  font-weight:700!important;
+  letter-spacing:-.02em!important;
+}
+
+/* 일반 설명문: 나눔스퀘어 네오와 비슷한 가벼운 본문 질감 */
+.modal-body,
+.reward-desc,
+.care-lead,
+.care-note,
+.sched-desc,
+.theme-desc,
+.found-desc,
+.photo-info .p-desc,
+.condition-help,
+.learn-desc,
+.first-learn-note,
+.plan-summary,
+.battery-info,
+.battery-message,
+.time-tip,
+.event-content span,
+.flow-guide,
+.map-action-hint,
+.map-recommend-card,
+.map-prep-sub,
+.found-map-lock span,
+.upcoming-item span,
+.mission-summary .ms-desc,
+.note-caption{
+  font-weight:500!important;
+  letter-spacing:-.018em!important;
+}
+
+/* 수치·핵심 상태는 시선이 가도록 한 단계만 강조 */
+.plan-soc-value,
+.care-stat b,
+.robot-soc-badge b,
+.time-number,
+.summary-val.em,
+.ms-count b,
+.p-count b{
+  font-weight:800!important;
+}
+
+strong,b{font-weight:700;}
 
 </style>
 </head>

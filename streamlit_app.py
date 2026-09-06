@@ -1836,6 +1836,40 @@ body,button,input,select{
 }
 .map-action-btn.active{color:#fff;background:linear-gradient(135deg,#50ae48,#77c75b);box-shadow:0 7px 12px rgba(67,126,56,.20);}
 .map-action-btn.danger.active{background:linear-gradient(135deg,#f07a54,#f7a13e);box-shadow:0 7px 12px rgba(190,93,45,.20);}
+/* 매핑 완료 후 지도 바로 아래에서 즉시 실행할 수 있는 메인 CTA */
+.map-clean-now-btn{
+  position:relative;
+  z-index:30;
+  width:100%;
+  min-height:48px;
+  margin-top:8px;
+  padding:9px 12px;
+  border:0;
+  border-radius:14px;
+  background:linear-gradient(90deg,#ef8c32,#ffad45);
+  color:#fff;
+  font-size:14px;
+  line-height:1.25;
+  font-weight:800;
+  box-shadow:0 7px 14px rgba(215,116,36,.24);
+  cursor:pointer;
+  touch-action:manipulation;
+}
+.map-clean-now-btn:active{transform:scale(.985);}
+.map-clean-now-btn:disabled{
+  opacity:.58;
+  filter:grayscale(.08);
+  cursor:not-allowed;
+  box-shadow:none;
+}
+.map-clean-now-btn .map-clean-sub{
+  display:block;
+  margin-top:2px;
+  color:rgba(255,255,255,.90);
+  font-size:10px;
+  line-height:1.25;
+  font-weight:500;
+}
 .map-action-hint{
   margin-top:7px;
   padding:7px 9px;
@@ -4211,11 +4245,39 @@ function getMapActionHtml(){
   else if(state.smartCleanMode==="dirty")hint="초록 테두리 영역만 골라뒀어요. 청소하기를 누르면 그곳만 청소해요.";
   else if(state.smartCleanMode==="auto")hint="전체 영역을 모두 준비했어요. 금지구역만 빼고 청소해요.";
 
+  let cleanNowLabel="🧹 바로 청소하기";
+  let cleanNowSub="선택한 방식으로 바로 시작해요";
+  let cleanNowDisabled="";
+  if(state.cleaning){
+    cleanNowLabel="🧹 청소 중이에요";
+    cleanNowSub="현재 청소가 끝날 때까지 기다려 주세요";
+    cleanNowDisabled=" disabled";
+  }else if(state.charging){
+    cleanNowLabel="🔋 충전 후 자동 출발";
+    cleanNowSub="필요한 만큼 충전되면 바로 시작해요";
+    cleanNowDisabled=" disabled";
+  }else if(state.mapMode==="noGo"){
+    cleanNowLabel="🧹 금지구역 빼고 바로 청소하기";
+    cleanNowSub="선택한 금지구역을 제외하고 AI가 청소해요";
+  }else if(state.smartCleanMode==="dirty"){
+    cleanNowLabel="🧹 더러운 곳 바로 청소하기";
+    cleanNowSub="표시된 더러운 영역만 바로 시작해요";
+  }else if(state.smartCleanMode==="zone" && state.selectedZone){
+    cleanNowLabel="🧹 "+state.selectedZone+"번 영역 바로 청소하기";
+    cleanNowSub="선택한 영역만 바로 시작해요";
+  }else{
+    cleanNowSub=(state.noGoZones&&state.noGoZones.length)
+      ? "금지구역 "+state.noGoZones.length+"곳을 제외하고 바로 시작해요"
+      : "AI 자동청소로 바로 시작해요";
+  }
+
   return "<div class='map-action-row'>"
     +"<button class='map-action-btn"+(state.smartCleanMode==="auto" && state.mapMode!=="noGo"?" active":"")+"' data-action='aiAutoClean'>✨ AI 자동청소</button>"
     +"<button class='map-action-btn"+(state.smartCleanMode==="dirty" && state.mapMode!=="noGo"?" active":"")+"' data-action='dirtyOnlyClean'>🔥 더러운 곳만</button>"
     +"<button class='map-action-btn danger"+(state.mapMode==="noGo"?" active":"")+"' data-action='toggleNoGoMode'>🚫 "+noGoText+"</button>"
     +"</div>"
+    +"<button type='button' class='map-clean-now-btn' data-action='executeTopClean'"+cleanNowDisabled+">"
+    +cleanNowLabel+"<span class='map-clean-sub'>"+cleanNowSub+"</span></button>"
     +"<div class='map-action-hint"+readyClass+"'>"+hint+"</div>";
 }
 function getMapRecommendationHtml(){

@@ -949,16 +949,16 @@ button,input{font-family:inherit} button{cursor:pointer}
 /* Modal */
 .modal{position:absolute;z-index:200;inset:0;display:none;align-items:center;justify-content:center;padding:30px;background:rgba(45,33,23,.62);backdrop-filter:blur(4px)}.modal.show{display:flex}.modal-card{width:100%;padding:19px;border-radius:20px;background:#fff8e8;box-shadow:0 18px 45px rgba(28,19,12,.38);animation:popup .18s ease-out}.modal-title{font-size:18px;font-weight:900}.modal-body{margin:13px 0 17px;color:#6c513c;font-size:12px;line-height:1.65;font-weight:700}.modal-actions{display:grid;grid-template-columns:1fr 1fr;gap:9px}.modal-btn{width:100%;padding:11px;border:0;border-radius:12px;font-weight:900}.modal-secondary{background:#efe1c8;color:#5c422f}.modal-primary{background:#ef8c32;color:#fff}.modal-actions.single{grid-template-columns:1fr}.modal-actions.single .modal-secondary{display:none}
 .battery-coach-text{line-height:1.65;color:#5b402f;font-weight:760}
-.battery-coach-visual{position:relative;min-height:188px;margin:14px 0 2px;padding-top:42px}
-.battery-coach-bubble{position:absolute;z-index:5;right:0;top:0;width:174px;padding:12px 12px;border:3px solid #f3c98d;border-radius:22px;background:#fff8eb;color:#6a4a35;box-shadow:0 8px 18px rgba(130,88,42,.13);font-size:12px;line-height:1.5;font-weight:900;text-align:center}
-.battery-coach-bubble:before{content:"";position:absolute;left:24px;bottom:-15px;width:22px;height:22px;border-left:3px solid #f3c98d;border-bottom:3px solid #f3c98d;background:#fff8eb;transform:rotate(-28deg);border-radius:0 0 0 8px}
+.battery-coach-visual{position:relative;min-height:178px;margin:14px 0 2px;padding-top:38px}
+.battery-coach-bubble{position:absolute;z-index:5;right:2px;top:0;width:178px;padding:12px 12px;border:2px solid #f2c98d;border-radius:20px;background:#fffaf1;color:#6a4a35;box-shadow:0 8px 18px rgba(130,88,42,.10);font-size:12px;line-height:1.45;font-weight:900;text-align:center}
+.battery-coach-bubble:before{display:none}
 .coach-heart{position:absolute;right:20px;bottom:38px;color:#ff776e;font-size:18px;transform:rotate(-10deg)}
 .coach-heart.h2{right:2px;bottom:12px;font-size:15px;transform:rotate(14deg)}
 .coach-spark{position:absolute;left:12px;top:76px;color:#ffae43;font-size:18px}.coach-spark.s2{left:37px;top:58px;font-size:19px}
-.coach-robo{position:relative;width:214px;height:128px;margin:58px 0 0 0;filter:drop-shadow(0 12px 16px rgba(130,90,50,.22))}
+.coach-robo{position:relative;width:206px;height:122px;margin:52px 0 0 3px;filter:drop-shadow(0 12px 16px rgba(130,90,50,.20))}
 .coach-robo-body{position:absolute;left:16px;right:16px;bottom:0;height:104px;border-radius:58px 58px 50px 50px;background:radial-gradient(ellipse at 50% 22%,#fff 0%,#f6f3ef 58%,#dad8d2 100%);border:5px solid #cfc9bf}
 .coach-robo-top{position:absolute;left:50%;top:7px;width:142px;height:51px;transform:translateX(-50%);border-radius:31px 31px 23px 23px;background:linear-gradient(180deg,#303236,#111314 76%);border:4px solid #d8d1c6;box-shadow:inset 0 4px 4px rgba(255,255,255,.13)}
-.coach-robo-word{position:absolute;left:0;right:0;top:18px;color:#fff5e9;font-size:13px;line-height:1;font-weight:950;letter-spacing:.6px;text-align:center}
+.coach-robo-word{display:none}
 .coach-robo-face{position:absolute;z-index:3;left:50%;bottom:21px;width:142px;height:60px;transform:translateX(-50%);border-radius:30px 30px 33px 33px;background:linear-gradient(180deg,#292c2e,#111314 78%)}
 .coach-eye{position:absolute;top:16px;width:24px;height:24px;border:2px solid #f2f0dc;border-radius:50%;background:#111}
 .coach-eye:after{content:"";position:absolute;top:4px;left:5px;width:7px;height:7px;border-radius:50%;background:#fff}
@@ -968,7 +968,7 @@ button,input{font-family:inherit} button{cursor:pointer}
 .coach-cheek{position:absolute;bottom:10px;width:16px;height:8px;border-radius:50%;background:#ff8d8d;opacity:.75}.coach-cheek.left{left:10px}.coach-cheek.right{right:10px}
 .coach-mouth{position:absolute;left:50%;bottom:8px;width:24px;height:13px;transform:translateX(-50%);border:2px solid #f3d6c9;border-top:0;border-radius:0 0 16px 16px}
 .coach-slot{position:absolute;left:50%;bottom:7px;width:47px;height:6px;transform:translateX(-50%);border-radius:10px;background:#484a48}
-.coach-brush{position:absolute;bottom:12px;width:34px;height:6px;border-radius:999px;background:#5b5b58}.coach-brush.b1{left:0;transform:rotate(28deg)}.coach-brush.b2{left:20px;bottom:2px;transform:rotate(-22deg)}.coach-brush.b3{right:0;transform:rotate(-28deg)}.coach-brush.b4{right:20px;bottom:2px;transform:rotate(22deg)}
+.coach-brush{display:none}
 .coach-crown{position:absolute;z-index:8;left:50%;top:-29px;transform:translateX(-50%);font-size:34px;filter:drop-shadow(0 3px 3px rgba(81,52,17,.22))}
 
 .toast{position:absolute;z-index:220;left:50%;bottom:25px;width:max-content;max-width:84%;padding:11px 17px;transform:translateX(-50%) translateY(30px);border-radius:18px;background:rgba(44,37,31,.95);color:#fff;font-size:11px;font-weight:800;opacity:0;pointer-events:none;transition:.25s}.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
@@ -4664,15 +4664,13 @@ function openBatteryCoachInfo(action,event){
     + "로보킹을 더 오래 건강하게 사용할 수 있어요."
     + "</div>"
     + "<div class='battery-coach-visual'>"
-    + "  <div class='battery-coach-bubble'>저를 더 오래 보기 위해<br>함께 배터리 습관을<br>지켜주실거죠?! ❤️</div>"
+    + "  <div class='battery-coach-bubble'>저를 더 오래 보기 위해<br>함께 배터리 습관을<br>지켜주실 거죠?! ❤️</div>"
     + "  <div class='coach-heart'>💗</div><div class='coach-heart h2'>💗</div>"
     + "  <div class='coach-spark'>✨</div><div class='coach-spark s2'>✨</div>"
     + "  <div class='coach-robo' aria-label='윙크하는 로보킹'>"
     + "    <div class='coach-crown'>👑</div>"
-    + "    <div class='coach-brush b1'></div><div class='coach-brush b2'></div>"
-    + "    <div class='coach-brush b3'></div><div class='coach-brush b4'></div>"
     + "    <div class='coach-robo-body'></div>"
-    + "    <div class='coach-robo-top'><div class='coach-robo-word'>ROBOKING</div></div>"
+    + "    <div class='coach-robo-top'></div>"
     + "    <div class='coach-robo-face'>"
     + "      <div class='coach-eye left'></div><div class='coach-eye right'></div>"
     + "      <div class='coach-cheek left'></div><div class='coach-cheek right'></div>"

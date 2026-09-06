@@ -31,6 +31,133 @@ st.markdown(
       .block-container{max-width:100%;padding:8px 4px 18px;}
       iframe{border:0!important;border-radius:28px;}
     
+
+/* ===== Home UX restructure: map-only + AI 맞춤청소 / 직접조건청소 ===== */
+.map-section .home-map-card.map-only-card{
+  margin:0!important;
+  padding:0!important;
+  border:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+}
+.map-section .home-map-card.map-only-card .home-map-img-wrap{
+  margin:0!important;
+}
+.ai-clean-controls{
+  display:none;
+}
+.ai-clean-intro{
+  display:flex;
+  align-items:flex-start;
+  gap:10px;
+  padding:12px 12px;
+  margin-bottom:10px;
+  border-radius:14px;
+  background:linear-gradient(145deg,#f1fae8,#fff6da);
+  border:1px solid rgba(73,163,68,.18);
+}
+.ai-clean-intro-icon{
+  flex:0 0 auto;
+  width:38px;
+  height:38px;
+  display:grid;
+  place-items:center;
+  border-radius:12px;
+  background:#e3f4d6;
+  font-size:21px;
+}
+.ai-clean-intro-title{
+  color:#2f7f37;
+  font-size:13.5px;
+  line-height:1.35;
+  font-weight:800;
+}
+.ai-clean-intro-desc{
+  margin-top:4px;
+  color:#6e523a;
+  font-size:11.5px;
+  line-height:1.52;
+  font-weight:500;
+}
+.ai-clean-mode-row{
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  gap:7px;
+}
+.ai-clean-mode-btn{
+  min-height:45px;
+  padding:7px 4px;
+  border:1px solid rgba(124,83,43,.16);
+  border-radius:13px;
+  background:#fff4d8;
+  color:#61452f;
+  font-size:11.5px;
+  line-height:1.25;
+  font-weight:700;
+  box-shadow:0 3px 7px rgba(79,48,21,.07);
+}
+.ai-clean-mode-btn.active{
+  border-color:transparent;
+  color:#fff;
+  background:linear-gradient(135deg,#4ba746,#77c75b);
+  box-shadow:0 6px 12px rgba(67,126,56,.20);
+}
+.ai-clean-mode-btn.danger.active{
+  background:linear-gradient(135deg,#f07a54,#f7a13e);
+  box-shadow:0 6px 12px rgba(190,93,45,.18);
+}
+.ai-clean-mode-btn:disabled{opacity:.55;cursor:not-allowed;}
+.ai-clean-selection-note{
+  margin-top:8px;
+  padding:9px 10px;
+  border-radius:12px;
+  background:rgba(255,250,235,.94);
+  border:1px solid rgba(124,83,43,.11);
+  color:#6c4e36;
+  font-size:11px;
+  line-height:1.45;
+  font-weight:500;
+  text-align:center;
+}
+.ai-clean-selection-note b{color:#2f8b3a;font-weight:800;}
+.ai-clean-now-btn{
+  position:relative;
+  z-index:35;
+  width:100%;
+  min-height:50px;
+  margin-top:9px;
+  padding:9px 12px;
+  border:0;
+  border-radius:14px;
+  background:linear-gradient(90deg,#ef8c32,#ffad45);
+  color:#fff;
+  font-size:14px;
+  line-height:1.2;
+  font-weight:800;
+  box-shadow:0 7px 14px rgba(210,117,35,.22);
+}
+.ai-clean-now-btn span{
+  display:block;
+  margin-top:3px;
+  color:rgba(255,255,255,.88);
+  font-size:10.5px;
+  font-weight:500;
+}
+.ai-clean-now-btn:disabled{opacity:.58;filter:grayscale(.08);box-shadow:none;}
+.prep-section.ai-ready .learn-panel{display:none!important;}
+.prep-section.ai-ready .ai-clean-controls{display:block!important;}
+.prep-section.ai-ready .plan-model{background:#e7f4d9;color:#2f8b3a;}
+.direct-clean-section{
+  border-top:3px solid rgba(239,140,50,.55)!important;
+}
+.prep-section{
+  border-top:3px solid rgba(75,167,70,.48)!important;
+}
+@media(max-width:360px){
+  .ai-clean-mode-btn{font-size:10.7px;min-height:44px;padding:6px 2px;}
+  .ai-clean-intro-desc{font-size:11px;}
+}
+
 /* ===== Home visual adjustment: bigger station + mission moved right ===== */
 #homePage .house{
   left:76px!important;
@@ -2817,14 +2944,16 @@ strong,b{font-weight:700;}
             </div>
           </section>
 
-          <section class="panel plan-panel prep-section" aria-labelledby="prepSectionTitle">
+          <section class="panel plan-panel prep-section" id="aiCleanSection" aria-labelledby="prepSectionTitle">
             <div class="plan-head">
               <div>
-                <div class="home-section-kicker">AI HOME PROFILE</div>
-                <div class="plan-title" id="prepSectionTitle">✨ 우리 집 맞춤청소 준비</div>
+                <div class="home-section-kicker">AI SMART CLEANING</div>
+                <div class="plan-title" id="prepSectionTitle">🤖 우리집 AI 맞춤청소</div>
               </div>
               <div class="plan-model" id="planModel">1회차 학습 전</div>
             </div>
+
+            <!-- 매핑 전/학습 중에만 보이는 최초 학습 영역 -->
             <div class="learn-panel" id="learnPanel">
               <div class="learn-top">
                 <div class="learn-title" id="learnTitle">처음 사용할 때는 로보킹이 집을 먼저 배워요</div>
@@ -2839,7 +2968,33 @@ strong,b{font-weight:700;}
                 <button type="button" class="clean-execute-btn" id="cleanExecuteBtn" data-action="executeTopClean" style="display:none;">🧹 청소하기</button>
               </div>
             </div>
-            <div class="scope-buttons">
+
+            <!-- 매핑 완료 후에는 복잡한 학습 결과 대신 이 간단한 AI 청소 UI만 표시 -->
+            <div class="ai-clean-controls" id="aiMappedControls">
+              <div class="ai-clean-intro">
+                <div class="ai-clean-intro-icon">✨</div>
+                <div>
+                  <div class="ai-clean-intro-title">매핑된 우리 집 정보를 바탕으로 맞춤 AI 청소를 진행해요!</div>
+                  <div class="ai-clean-intro-desc">집 구조와 각 영역의 바닥·오염 상태를 기억해 두었어요. 원하는 방식만 고르면 로보킹이 청소 범위와 필요한 배터리를 알아서 준비해요.</div>
+                </div>
+              </div>
+
+              <div class="ai-clean-mode-row">
+                <button type="button" class="ai-clean-mode-btn" id="aiHomeCleanBtn" data-action="aiAutoClean">🏠 집 전체 청소</button>
+                <button type="button" class="ai-clean-mode-btn" id="aiDirtyCleanBtn" data-action="dirtyOnlyClean">🔥 더러운 곳만</button>
+                <button type="button" class="ai-clean-mode-btn danger" id="aiNoGoBtn" data-action="toggleNoGoMode">🚫 금지구역 설정</button>
+              </div>
+
+              <div class="ai-clean-selection-note" id="aiCleanSelectionNote">매핑된 전체 영역을 AI가 자동으로 청소해요.</div>
+
+              <button type="button" class="ai-clean-now-btn" id="aiCleanNowBtn" data-action="executeTopClean">
+                🧹 바로 청소하기
+                <span id="aiCleanNowSub">선택한 AI 청소 방식으로 바로 시작해요</span>
+              </button>
+            </div>
+
+            <!-- 기존 계산/상태 연결을 유지하기 위한 숨김 데이터 영역 -->
+            <div class="scope-buttons" aria-hidden="true">
               <button class="scope-btn active" id="scopeHome" data-action="selectHome">집 전체</button>
               <button class="scope-btn" id="scopeZone1" data-action="selectZone1">1구역</button>
               <button class="scope-btn" id="scopeZone2" data-action="selectZone2">2구역</button>
@@ -2847,7 +3002,7 @@ strong,b{font-weight:700;}
               <button class="scope-btn" id="scopeZone4" data-action="selectZone4">4구역</button>
               <button class="scope-btn" id="scopeZone5" data-action="selectZone5">5구역</button>
             </div>
-            <div class="selected-plan">
+            <div class="selected-plan" aria-hidden="true">
               <div class="plan-summary" id="planSummary">집 전체 청소 조건을 분석 중입니다.</div>
               <div class="plan-soc">
                 <div class="plan-soc-label">충전 준비</div>
@@ -2855,7 +3010,7 @@ strong,b{font-weight:700;}
                 <div class="plan-soc-sub" id="planSocSub">필요한 만큼만 충전</div>
               </div>
             </div>
-            <button class="start-clean-primary" id="startCleanPrimary" data-action="clean" disabled>
+            <button class="start-clean-primary" id="startCleanPrimary" data-action="clean" disabled aria-hidden="true">
               🧹 청소 미션 수행하기
               <small id="startCleanHint">준비가 끝나면 바로 시작할 수 있어요</small>
             </button>
@@ -4299,12 +4454,9 @@ function getMapPrepCardHtml(){
 function getLearnedMapHtml(){
   const area=(activeRun && activeRun.areaPyung) ? activeRun.areaPyung : state.areaPyung;
   const type=getHomeSizeType(area);
-  return "<div class='home-map-card'>"
+  // 맵 영역에는 지도만 표시합니다. AI 청소 선택/실행은 아래의 별도 AI 맞춤청소 카드에서 담당합니다.
+  return "<div class='home-map-card map-only-card'>"
     +"<div class='home-map-img-wrap'>"+getMapSvg(type)+"</div>"
-    +getDirtLegendHtml()
-    +getMapRecommendationHtml()
-    +getMapActionHtml()
-    +getMapPrepCardHtml()
     +"</div>";
 }
 
@@ -4329,6 +4481,7 @@ function renderPlan(){
   if(!$('planSummary'))return;
   refreshScopeSelect();
   const conditionPanel=$('conditionPanel');
+  const learnPanel=$('learnPanel');
   const predictBtn=$('predictBtn');
   const conditionTitle=$('conditionTitle');
   const learnBtn=$('learnBtn');
@@ -4346,6 +4499,14 @@ function renderPlan(){
   const flowGuide=$('flowGuide');
   const mapSectionContent=$('mapSectionContent');
   const mapSectionBadge=$('mapSectionBadge');
+  const aiCleanSection=$('aiCleanSection');
+  const aiMappedControls=$('aiMappedControls');
+  const aiHomeCleanBtn=$('aiHomeCleanBtn');
+  const aiDirtyCleanBtn=$('aiDirtyCleanBtn');
+  const aiNoGoBtn=$('aiNoGoBtn');
+  const aiCleanSelectionNote=$('aiCleanSelectionNote');
+  const aiCleanNowBtn=$('aiCleanNowBtn');
+  const aiCleanNowSub=$('aiCleanNowSub');
   if(flowGuide){
     const guideText=guideForCurrentState();
     let tone=state.userGuideTone||"normal";
@@ -4379,6 +4540,65 @@ function renderPlan(){
     }
   }
 
+  // 매핑 완료 후에는 학습 결과 표 대신 간단한 AI 맞춤청소 UI를 표시합니다.
+  const aiReady=state.profileReady && !state.mapping;
+  if(aiCleanSection)aiCleanSection.classList.toggle('ai-ready',aiReady);
+  if(aiMappedControls)aiMappedControls.style.display=aiReady?'block':'none';
+  if(learnPanel)learnPanel.style.display=aiReady?'none':'block';
+
+  if(aiReady){
+    const noGoCount=(state.noGoZones||[]).length;
+    const busy=state.cleaning || state.charging || state.mapping || state.predicting;
+
+    if(aiHomeCleanBtn){
+      aiHomeCleanBtn.classList.toggle('active',state.smartCleanMode==='auto' && state.mapMode!=='noGo');
+      aiHomeCleanBtn.disabled=busy;
+    }
+    if(aiDirtyCleanBtn){
+      aiDirtyCleanBtn.classList.toggle('active',state.smartCleanMode==='dirty' && state.mapMode!=='noGo');
+      aiDirtyCleanBtn.disabled=busy;
+    }
+    if(aiNoGoBtn){
+      aiNoGoBtn.classList.toggle('active',state.mapMode==='noGo');
+      aiNoGoBtn.disabled=busy;
+      aiNoGoBtn.textContent=noGoCount>0 ? '🚫 금지구역 '+noGoCount+'곳' : '🚫 금지구역 설정';
+    }
+
+    if(aiCleanSelectionNote){
+      if(state.mapMode==='noGo'){
+        aiCleanSelectionNote.innerHTML='<b>지도에서 청소하지 않을 영역을 눌러 주세요.</b><br>선택한 영역은 AI 청소에서 자동으로 제외돼요.';
+      }else if(state.smartCleanMode==='dirty'){
+        const dirty=(state.selectedDirtyZones||[]);
+        aiCleanSelectionNote.innerHTML='<b>더러운 곳만 집중 청소</b>'+(dirty.length?' · '+dirty.join(', ')+'번 영역':'')+'<br>오염도가 높은 영역을 AI가 골라 우선 청소해요.';
+      }else if(state.smartCleanMode==='zone' && state.selectedZone){
+        aiCleanSelectionNote.innerHTML='<b>'+state.selectedZone+'번 영역 선택</b><br>세부 구역 청소는 아래 직접조건 청소에서도 설정할 수 있어요.';
+      }else{
+        aiCleanSelectionNote.innerHTML='<b>집 전체 AI 청소</b> · '+getDisplayZoneCount()+'개 영역'+(noGoCount?' 중 금지구역 '+noGoCount+'곳 제외':'')+'<br>매핑된 우리 집 정보를 바탕으로 전체 청소를 준비해요.';
+      }
+    }
+
+    if(aiCleanNowBtn){
+      aiCleanNowBtn.disabled=busy;
+      let main='🧹 바로 청소하기';
+      let sub='선택한 AI 청소 방식으로 바로 시작해요';
+      if(state.cleaning){
+        main='🧹 청소 중이에요';sub='현재 청소가 끝날 때까지 기다려 주세요';
+      }else if(state.charging){
+        main='🔋 충전 후 자동 출발';sub='필요한 만큼 충전되면 바로 시작해요';
+      }else if(state.mapMode==='noGo'){
+        main='🧹 금지구역 빼고 바로 청소하기';sub='선택한 금지구역을 제외하고 집 전체를 청소해요';
+      }else if(state.smartCleanMode==='dirty'){
+        main='🧹 더러운 곳 바로 청소하기';sub='AI가 고른 더러운 영역만 집중 청소해요';
+      }else if(state.smartCleanMode==='zone' && state.selectedZone){
+        main='🧹 '+state.selectedZone+'번 영역 바로 청소하기';sub='선택한 영역만 바로 시작해요';
+      }else if(state.predicted && state.soc<state.targetSoc){
+        main='🔋 필요한 만큼 충전하고 청소하기';sub='과충전 없이 필요한 배터리만 채우고 출발해요';
+      }
+      aiCleanNowBtn.childNodes[0].nodeValue=main+' ';
+      if(aiCleanNowSub)aiCleanNowSub.textContent=sub;
+    }
+  }
+
   if(learnSteps){
     learnSteps.classList.remove('map-ready');
     learnSteps.innerHTML=mappingSteps.map((s,i)=>{
@@ -4401,9 +4621,9 @@ function renderPlan(){
     if(learnBtn){learnBtn.textContent="로보킹이 집을 배우는 중...";learnBtn.disabled=true;}
     if(conditionPanel)conditionPanel.classList.add('locked-area');
   }else if(state.profileReady){
-    if(learnTitle)learnTitle.textContent="우리 집 정보로 맞춤 청소를 준비해요";
-    if(learnDesc)learnDesc.textContent="저장된 맵과 바닥 상태를 이용해 필요한 청소만 준비해요.";
-    if(learnPill)learnPill.textContent="프로필 저장됨";
+    if(learnTitle)learnTitle.textContent="우리 집 AI 맞춤청소를 사용할 수 있어요";
+    if(learnDesc)learnDesc.textContent="매핑된 집 정보를 바탕으로 로보킹이 청소를 알아서 준비해요.";
+    if(learnPill)learnPill.textContent="AI 준비 완료";
     if(learnStatus)learnStatus.innerHTML="매핑 완료 · "+getHomeSizeLabel(activeRun.areaPyung)+" 집 구조 저장";
     if(learnBtn){learnBtn.textContent="🔄 학습 다시 실행";learnBtn.disabled=false;learnBtn.classList.add('ready');}
     if(conditionPanel)conditionPanel.classList.remove('locked-area');
@@ -4480,7 +4700,7 @@ function renderPlan(){
   if(state.selectedScope==="home")$('scopeHome').classList.add('active');
   else if($('scopeZone'+state.selectedZone))$('scopeZone'+state.selectedZone).classList.add('active');
 
-  $('planModel').textContent=state.mapping?'집 배우는 중':(!state.profileReady?'처음 학습 전':(state.predicted?'로보킹 맞춤 준비':'우리 집 저장 완료'));
+  $('planModel').textContent=state.mapping?'집 배우는 중':(!state.profileReady?'처음 학습 전':'AI 맞춤');
 
 
   if(startCleanPrimary){
@@ -5485,9 +5705,9 @@ function aiAutoClean(){
 
   // 핵심: AI 자동청소는 항상 전체 zone SOC 합산값을 사용합니다.
   // 금지구역이 있으면 그 구역만 제외하고 합산합니다.
-  const scenario=makeAggregateScenario(cleanable,"AI 자동청소","auto");
+  const scenario=makeAggregateScenario(cleanable,"집 전체 청소","auto");
   scenario.scope="home";
-  scenario.label="AI 자동청소";
+  scenario.label="집 전체 청소";
   scenario.requiredSoc=Math.round(cleanable.reduce((sum,z)=>sum+Number(z.requiredSoc||0),0)*10)/10;
   scenario.targetSoc=targetFromRequired(scenario.requiredSoc);
   scenario.matchNote=(state.noGoZones&&state.noGoZones.length)
@@ -5497,7 +5717,7 @@ function aiAutoClean(){
 
   prepareScenarioAndShow(
     scenario,
-    "AI 자동청소 준비 완료! "+allZones.length+"개 영역을 모두 청소할게요.",
+    "집 전체 청소 준비 완료! 매핑된 "+allZones.length+"개 영역을 모두 청소할게요.",
     "done"
   );
 }
@@ -5572,18 +5792,9 @@ function handleMapZoneTap(element){
     return;
   }
 
-  // 보기 모드에서는 구역을 누르면 해당 영역만 빠르게 준비합니다.
-  const zone=getScenario("zone",zoneNo);
-  if(!zone){showToast("이 영역 정보를 찾지 못했어요.");return}
-  const choices=getPredictionChoices("zone",zoneNo);
-  const matchedScenario=findMlScenarioFromChoices(choices);
-  matchedScenario.label=zoneNo+"번 영역";
-  state.smartCleanMode="zone";
-  state.selectedDirtyZones=[];
-  state.cleaningZones=[Number(zoneNo)];
-  state.completedZones=[];
-  state.currentCleaningZone=null;
-  prepareScenarioAndShow(matchedScenario,zoneNo+"번 영역만 청소할 준비를 마쳤어요.","done");
+  // 일반 보기 상태의 맵은 정보 확인용으로 유지합니다.
+  // 특정 영역을 세부 조건으로 청소하려면 아래 '직접조건 청소'에서 선택할 수 있습니다.
+  showToast(zoneNo+"번 영역 · 세부 청소 조건은 아래 '직접조건 청소'에서 설정할 수 있어요.");
 }
 
 

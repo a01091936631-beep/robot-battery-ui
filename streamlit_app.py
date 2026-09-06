@@ -1974,6 +1974,28 @@ body,button,input,select{
 .found-btn button{width:100%;min-height:34px;border:0;border-radius:11px;background:#f0dfbc;color:#5c422f;font-size:11.5px;font-weight:950;}
 .found-map{flex:1;min-height:150px;border-radius:12px;overflow:hidden;background:#fbf1de;border:1px solid rgba(124,83,43,.12);}
 .found-map svg{width:100%;height:100%;display:block;}
+.found-map-lock{
+  min-height:150px;
+  height:100%;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:7px;
+  padding:16px 12px;
+  text-align:center;
+  color:#7a5a3c;
+  background:linear-gradient(145deg,#fbf1de,#f5e3c3);
+}
+.found-map-lock .lock-icon{font-size:27px;line-height:1;}
+.found-map-lock b{font-size:12.5px;font-weight:950;}
+.found-map-lock span{font-size:10.5px;line-height:1.45;font-weight:850;color:#8a6a45;}
+.found-btn button:disabled{
+  opacity:.55;
+  cursor:not-allowed;
+  color:#8a7a68;
+  background:#eadcc2;
+}
 .fm-room{fill:#f6e9d2;stroke:#c9ad82;stroke-width:2;}
 .fm-room-active{fill:#fff3cf;}
 .fm-focus{fill:none;stroke:#ef8c32;stroke-width:3;stroke-dasharray:5 4;}
@@ -2446,7 +2468,7 @@ body,button,input,select{
             <div class="found-card">
               <div class="found-card-title">📍 발견 위치 보기</div>
               <div class="found-map" id="foundMap"></div>
-              <div class="found-btn"><button data-action="foundMapBig">지도 크게 보기 ›</button></div>
+              <div class="found-btn"><button type="button" id="foundMapBigBtn" data-action="foundMapBig">지도 크게 보기 ›</button></div>
             </div>
           </div>
           <div class="panel found-list">
@@ -4261,6 +4283,13 @@ function findFoundMapRoom(place){
   room=rooms.find(r=>normalizeFoundPlace(r[6]).includes(key) || key.includes(normalizeFoundPlace(r[6])));
   return room||rooms[0];
 }
+function foundMapLockedHtml(){
+  return "<div class='found-map-lock'>"
+    +"<div class='lock-icon'>🏠</div>"
+    +"<b>집을 배운 뒤 위치를 볼 수 있어요</b>"
+    +"<span>1회차 학습 청소가 끝나면<br>매핑된 집 구조에 맞춰 발견 위치를 표시해요.</span>"
+    +"</div>";
+}
 function foundMapSvg(item){
   const lay=currentMapLayout();
   const rooms=(lay.rooms||[]).slice();
@@ -4268,6 +4297,11 @@ function foundMapSvg(item){
   const target=findFoundMapRoom(item&&item.place);
   const px=target ? (target[0]+target[2]/2) : 100;
   const py=target ? (target[1]+Math.max(18,target[3]*0.45)) : 75;
+  const vb=String(lay.viewBox||"0 0 246 172").split(/\s+/).map(Number);
+  const bx=Number.isFinite(vb[0])?vb[0]:0;
+  const by=Number.isFinite(vb[1])?vb[1]:0;
+  const bw=Number.isFinite(vb[2])?vb[2]:246;
+  const bh=Number.isFinite(vb[3])?vb[3]:172;
   let roomMarkup="";
   rooms.forEach(r=>{
     const x=r[0],y=r[1],w=r[2],h=r[3],rad=Math.min(Number(r[4]||8),10),label=String(r[6]||"영역");
@@ -4280,7 +4314,7 @@ function foundMapSvg(item){
     roomMarkup += "<rect class='fm-focus' x='"+target[0]+"' y='"+target[1]+"' width='"+target[2]+"' height='"+target[3]+"' rx='"+Math.min(Number(target[4]||8),10)+"'/>";
   }
   return "<svg viewBox='"+lay.viewBox+"' role='img' aria-label='발견 위치 지도'>"
-    +"<rect x='2' y='2' width='242' height='168' rx='16' fill='#f6ead0' opacity='.55'></rect>"
+    +"<rect x='"+(bx+2)+"' y='"+(by+2)+"' width='"+Math.max(0,bw-4)+"' height='"+Math.max(0,bh-4)+"' rx='16' fill='#f6ead0' opacity='.55'></rect>"
     +roomMarkup
     +"<g class='fm-pin'><path d='M"+px+" "+(py+14)+" C"+(px-13)+" "+(py-2)+", "+(px-13)+" "+(py-14)+", "+px+" "+(py-14)+" C"+(px+13)+" "+(py-14)+", "+(px+13)+" "+(py-2)+", "+px+" "+(py+14)+" Z' fill='#ef8c32' stroke='#fff' stroke-width='2'/>"
     +"<circle cx='"+px+"' cy='"+(py-5)+"' r='7' fill='#fff'/><text x='"+px+"' y='"+(py-1.5)+"' text-anchor='middle' style='font-size:9px'>📍</text></g></svg>";
@@ -4296,7 +4330,13 @@ function renderFound(){
       +"<div class='found-meta'>📍 "+esc((today.place+" "+today.spot).trim())+"<br>🕒 "+esc(today.time)+"</div>"
       +"<div class='found-btn'><button type='button' data-action='foundItem' data-id='"+today.id+"'>더 자세히 보기 ›</button></div>";
   }
-  const map=$("foundMap"); if(map&&today)map.innerHTML=foundMapSvg(today);
+  const map=$("foundMap");
+  if(map&&today)map.innerHTML=state.profileReady?foundMapSvg(today):foundMapLockedHtml();
+  const mapBtn=$("foundMapBigBtn");
+  if(mapBtn){
+    mapBtn.disabled=!state.profileReady;
+    mapBtn.textContent=state.profileReady?"지도 크게 보기 ›":"학습 후 보기";
+  }
   const list=$("foundList");
   if(list)list.innerHTML=lostItems.map(it=>"<div class='found-item"+(it.found?" done":"")+"' data-action='foundItem' data-id='"+it.id+"'>"
     +"<div class='found-thumb'>"+(it.src?"<img src='"+it.src+"' alt=''>":it.emoji)+"</div>"
@@ -4319,6 +4359,10 @@ function openFoundItem(el){
 }
 function openFoundMapBig(){
   const today=lostItems[0];if(!today)return;
+  if(!state.profileReady){
+    openModal("발견 위치 보기","먼저 1회차 학습 청소로 집 구조를 매핑해 주세요.<br><br>매핑이 끝나면 로보킹이 배운 집 구조에 맞춰 발견 위치를 표시해요.");
+    return;
+  }
   openModal("발견 위치","<div class='found-map' style='height:230px;margin-bottom:10px'>"+foundMapSvg(today)+"</div>📍 <b>"+esc((today.place+" "+today.spot).trim())+"</b> · "+esc(today.time)+"<br>"+esc(today.desc));
 }
 
@@ -4588,14 +4632,46 @@ function openBatteryCoachInfo(action,event){
     event.preventDefault();
     event.stopPropagation();
   }
-  openModal(
-    "왜 가득 충전하지 않나요?",
-    "로보킹은 첫 매핑 학습으로 집 크기와 청소 구역을 기억해요.<br><br>"
-    + "그래서 매번 100%까지 채우지 않아도,<br>"
-    + "오늘 청소에 필요한 만큼만 준비할 수 있어요.<br><br>"
-    + "배터리를 너무 가득 채우거나 너무 낮게 쓰는 습관을 줄이면,<br>"
-    + "로보킹을 더 오래 건강하게 사용할 수 있어요."
-  );
+  const coachHtml = `
+    <div style="display:flex;flex-direction:column;gap:18px;line-height:1.7;color:#5b402f;">
+      <div>
+        로보킹은 첫 매핑 학습으로 집 크기와 청소 구역을 기억해요.<br><br>
+        그래서 매번 100%까지 채우지 않아도,<br>
+        오늘 청소에 필요한 만큼만 준비할 수 있어요.<br><br>
+        배터리를 너무 가득 채우거나 너무 낮게 쓰는 습관을 줄이면,<br>
+        로보킹을 더 오래 건강하게 사용할 수 있어요.
+      </div>
+      <div style="display:flex;justify-content:center;">
+        <div style="position:relative;width:100%;max-width:430px;min-height:250px;padding:16px 8px 4px;">
+          <div style="position:absolute;right:8px;top:8px;background:#fff6ea;border:4px solid #f2c993;border-radius:30px;padding:18px 20px;max-width:215px;box-shadow:0 10px 22px rgba(153,112,62,.12);font-weight:800;font-size:15px;line-height:1.45;color:#6a4a35;">
+            저를 더 오래 보기 위해<br>함께 배터리 습관을<br>지켜주실거죠?! ❤️
+            <span style="position:absolute;left:18px;bottom:-14px;width:0;height:0;border-left:14px solid transparent;border-right:14px solid transparent;border-top:18px solid #f2c993;"></span>
+            <span style="position:absolute;left:22px;bottom:-8px;width:0;height:0;border-left:10px solid transparent;border-right:10px solid transparent;border-top:14px solid #fff6ea;"></span>
+          </div>
+          <div style="position:absolute;left:22px;top:110px;font-size:34px;color:#f2a13b;transform:rotate(-18deg);">✨</div>
+          <div style="position:absolute;left:58px;top:88px;font-size:34px;color:#f2a13b;transform:rotate(16deg);">✨</div>
+          <div style="position:absolute;right:58px;bottom:82px;font-size:26px;color:#ff8d7a;transform:rotate(-12deg);">💗</div>
+          <div style="position:absolute;right:32px;bottom:52px;font-size:24px;color:#ff8d7a;transform:rotate(8deg);">💗</div>
+          <div style="display:flex;justify-content:flex-start;align-items:flex-end;padding-top:84px;">
+            <div style="position:relative;width:290px;height:170px;filter:drop-shadow(0 16px 20px rgba(170,130,88,.22));">
+              <div style="position:absolute;left:16px;right:16px;bottom:0;height:132px;background:linear-gradient(180deg,#fffefb 0%,#f7efe4 100%);border:6px solid #d5c6b5;border-bottom-width:10px;border-radius:999px;"></div>
+              <div style="position:absolute;left:52px;right:52px;top:0;height:58px;background:linear-gradient(180deg,#5f564f 0%,#2f2d2f 100%);border-radius:36px 36px 22px 22px;border:5px solid #d8ccc0;display:flex;align-items:center;justify-content:center;color:#fff3ea;font-weight:900;font-size:18px;letter-spacing:.5px;">ROBOKING</div>
+              <div style="position:absolute;left:137px;top:8px;width:22px;height:22px;background:#3d3a3a;border-radius:50%;box-shadow:0 0 0 5px #d8ccc0;"></div>
+              <div style="position:absolute;left:86px;top:92px;width:28px;height:38px;background:#4d3426;border-radius:50%;"><span style="position:absolute;left:7px;top:7px;width:10px;height:10px;background:#fff;border-radius:50%;"></span></div>
+              <div style="position:absolute;left:184px;top:98px;width:34px;height:16px;border-radius:0 0 34px 34px;border-left:0;border-right:0;border-top:0;border-bottom:8px solid #4d3426;transform:rotate(-18deg);"></div>
+              <div style="position:absolute;left:133px;top:122px;width:42px;height:24px;background:linear-gradient(180deg,#ffa978 0%,#ff825b 100%);border-radius:0 0 30px 30px;transform:translateX(-50%);"></div>
+              <div style="position:absolute;left:76px;top:128px;width:28px;height:18px;background:rgba(255,176,176,.72);border-radius:50%;"></div>
+              <div style="position:absolute;right:72px;top:128px;width:28px;height:18px;background:rgba(255,176,176,.72);border-radius:50%;"></div>
+              <div style="position:absolute;left:8px;bottom:22px;width:34px;height:8px;background:#5c5c5c;border-radius:8px;transform:rotate(28deg);"></div>
+              <div style="position:absolute;left:30px;bottom:12px;width:32px;height:8px;background:#5c5c5c;border-radius:8px;transform:rotate(-22deg);"></div>
+              <div style="position:absolute;right:8px;bottom:22px;width:34px;height:8px;background:#5c5c5c;border-radius:8px;transform:rotate(-28deg);"></div>
+              <div style="position:absolute;right:30px;bottom:12px;width:32px;height:8px;background:#5c5c5c;border-radius:8px;transform:rotate(22deg);"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>`;
+  openModal("왜 가득 충전하지 않나요?", coachHtml);
 }
 
 function showStatus(){

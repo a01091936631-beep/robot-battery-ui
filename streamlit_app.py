@@ -948,34 +948,202 @@ button,input{font-family:inherit} button{cursor:pointer}
 
 /* Modal */
 .modal{position:absolute;z-index:200;inset:0;display:none;align-items:center;justify-content:center;padding:30px;background:rgba(45,33,23,.62);backdrop-filter:blur(4px)}.modal.show{display:flex}.modal-card{width:100%;padding:19px;border-radius:20px;background:#fff8e8;box-shadow:0 18px 45px rgba(28,19,12,.38);animation:popup .18s ease-out}.modal-title{font-size:18px;font-weight:900}.modal-body{margin:13px 0 17px;color:#6c513c;font-size:12px;line-height:1.65;font-weight:700}.modal-actions{display:grid;grid-template-columns:1fr 1fr;gap:9px}.modal-btn{width:100%;padding:11px;border:0;border-radius:12px;font-weight:900}.modal-secondary{background:#efe1c8;color:#5c422f}.modal-primary{background:#ef8c32;color:#fff}.modal-actions.single{grid-template-columns:1fr}.modal-actions.single .modal-secondary{display:none}
-
-.battery-coach-text{line-height:1.65;color:#5b402f;font-weight:760}
-.battery-coach-visual{position:relative;min-height:205px;margin:14px 0 2px}
-.battery-coach-bubble{position:absolute;right:0;top:0;width:188px;padding:12px 14px;border:2px solid #f2c98d;border-radius:18px;background:#fffaf1;color:#6a4a35;box-shadow:0 8px 18px rgba(130,88,42,.10);font-size:12px;line-height:1.48;font-weight:900;text-align:center}
-.battery-coach-bubble:before{content:"";position:absolute;left:22px;bottom:-8px;width:14px;height:14px;background:#fffaf1;border-left:2px solid #f2c98d;border-bottom:2px solid #f2c98d;transform:rotate(-45deg)}
-.coach-heart{position:absolute;right:22px;bottom:44px;color:#ff7d87;font-size:18px;transform:rotate(-10deg)}
-.coach-heart.h2{right:6px;bottom:18px;font-size:15px;transform:rotate(16deg)}
-.coach-spark{position:absolute;left:10px;top:84px;color:#ffb448;font-size:18px}
-.coach-spark.s2{left:34px;top:67px;font-size:18px}
-.coach-robo{position:relative;width:190px;height:122px;margin:80px 0 0 4px;filter:drop-shadow(0 10px 14px rgba(130,90,50,.18))}
-.coach-robo-body{position:absolute;left:10px;right:10px;bottom:0;height:104px;border-radius:58px 58px 48px 48px;background:radial-gradient(ellipse at 50% 18%,#ffffff 0%,#f6f3ef 58%,#dad6cf 100%);border:4px solid #cec7bd}
-.coach-robo-top{position:absolute;left:50%;top:0;width:138px;height:46px;transform:translateX(-50%);border-radius:28px 28px 22px 22px;background:linear-gradient(180deg,#313338,#111314 76%);border:4px solid #d8d1c6;box-shadow:inset 0 4px 4px rgba(255,255,255,.12)}
-.coach-robo-word{display:none}
-.coach-robo-face{position:absolute;z-index:3;left:50%;bottom:19px;width:138px;height:58px;transform:translateX(-50%);border-radius:28px 28px 32px 32px;background:linear-gradient(180deg,#292c2e,#111314 80%)}
-.coach-eye{position:absolute;top:14px;width:24px;height:24px;border:2px solid #f2f0dc;border-radius:50%;background:#111}
-.coach-eye:after{content:"";position:absolute;top:4px;left:5px;width:7px;height:7px;border-radius:50%;background:#fff}
-.coach-eye.left{left:21px}
-.coach-eye.right{right:22px;top:20px;width:26px;height:12px;border:0;border-bottom:4px solid #f2f0dc;border-radius:0 0 18px 18px;background:transparent;transform:rotate(-10deg)}
-.coach-eye.right:after{display:none}
-.coach-cheek{position:absolute;bottom:10px;width:16px;height:8px;border-radius:50%;background:#ff8d8d;opacity:.78}
-.coach-cheek.left{left:10px}
-.coach-cheek.right{right:10px}
-.coach-mouth{position:absolute;left:50%;bottom:9px;width:25px;height:13px;transform:translateX(-50%);border:2px solid #f3d6c9;border-top:0;border-radius:0 0 16px 16px}
-.coach-slot{position:absolute;left:50%;bottom:8px;width:44px;height:6px;transform:translateX(-50%);border-radius:10px;background:#4a4b48}
-.coach-brush,.coach-crown{display:none}
-
-
 .toast{position:absolute;z-index:220;left:50%;bottom:25px;width:max-content;max-width:84%;padding:11px 17px;transform:translateX(-50%) translateY(30px);border-radius:18px;background:rgba(44,37,31,.95);color:#fff;font-size:11px;font-weight:800;opacity:0;pointer-events:none;transition:.25s}.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* ===== Battery coach popup: happy winking Roboking illustration ===== */
+.battery-coach-copy{
+  color:#6c513c;
+  font-size:15px;
+  line-height:1.72;
+  font-weight:750;
+}
+.battery-coach-copy b{color:#4b3324;font-weight:1000;}
+.battery-coach-visual{
+  position:relative;
+  margin-top:17px;
+  padding:6px 2px 2px;
+  min-height:225px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:flex-end;
+}
+.coach-speech{
+  position:relative;
+  z-index:5;
+  width:min(100%,292px);
+  margin:0 auto 18px;
+  padding:13px 16px 14px;
+  border:2px solid rgba(121,83,49,.10);
+  border-radius:19px;
+  background:#fff;
+  box-shadow:0 8px 18px rgba(65,41,23,.14);
+  color:#513827;
+  font-size:13.5px;
+  line-height:1.55;
+  font-weight:900;
+  text-align:center;
+  letter-spacing:-.15px;
+}
+.coach-speech b{color:#2f8b3a;font-weight:1000;}
+.coach-speech .coach-heart{color:#ef4e45;font-size:18px;vertical-align:-1px;}
+.coach-speech:after{
+  content:"";
+  position:absolute;
+  left:50%;
+  bottom:-15px;
+  width:22px;
+  height:22px;
+  transform:translateX(-50%) rotate(45deg);
+  background:#fff;
+  border-right:2px solid rgba(121,83,49,.08);
+  border-bottom:2px solid rgba(121,83,49,.08);
+  border-radius:0 0 5px 0;
+}
+.coach-robo-stage{
+  position:relative;
+  width:220px;
+  height:110px;
+  display:grid;
+  place-items:end center;
+}
+.coach-robo-shadow{
+  position:absolute;
+  left:50%;
+  bottom:2px;
+  width:150px;
+  height:18px;
+  transform:translateX(-50%);
+  border-radius:50%;
+  background:rgba(73,48,28,.17);
+  filter:blur(2px);
+}
+.coach-robo{
+  position:absolute;
+  left:50%;
+  bottom:10px;
+  width:154px;
+  height:84px;
+  transform:translateX(-50%);
+  border:2px solid #aaa7a0;
+  border-radius:58% 58% 39% 39%;
+  background:linear-gradient(180deg,#fffefb 0%,#eeeeea 68%,#c7c8c2 100%);
+  box-shadow:0 12px 18px rgba(55,37,21,.22),inset 0 -7px 10px rgba(83,83,79,.11);
+  animation:coachHappyBob 1.8s ease-in-out infinite;
+}
+.coach-robo-top{
+  position:absolute;
+  left:50%;
+  top:-6px;
+  width:108px;
+  height:49px;
+  transform:translateX(-50%);
+  border-top:2px solid rgba(119,119,114,.42);
+  border-radius:50%;
+  background:radial-gradient(ellipse at center,#fbfbf8 0%,#d8d9d5 74%,#b8b9b3 100%);
+}
+.coach-robo-face{
+  position:absolute;
+  z-index:3;
+  left:50%;
+  bottom:8px;
+  width:110px;
+  height:46px;
+  transform:translateX(-50%);
+  border-radius:23px 23px 28px 28px;
+  background:linear-gradient(180deg,#2a2c2d,#101213 76%);
+  box-shadow:inset 0 4px 5px rgba(255,255,255,.13);
+}
+.coach-eye-open{
+  position:absolute;
+  top:11px;
+  right:22px;
+  width:20px;
+  height:20px;
+  border:2px solid #f2f0dc;
+  border-radius:50%;
+  background:#111;
+}
+.coach-eye-open:after{
+  content:"";
+  position:absolute;
+  top:4px;
+  left:5px;
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:#fff;
+}
+.coach-eye-wink{
+  position:absolute;
+  top:18px;
+  left:21px;
+  width:22px;
+  height:10px;
+  border-top:3px solid #f2f0dc;
+  border-radius:50% 50% 0 0;
+  transform:rotate(-8deg);
+}
+.coach-cheek{
+  position:absolute;
+  bottom:7px;
+  width:13px;
+  height:6px;
+  border-radius:50%;
+  background:#ff8d8d;
+  opacity:.88;
+}
+.coach-cheek.left{left:7px}.coach-cheek.right{right:7px}
+.coach-smile{
+  position:absolute;
+  left:50%;
+  bottom:7px;
+  width:25px;
+  height:13px;
+  transform:translateX(-50%);
+  border:2px solid #f5ddd4;
+  border-top:0;
+  border-radius:0 0 15px 15px;
+}
+.coach-smile:after{
+  content:"";
+  position:absolute;
+  left:50%;
+  bottom:-1px;
+  width:10px;
+  height:4px;
+  transform:translateX(-50%);
+  border-radius:5px 5px 8px 8px;
+  background:#f3949c;
+  opacity:.9;
+}
+.coach-sparkle{
+  position:absolute;
+  z-index:6;
+  color:#ffd44f;
+  font-size:25px;
+  line-height:1;
+  text-shadow:0 3px 6px rgba(117,79,18,.18);
+  animation:coachSparkle 1.35s ease-in-out infinite;
+}
+.coach-sparkle.s1{left:20px;bottom:61px;animation-delay:.1s;}
+.coach-sparkle.s2{right:22px;bottom:74px;animation-delay:.48s;font-size:20px;}
+.coach-sparkle.s3{right:44px;bottom:31px;animation-delay:.82s;font-size:16px;}
+@keyframes coachHappyBob{
+  0%,100%{transform:translateX(-50%) translateY(0) rotate(-1deg)}
+  50%{transform:translateX(-50%) translateY(-6px) rotate(1deg)}
+}
+@keyframes coachSparkle{
+  0%,100%{opacity:.45;transform:scale(.78) rotate(-12deg)}
+  50%{opacity:1;transform:scale(1.16) rotate(10deg)}
+}
+@media(max-width:360px){
+  .battery-coach-copy{font-size:14px;line-height:1.62;}
+  .battery-coach-visual{min-height:205px;margin-top:13px;}
+  .coach-speech{font-size:12.8px;padding:12px 13px;margin-bottom:16px;}
+  .coach-robo-stage{height:100px;}
+  .coach-robo{width:146px;height:80px;}
+}
 
 /* Animations */
 @keyframes robotIdle{0%,100%{transform:translateX(-50%) translateY(0) rotate(-1deg)}50%{transform:translateX(-50%) translateY(-7px) rotate(1deg)}}
@@ -4654,38 +4822,48 @@ function decorateRobot(){
   showToast("리워드에서 아이템을 사면 로보킹에게 계속 장착돼요.");
 }
 
-
 function openBatteryCoachInfo(action,event){
   if(event){
     event.preventDefault();
     event.stopPropagation();
   }
-  const coachHtml = ""
-    + "<div class='battery-coach-text'>"
-    + "로보킹은 첫 매핑 학습으로 집 크기와 청소 구역을 기억해요.<br><br>"
-    + "그래서 매번 100%까지 채우지 않아도,<br>"
-    + "오늘 청소에 필요한 만큼만 준비할 수 있어요.<br><br>"
-    + "배터리를 너무 가득 채우거나 너무 낮게 쓰는 습관을 줄이면,<br>"
-    + "로보킹을 더 오래 건강하게 사용할 수 있어요."
-    + "</div>"
-    + "<div class='battery-coach-visual'>"
-    + "  <div class='battery-coach-bubble'>저를 더 오래 보기 위해<br><b>함께 배터리 습관을</b><br><b>지켜주실 거죠?! ❤️</b></div>"
-    + "  <div class='coach-heart'>💗</div><div class='coach-heart h2'>💗</div>"
-    + "  <div class='coach-spark'>✨</div><div class='coach-spark s2'>✨</div>"
-    + "  <div class='coach-robo' aria-label='웃으며 윙크하는 로보킹'>"
-    + "    <div class='coach-robo-body'></div>"
-    + "    <div class='coach-robo-top'></div>"
-    + "    <div class='coach-robo-face'>"
-    + "      <div class='coach-eye left'></div>"
-    + "      <div class='coach-eye right'></div>"
-    + "      <div class='coach-cheek left'></div>"
-    + "      <div class='coach-cheek right'></div>"
-    + "      <div class='coach-mouth'></div>"
-    + "    </div>"
-    + "    <div class='coach-slot'></div>"
-    + "  </div>"
-    + "</div>";
-  openModal("왜 가득 충전하지 않나요?", coachHtml);
+
+  const coachVisual = `
+    <div class="battery-coach-copy">
+      로보킹은 첫 매핑 학습으로 <b>집 크기와 청소 구역</b>을 기억해요.<br><br>
+      그래서 매번 100%까지 채우지 않아도,<br>
+      오늘 청소에 필요한 만큼만 준비할 수 있어요.<br><br>
+      배터리를 너무 가득 채우거나 너무 낮게 쓰는 습관을 줄이면,<br>
+      로보킹을 더 오래 건강하게 사용할 수 있어요.
+    </div>
+    <div class="battery-coach-visual">
+      <div class="coach-speech">
+        저를 더 오래 보기 위해<br>
+        <b>함께 배터리 습관을</b><br>
+        지켜주실 거죠?! <span class="coach-heart">♥</span>
+      </div>
+      <div class="coach-robo-stage" aria-hidden="true">
+        <div class="coach-robo-shadow"></div>
+        <span class="coach-sparkle s1">✦</span>
+        <span class="coach-sparkle s2">✦</span>
+        <span class="coach-sparkle s3">✦</span>
+        <div class="coach-robo">
+          <div class="coach-robo-top"></div>
+          <div class="coach-robo-face">
+            <div class="coach-eye-wink"></div>
+            <div class="coach-eye-open"></div>
+            <div class="coach-cheek left"></div>
+            <div class="coach-cheek right"></div>
+            <div class="coach-smile"></div>
+          </div>
+        </div>
+      </div>
+    </div>`;
+
+  openModal(
+    "왜 가득 충전하지 않나요?",
+    coachVisual
+  );
 }
 
 function showStatus(){

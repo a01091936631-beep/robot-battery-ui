@@ -838,13 +838,14 @@ APP_HTML = r"""
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap');
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 :root{
   --brown:#4b3324;--brown2:#735139;--cream:#fff8e8;--green:#62aa49;
   --green2:#2f8b3a;--orange:#ff9535;--red:#ef4e45;--yellow:#ffd44f;
   --shadow:0 8px 18px rgba(72,44,20,.15)
 }
-html,body{margin:0;min-height:100%;font-family:"Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",sans-serif;color:var(--brown);background:transparent}
+html,body{margin:0;min-height:100%;font-family:"Noto Sans KR","Noto Sans","Apple SD Gothic Neo","Malgun Gothic",Arial,sans-serif;color:var(--brown);background:transparent}
 body{display:flex;justify-content:center;align-items:flex-start;padding:8px}
 button,input{font-family:inherit} button{cursor:pointer}
 .phone{position:relative;width:min(100%,420px);height:960px;overflow:hidden;border:8px solid #242321;border-radius:40px;background:#dfb46b;box-shadow:0 30px 80px rgba(50,33,18,.28),0 8px 20px rgba(50,33,18,.16)}
@@ -940,7 +941,7 @@ button,input{font-family:inherit} button{cursor:pointer}
 .events{margin-top:9px;padding:15px 14px}.event-item{display:grid;grid-template-columns:43px 1fr;gap:8px;padding:11px 0;border-bottom:1px solid rgba(122,87,51,.12)}.event-item:last-child{border-bottom:0}.event-time{color:#946c43;font-size:9px;font-weight:900}.event-content strong{display:block;margin-bottom:3px;font-size:10px}.event-content span{color:#785a43;font-size:9px;line-height:1.4;font-weight:700}
 
 /* Reward */
-.level-panel{padding:17px 15px;text-align:center;background:linear-gradient(145deg,#fff3cc,#ffd98a)}.level-robot{font-size:72px;animation:float 2s ease-in-out infinite}.level-number{margin-top:5px;font-size:25px;font-weight:900}.level-track{height:11px;margin:12px 10px 5px;overflow:hidden;border-radius:10px;background:rgba(126,85,39,.18)}.level-fill{width:55%;height:100%;border-radius:inherit;background:linear-gradient(90deg,#ff7f35,#ffd244)}.level-caption{font-size:9px;font-weight:900}
+.level-panel{padding:18px 15px 20px;text-align:center;background:linear-gradient(145deg,#fff3cc,#ffd98a);display:flex;flex-direction:column;align-items:center}.level-robot{font-size:72px;animation:float 2s ease-in-out infinite}.level-number{width:100%;margin-top:4px;font-size:25px;font-weight:900;text-align:center}.level-track{width:calc(100% - 20px);height:11px;margin:12px 10px 5px;overflow:hidden;border-radius:10px;background:rgba(126,85,39,.18)}.level-fill{width:55%;height:100%;border-radius:inherit;background:linear-gradient(90deg,#ff7f35,#ffd244)}.level-caption{width:100%;font-size:9px;font-weight:900;text-align:center}
 .reward-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:9px;align-items:stretch}
 .reward-card{min-height:176px;padding:14px;border:1px solid rgba(136,87,40,.14);border-radius:16px;background:rgba(255,248,231,.97);box-shadow:var(--shadow);text-align:center;display:flex;flex-direction:column;align-items:center}
 .reward-icon{font-size:38px;line-height:1}
@@ -1593,8 +1594,8 @@ body,button,input,select{
 .robot-aura-deco span:nth-child(2){right:2px;top:22px;animation-delay:.45s;}
 .robot-aura-deco span:nth-child(3){right:18px;bottom:22px;animation-delay:.8s;}
 .robot-aura-deco span:nth-child(4){left:22px;bottom:10px;animation-delay:1.05s;}
-.level-robot-preview{position:relative;display:inline-grid;place-items:center;min-width:132px;min-height:112px;margin:0 auto;}
-.preview-shell{position:relative;width:122px;height:102px;display:grid;place-items:end center;}
+.level-robot-preview{position:relative;display:flex;align-items:center;justify-content:center;width:100%;min-width:0;min-height:120px;margin:0 auto 6px;}
+.preview-shell{position:relative;width:122px;height:102px;display:grid;place-items:end center;margin:0 auto;}
 .preview-crown,.preview-head,.preview-aura{position:absolute;pointer-events:none;}
 .preview-crown{left:50%;top:-6px;transform:translateX(-50%);font-size:35px;line-height:1;filter:drop-shadow(0 3px 3px rgba(64,38,18,.18));}
 .preview-robot{

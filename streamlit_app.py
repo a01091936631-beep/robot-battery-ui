@@ -2510,12 +2510,18 @@ body,button,input,select{
 .battery-health-state{margin-top:3px;color:#2f8b3a;font-size:12px;font-weight:700;}
 .battery-health-value{color:#2f8b3a;font-size:28px;line-height:1;font-weight:800;letter-spacing:-.8px;}
 .battery-health-track{height:10px!important;margin-top:10px!important;}
-.battery-live-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:10px;}
-.battery-live-item{display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:38px;padding:8px 9px;border-radius:11px;background:#f8efd9;color:#7a5a3c;font-size:10.5px;font-weight:500;}
-.battery-live-item b{color:#4b3324;font-size:13px;font-weight:700;white-space:nowrap;}
-.battery-care-stats{margin-top:9px!important;}
-.battery-care-stats .care-stat{min-height:76px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:9px 5px;background:#fff2cf;}
-.battery-care-stats .care-stat span{min-height:27px;display:flex;align-items:center;justify-content:center;font-size:10px;line-height:1.25;font-weight:700;}
+.battery-life-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:10px;}
+.battery-life-item{min-height:54px;padding:8px 9px;border-radius:11px;background:#f8efd9;color:#7a5a3c;text-align:left;}
+.battery-life-item span{display:block;font-size:9.5px;line-height:1.25;font-weight:600;}
+.battery-life-item b{display:block;margin-top:4px;color:#4b3324;font-size:13px;line-height:1.28;font-weight:750;letter-spacing:-.2px;}
+.battery-care-stats{grid-template-columns:repeat(2,1fr)!important;margin-top:9px!important;}
+.battery-care-stats .care-stat{min-height:72px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:9px 5px;background:#fff2cf;}
+.battery-care-stats .care-stat span{min-height:22px;display:flex;align-items:center;justify-content:center;font-size:10px;line-height:1.25;font-weight:700;}
+.battery-life-guide{display:flex;align-items:center;gap:9px;margin-top:9px;padding:10px 11px;border:1px solid rgba(124,83,43,.10);border-radius:13px;background:rgba(255,255,255,.70);color:#60452f;}
+.battery-life-guide-icon{flex:0 0 auto;width:31px;height:31px;display:grid;place-items:center;border-radius:10px;background:#fff2cf;font-size:18px;}
+.battery-life-guide-copy{flex:1 1 auto;min-width:0;font-size:10.5px;line-height:1.45;font-weight:550;}
+.battery-life-guide-copy b{display:block;margin-bottom:2px;color:#4b3324;font-size:11px;font-weight:750;}
+.battery-life-guide-btn{flex:0 0 auto;min-height:31px;padding:0 8px;border:1px solid rgba(74,155,66,.20);border-radius:10px;background:#eaf4df;color:#2f8b3a;font-size:9.5px;font-weight:750;white-space:nowrap;}
 .battery-care-stats .care-stat b{font-size:22px;font-weight:800;}
 .battery-care-stats .care-stat small{font-size:9.5px;font-weight:600;}
 .battery-care-main .care-note{margin-top:9px;padding:9px 10px;border-radius:12px;background:#eaf4df;color:#2f8b3a;font-size:10.8px;line-height:1.5;font-weight:600;}
@@ -3293,16 +3299,21 @@ strong,b{font-weight:700;}
             <div class="care-health-track battery-health-track">
               <div class="care-health-fill" id="careHealthFill" style="width:100%"></div>
             </div>
-            <div class="battery-live-grid">
-              <div class="battery-live-item"><span>현재 잔량</span><b id="careCurrentSoc">80%</b></div>
-              <div class="battery-live-item"><span>배터리 온도</span><b id="careTempText">29℃</b></div>
+            <div class="battery-life-grid">
+              <div class="battery-life-item"><span>성능 유지 기준</span><b>500 Cycle 후 80%</b></div>
+              <div class="battery-life-item"><span>주 3회 사용 기준</span><b>약 3년 1개월</b></div>
             </div>
           </div>
 
           <div class="care-stats battery-care-stats">
             <div class="care-stat"><span>맞춤 충전</span><b id="careAcceptText">5</b><small>회</small></div>
             <div class="care-stat"><span>15% 잔량 보호</span><b id="careReserveText">1</b><small>회</small></div>
-            <div class="care-stat"><span>누적 덜 채운 충전량</span><b id="careSavedText">123</b><small>%</small></div>
+          </div>
+
+          <div class="battery-life-guide">
+            <div class="battery-life-guide-icon">🗓️</div>
+            <div class="battery-life-guide-copy"><b>약 3년 주기로 점검·교체를 권장해요</b>사용에 불편이 없다면 3년 이상 사용할 수도 있어요.</div>
+            <button type="button" class="battery-life-guide-btn" data-action="batteryLifeInfo">자세히</button>
           </div>
 
           <div class="care-note" id="careNote">오늘도 과충전 없이 관리 중이에요.</div>
@@ -5038,7 +5049,7 @@ function getPartStatuses(){
     {key:"filter",icon:"🧊",name:"필터 상태",...filter,face:faces[filter.level],
       detail:"누적 청소 "+total+"회 · 필터 막힘이 적어 흡입 효율이 좋아요.",tip:"필터는 2~3주마다 톡톡 털어주고, 6개월마다 교체하면 좋아요.",coupon:true},
     {key:"battery",icon:"🔋",name:"배터리 컨디션",...battery,face:faces[battery.level],
-      detail:"현재 "+state.soc+"% · 온도 "+state.temperature+"℃ · 건강도 "+state.health+"%",tip:"완충 대신 필요한 만큼만 채우고, 15%를 남겨 쉬어가면 배터리 수명이 오래가요."}
+      detail:"현재 배터리 건강도 "+state.health+"% · 500 Cycle 후 80% 성능 유지 기준",tip:"주 3회 사용 시 약 3년 1개월에 해당하며, 약 3년 주기로 점검·교체를 권장해요. 사용에 불편이 없다면 더 오래 사용할 수도 있어요."}
   ];
 }
 function renderCare(){
@@ -5054,7 +5065,6 @@ function renderCare(){
   // 배터리 케어: 검증이 필요한 수명 연장/비용 절감 예측 대신 현재 상태와 실제 케어 행동을 보여줍니다.
   const a=$("careAcceptText"); if(a)a.textContent=state.acceptCount;
   const r=$("careReserveText"); if(r)r.textContent=state.reserveGuardCount;
-  const s=$("careSavedText"); if(s)s.textContent=Math.round(state.savedChargePct);
 
   const health=clamp(Math.round(Number(state.health||0)),0,100);
   const hf=$("careHealthFill"); if(hf)hf.style.width=health+"%";
@@ -5063,8 +5073,6 @@ function renderCare(){
   if(hs){
     hs.textContent=health>=90?"매우 좋음":(health>=80?"좋음":(health>=65?"관리 필요":"점검 권장"));
   }
-  const currentSoc=$("careCurrentSoc"); if(currentSoc)currentSoc.textContent=clamp(Math.round(state.soc),0,100)+"%";
-  const temp=$("careTempText"); if(temp)temp.textContent=Number(state.temperature||0).toFixed(0)+"℃";
 
   const note=$("careNote");
   if(note){
@@ -5700,6 +5708,22 @@ function openBatteryCoachInfo(action,event){
     "왜 가득 충전하지 않나요?",
     coachVisual
   );
+}
+
+function openBatteryLifeInfo(action,event){
+  if(event){event.preventDefault();event.stopPropagation();}
+  const body=`
+    <div style="font-size:13px;line-height:1.7;color:#6c513c;">
+      <b style="color:#4b3324;font-size:15px;">배터리 수명·점검 기준</b><br><br>
+      완전 충전 후 완전 방전을 <b>1 Cycle</b>로 보며,<br>
+      <b>500 Cycle 사용 후에도 80% 성능 유지</b>를 수명 시험 기준으로 봐요.<br><br>
+      주 3회 사용하면 1년에 약 156회이므로,<br>
+      500 Cycle은 <b>약 3년 1개월</b>에 해당해요.<br><br>
+      그래서 <b>약 3년 주기로 배터리 상태 점검·교체를 권장</b>해요.<br>
+      사용 중 특별한 불편이 없다면 3년 이상 사용할 수도 있어요.<br><br>
+      <span style="font-size:11px;color:#8a6a45;">※ 실제 사용 가능 기간은 사용 빈도와 환경에 따라 달라질 수 있어요.</span>
+    </div>`;
+  openModal("배터리 수명 안내",body);
 }
 
 function showStatus(){
@@ -6409,7 +6433,7 @@ const actions={
   manualCleanAndGo:manualCleanAndGo,
   aiAutoClean:aiAutoClean,dirtyOnlyClean:dirtyOnlyClean,toggleNoGoMode:toggleNoGoMode,mapZone:handleMapZoneTap,
   selectHome:()=>selectScenario("home"),selectZone1:()=>selectScenario("zone",1),selectZone2:()=>selectScenario("zone",2),selectZone3:()=>selectScenario("zone",3),selectZone4:()=>selectScenario("zone",4),selectZone5:()=>selectScenario("zone",5),selectZone6:()=>selectScenario("zone",6),selectZone7:()=>selectScenario("zone",7),selectZone8:()=>selectScenario("zone",8),
-  pet:petRobot,feed:feedRobot,play:playRobot,train:trainRobot,photo:takePhoto,clean:startCleaning,charge:chargeRobot,status:showStatus,batteryCoachInfo:openBatteryCoachInfo,
+  pet:petRobot,feed:feedRobot,play:playRobot,train:trainRobot,photo:takePhoto,clean:startCleaning,charge:chargeRobot,status:showStatus,batteryCoachInfo:openBatteryCoachInfo,batteryLifeInfo:openBatteryLifeInfo,
   // 홈의 "청소 기록" 버튼은 실시간 케어 기록이 있는 부품 케어 탭으로 이동합니다.
   record:()=>switchPage("batteryPage"),care:()=>switchPage("batteryPage"),event:()=>switchPage("eventPage"),decorate:decorateRobot,shop:()=>switchPage("rewardPage"),chargeFromBattery:()=>{switchPage("homePage");setTimeout(chargeRobot,220)},
   itemSanta:()=>handleRewardItem("santa"),itemRibbon:()=>handleRewardItem("ribbon"),itemHat:()=>handleRewardItem("hat"),itemBunny:()=>handleRewardItem("bunny"),itemCat:()=>handleRewardItem("cat"),itemSparkle:()=>handleRewardItem("sparkle"),

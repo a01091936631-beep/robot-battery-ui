@@ -8,7 +8,7 @@ import streamlit as st
 import streamlit.components.v1 as components
 
 st.set_page_config(
-    page_title="LG ROBO CARE | 로보킹 키우기",
+    page_title="LG ROBO CARE | 홈지니 키우기",
     page_icon="🤖",
     layout="wide",
     initial_sidebar_state="collapsed",
@@ -207,7 +207,7 @@ st.markdown(
 # assets/photos/        → 4번째 탭 "사진첩"에 표시되는 반려동물 사진 (png/jpg/jpeg/gif/webp)
 # assets/lost_items/    → 4번째 탭 "오늘의 발견"의 분실물 사진 (없으면 이모지로 표시)
 # 각 폴더에 선택적으로 captions.json 을 두면 파일명별 제목/장소/시간/설명을 지정할 수 있습니다.
-#   { "dog3_jpg": {"title": "안방에서 쉬는 중", "place": "안방", "time": "오늘 오후", "note": "로보킹이 살포시 담은 사진"} }
+#   { "dog3_jpg": {"title": "안방에서 쉬는 중", "place": "안방", "time": "오늘 오후", "note": "홈지니이 살포시 담은 사진"} }
 # captions.json 이 없으면 파일명(확장자 제외)이 제목으로 사용됩니다.
 # 사진은 한 장당 1MB 이하로 줄여두면 로딩이 빠릅니다.
 # ============================================================
@@ -287,46 +287,46 @@ def load_image_folder(folder_str: str, signature: str):
         data = base64.b64encode(raw).decode("ascii")
         default_photo_meta = {
             "dog1.jpg": {
-                "title": "로보킹이 신기한 강아지",
+                "title": "홈지니이 신기한 강아지",
                 "place": "안방",
                 "time": "오늘 오전 11:05",
-                "note": "안방에서 강아지가 로보킹에게 관심을 보여서 살포시 찍어봤어요.",
+                "note": "안방에서 강아지가 홈지니에게 관심을 보여서 살포시 찍어봤어요.",
             },
             "dog1_jpg": {
-                "title": "로보킹이 신기한 강아지",
+                "title": "홈지니이 신기한 강아지",
                 "place": "안방",
                 "time": "오늘 오전 11:05",
-                "note": "안방에서 강아지가 로보킹에게 관심을 보여서 살포시 찍어봤어요.",
+                "note": "안방에서 강아지가 홈지니에게 관심을 보여서 살포시 찍어봤어요.",
             },
             "dog1_jpg.jpg": {
-                "title": "로보킹이 신기한 강아지",
+                "title": "홈지니이 신기한 강아지",
                 "place": "안방",
                 "time": "오늘 오전 11:05",
-                "note": "안방에서 강아지가 로보킹에게 관심을 보여서 살포시 찍어봤어요.",
+                "note": "안방에서 강아지가 홈지니에게 관심을 보여서 살포시 찍어봤어요.",
             },
             "dog2.jpg": {
                 "title": "강아지의 하루 기록",
                 "place": "침실",
                 "time": "오늘 오전",
-                "note": "로보킹이 청소하면서 반려동물의 모습을 사진첩에 남겼어요.",
+                "note": "홈지니이 청소하면서 반려동물의 모습을 사진첩에 남겼어요.",
             },
             "dog3.jpg": {
                 "title": "안방에서 쉬는 중",
                 "place": "안방",
                 "time": "오늘 오후",
-                "note": "안방에서 편안히 쉬고 있는 모습을 로보킹이 살포시 담았어요.",
+                "note": "안방에서 편안히 쉬고 있는 모습을 홈지니이 살포시 담았어요.",
             },
             "dog3_jpg.jpg": {
                 "title": "안방에서 쉬는 중",
                 "place": "안방",
                 "time": "오늘 오후",
-                "note": "안방에서 편안히 쉬고 있는 모습을 로보킹이 살포시 담았어요.",
+                "note": "안방에서 편안히 쉬고 있는 모습을 홈지니이 살포시 담았어요.",
             },
             "dog3_jpg": {
                 "title": "안방에서 쉬는 중",
                 "place": "안방",
                 "time": "오늘 오후",
-                "note": "안방에서 편안히 쉬고 있는 모습을 로보킹이 살포시 담았어요.",
+                "note": "안방에서 편안히 쉬고 있는 모습을 홈지니이 살포시 담았어요.",
             },
         }
         default_meta = default_photo_meta.get(p.name.lower()) or default_photo_meta.get(p.stem.lower()) or {}
@@ -1085,7 +1085,7 @@ button,input,select{font-family:inherit} button{cursor:pointer}
 .modal{position:absolute;z-index:200;inset:0;display:none;align-items:center;justify-content:center;padding:30px;background:rgba(45,33,23,.62);backdrop-filter:blur(4px)}.modal.show{display:flex}.modal-card{width:100%;padding:19px;border-radius:20px;background:#fff8e8;box-shadow:0 18px 45px rgba(28,19,12,.38);animation:popup .18s ease-out}.modal-title{font-size:18px;font-weight:900}.modal-body{margin:13px 0 17px;color:#6c513c;font-size:12px;line-height:1.65;font-weight:700}.modal-actions{display:grid;grid-template-columns:1fr 1fr;gap:9px}.modal-btn{width:100%;padding:11px;border:0;border-radius:12px;font-weight:900}.modal-secondary{background:#efe1c8;color:#5c422f}.modal-primary{background:#ef8c32;color:#fff}.modal-actions.single{grid-template-columns:1fr}.modal-actions.single .modal-secondary{display:none}
 .toast{position:absolute;z-index:220;left:50%;bottom:25px;width:max-content;max-width:84%;padding:11px 17px;transform:translateX(-50%) translateY(30px);border-radius:18px;background:rgba(44,37,31,.95);color:#fff;font-size:11px;font-weight:800;opacity:0;pointer-events:none;transition:.25s}.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 
-/* ===== Battery coach popup: happy winking Roboking illustration ===== */
+/* ===== Battery coach popup: happy winking Home Genie illustration ===== */
 .battery-coach-copy{
   color:#6c513c;
   font-size:14px;
@@ -1644,7 +1644,7 @@ body,button,input,select{
 .flow-guide.done{border-left-color:#2f8b3a;background:linear-gradient(145deg,#eff9e8,#fff7dc);}
 .flow-guide.charging{border-left-color:#f2a84d;background:linear-gradient(145deg,#fff2d2,#fff8e8);}
 
-/* ===== Reward closet: equipped items stay on Roboking ===== */
+/* ===== Reward closet: equipped items stay on Home Genie ===== */
 .robot-accessory{
   position:absolute;
   z-index:34;
@@ -1668,7 +1668,7 @@ body,button,input,select{
 }
 .robot-head-deco.show{display:flex;animation:decoPop .34s ease-out;}
 .robot-head-deco.ribbon{top:-35px;font-size:48px;}
-/* 모자는 로보킹 머리 위에 실제로 얹힌 느낌이 나도록 낮게 배치 */
+/* 모자는 홈지니 머리 위에 실제로 얹힌 느낌이 나도록 낮게 배치 */
 .robot-head-deco.hat{
   top:-38px;
   font-size:66px;
@@ -1676,7 +1676,7 @@ body,button,input,select{
   transform:translateX(-58%) rotate(-10deg);
   filter:drop-shadow(0 4px 4px rgba(64,38,18,.18));
 }
-/* 토끼/고양이는 동물 이모지가 아니라 로보킹 자체에 귀가 붙는 장착형 레이어 */
+/* 토끼/고양이는 동물 이모지가 아니라 홈지니 자체에 귀가 붙는 장착형 레이어 */
 .robot-head-deco.ears{top:-42px;width:138px;height:78px;min-width:138px;}
 .robot-head-deco.ears.show{display:block;animation:decoPop .34s ease-out;}
 .robo-ear{position:absolute;z-index:2;bottom:4px;filter:drop-shadow(0 3px 3px rgba(64,38,18,.16));}
@@ -2330,7 +2330,7 @@ body,button,input,select{
 }
 
 
-/* ===== Map robot marker: 지도 위에서 로보킹이 실제로 움직이며 청소하는 표현 ===== */
+/* ===== Map robot marker: 지도 위에서 홈지니이 실제로 움직이며 청소하는 표현 ===== */
 .map-sweep{fill:none;stroke:rgba(255,255,255,.80);stroke-width:7;stroke-linecap:round;stroke-linejoin:round;pointer-events:none;}
 .map-robot{pointer-events:none;}
 .map-robot-shadow{fill:rgba(64,42,26,.22);}
@@ -3084,7 +3084,7 @@ strong,b{font-weight:700;}
       <div class="header-top">
         <div>
           <div class="brand">LG ROBO CARE</div>
-          <div class="app-title">로보킹 키우기</div>
+          <div class="app-title">홈지니 키우기</div>
         </div>
         <div class="coin-pill">🪙 <span id="coinText">050</span></div>
       </div>
@@ -3104,7 +3104,7 @@ strong,b{font-weight:700;}
           <div class="wall-light"></div><div class="floor"></div>
           <div class="plant">🪴</div><div class="house"></div><div class="sofa"></div>
           <div class="speech" id="speech"><strong>배가 든든해요!</strong><br>청소를 준비할게요!</div>
-          <div class="mode-chip" id="modeChip">✨ 로보킹 맞춤 준비</div>
+          <div class="mode-chip" id="modeChip">✨ 홈지니 맞춤 준비</div>
           <div class="rug"></div>
           <div class="clean-path"><div class="clean-fill" id="cleanFill"></div></div>
           <div class="charge-ring"></div>
@@ -3189,12 +3189,12 @@ strong,b{font-weight:700;}
             <!-- 매핑 전/학습 중에만 보이는 최초 학습 영역 -->
             <div class="learn-panel" id="learnPanel">
               <div class="learn-top">
-                <div class="learn-title" id="learnTitle">처음 사용할 때는 로보킹이 집을 먼저 배워요</div>
+                <div class="learn-title" id="learnTitle">처음 사용할 때는 홈지니이 집을 먼저 배워요</div>
                 <div class="learn-pill" id="learnPill">초기 학습</div>
               </div>
               <div class="learn-desc" id="learnDesc">처음 한 번만 집 구조와 바닥 상태를 배워요.</div>
               <div class="learn-progress"><div class="learn-fill" id="learnFill"></div></div>
-              <div class="learn-status" id="learnStatus">1회차 학습 청소를 시작하면 로보킹이 집 구조와 구역 정보를 자동으로 기록해요.</div>
+              <div class="learn-status" id="learnStatus">1회차 학습 청소를 시작하면 홈지니이 집 구조와 구역 정보를 자동으로 기록해요.</div>
               <div class="learn-steps" id="learnSteps"></div>
               <div class="learn-actions" id="learnActions">
                 <button type="button" class="learn-btn" id="learnBtn" data-action="startFirstMapping" onpointerdown="window.__forceStartFirstMapping && window.__forceStartFirstMapping(event);" onmousedown="window.__forceStartFirstMapping && window.__forceStartFirstMapping(event);" ontouchstart="window.__forceStartFirstMapping && window.__forceStartFirstMapping(event);" onclick="window.__forceStartFirstMapping && window.__forceStartFirstMapping(event);">🏠 1회차 학습 청소 시작</button>
@@ -3206,7 +3206,7 @@ strong,b{font-weight:700;}
             <div class="ai-clean-controls" id="aiMappedControls">
               <div class="ai-clean-intro">
                 <span class="ai-clean-intro-icon">✨</span>
-                <div class="ai-clean-intro-title">매핑한 우리 집에 맞춰 로보킹이 알아서 청소해요.</div>
+                <div class="ai-clean-intro-title">매핑한 우리 집에 맞춰 홈지니이 알아서 청소해요.</div>
               </div>
 
               <div class="ai-clean-mode-row">
@@ -3258,7 +3258,7 @@ strong,b{font-weight:700;}
               </div>
 
               <div id="predictionInputs" style="display:none;">
-                <div class="condition-help">세부 조건을 직접 고르면 로보킹이 준비부터 청소까지 이어서 진행해요.</div>
+                <div class="condition-help">세부 조건을 직접 고르면 홈지니이 준비부터 청소까지 이어서 진행해요.</div>
                 <div class="predict-condition-grid">
                   <label for="scopeSelect">청소 범위</label>
                   <select class="condition-select" id="scopeSelect">
@@ -3308,7 +3308,7 @@ strong,b{font-weight:700;}
           <div class="home-cards">
             <section class="mini-card">
               <div class="mini-title">배터리 컨디션</div>
-              <div class="battery-info">너무 배부르거나<br>너무 배고프지 않게<br>로보킹이 알아서 관리해요!</div>
+              <div class="battery-info">너무 배부르거나<br>너무 배고프지 않게<br>홈지니이 알아서 관리해요!</div>
               <div class="battery-face" id="batteryFace">😊</div>
               <div class="scale"><div class="pointer" id="pointer"></div></div>
               <div class="scale-labels"><span>0%</span><span>15%</span><span>90%</span><span>100%</span></div>
@@ -3474,8 +3474,8 @@ strong,b{font-weight:700;}
         <div class="reward-panel hidden" id="evPhotoPanel">
           <div class="panel photo-info">
             <div>
-              <div class="p-title">📷 로보킹 사진첩</div>
-              <div class="p-desc">청소 중 움직이는 친구를 만나면 로보킹이 살짝 찍어둬요. 혼자 있는 반려동물의 하루를 볼 수 있어요.</div>
+              <div class="p-title">📷 홈지니 사진첩</div>
+              <div class="p-desc">청소 중 움직이는 친구를 만나면 홈지니이 살짝 찍어둬요. 혼자 있는 반려동물의 하루를 볼 수 있어요.</div>
             </div>
             <div class="p-count"><b id="photoCount">0</b>장</div>
           </div>
@@ -3489,7 +3489,7 @@ strong,b{font-weight:700;}
       <!-- ===================== PAGE 5 · 리워드 (원본 유지) ===================== -->
       <section class="page" id="rewardPage">
         <div class="section-kicker">REWARD</div>
-        <div class="section-title">로보킹 성장 리워드</div>
+        <div class="section-title">홈지니 성장 리워드</div>
 
         <div class="reward-folder-tabs">
           <button class="reward-folder-btn active" id="rewardTabItems" data-action="rewardTabItems">꾸미기 아이템</button>
@@ -3498,20 +3498,20 @@ strong,b{font-weight:700;}
 
         <div class="reward-panel" id="rewardItemsPanel">
           <div class="reward-grid">
-            <div class="reward-card seasonal-card" id="cardSanta"><div class="reward-icon santa-reward-icon"><img src="__SANTA_HAT_DATA_URI__" alt="산타클로스 모자"></div><div class="reward-title">산타클로스 모자</div><div class="reward-desc">크리스마스 에디션! 로보킹에게 포근한 산타 모자를 씌워줘요.</div><div class="reward-status" id="statusSanta"></div><button class="reward-btn" id="btnSanta" data-action="itemSanta">50 코인</button></div>
+            <div class="reward-card seasonal-card" id="cardSanta"><div class="reward-icon santa-reward-icon"><img src="__SANTA_HAT_DATA_URI__" alt="산타클로스 모자"></div><div class="reward-title">산타클로스 모자</div><div class="reward-desc">크리스마스 에디션! 홈지니에게 포근한 산타 모자를 씌워줘요.</div><div class="reward-status" id="statusSanta"></div><button class="reward-btn" id="btnSanta" data-action="itemSanta">50 코인</button></div>
             <div class="reward-card" id="cardRibbon"><div class="reward-icon">🎀</div><div class="reward-title">빨간 리본</div><div class="reward-desc">머리 위에 귀엽게 달아줘요.</div><div class="reward-status" id="statusRibbon"></div><button class="reward-btn" id="btnRibbon" data-action="itemRibbon">60 코인</button></div>
-            <div class="reward-card" id="cardHat"><div class="reward-icon">🧢</div><div class="reward-title">탐험가 모자</div><div class="reward-desc">로보킹 머리에 딱 맞게 씌워줘요.</div><div class="reward-status" id="statusHat"></div><button class="reward-btn" id="btnHat" data-action="itemHat">120 코인</button></div>
-            <div class="reward-card" id="cardSparkle"><div class="reward-icon">✨</div><div class="reward-title">반짝이 오라</div><div class="reward-desc">로보킹 주변이 반짝여요.</div><div class="reward-status" id="statusSparkle"></div><button class="reward-btn" id="btnSparkle" data-action="itemSparkle">80 코인</button></div>
-            <div class="reward-card" id="cardBunny"><div class="reward-icon">🐰</div><div class="reward-title">토끼 귀</div><div class="reward-desc">로보킹 머리에 토끼 귀가 쏙!</div><div class="reward-status" id="statusBunny"></div><button class="reward-btn" id="btnBunny" data-action="itemBunny">90 코인</button></div>
-            <div class="reward-card" id="cardCat"><div class="reward-icon">🐱</div><div class="reward-title">고양이 귀</div><div class="reward-desc">새침한 고양이 로보킹으로 변신!</div><div class="reward-status" id="statusCat"></div><button class="reward-btn" id="btnCat" data-action="itemCat">70 코인</button></div>
+            <div class="reward-card" id="cardHat"><div class="reward-icon">🧢</div><div class="reward-title">탐험가 모자</div><div class="reward-desc">홈지니 머리에 딱 맞게 씌워줘요.</div><div class="reward-status" id="statusHat"></div><button class="reward-btn" id="btnHat" data-action="itemHat">120 코인</button></div>
+            <div class="reward-card" id="cardSparkle"><div class="reward-icon">✨</div><div class="reward-title">반짝이 오라</div><div class="reward-desc">홈지니 주변이 반짝여요.</div><div class="reward-status" id="statusSparkle"></div><button class="reward-btn" id="btnSparkle" data-action="itemSparkle">80 코인</button></div>
+            <div class="reward-card" id="cardBunny"><div class="reward-icon">🐰</div><div class="reward-title">토끼 귀</div><div class="reward-desc">홈지니 머리에 토끼 귀가 쏙!</div><div class="reward-status" id="statusBunny"></div><button class="reward-btn" id="btnBunny" data-action="itemBunny">90 코인</button></div>
+            <div class="reward-card" id="cardCat"><div class="reward-icon">🐱</div><div class="reward-title">고양이 귀</div><div class="reward-desc">새침한 고양이 홈지니으로 변신!</div><div class="reward-status" id="statusCat"></div><button class="reward-btn" id="btnCat" data-action="itemCat">70 코인</button></div>
           </div>
         </div>
 
         <div class="reward-panel hidden" id="rewardCouponsPanel">
           <div class="reward-grid">
             <div class="reward-card coupon-card" id="cardCouponLg5"><div class="reward-icon">🎟</div><div class="reward-title">LG 생활가전 5% 쿠폰</div><div class="reward-desc">LG 생활가전 1개를 구매할 때 사용할 수 있는 기본 할인 쿠폰이에요.</div><div class="coupon-benefit">혜택: 단일 제품 5% 할인</div><div class="reward-status" id="statusCouponLg5"></div><button class="reward-btn" id="btnCouponLg5" data-action="couponLg5">300 코인</button></div>
-            <div class="reward-card coupon-card" id="cardCouponCleanKit"><div class="reward-icon">🧹</div><div class="reward-title">로보킹 클린 키트 쿠폰</div><div class="reward-desc">필터, 브러시, 물걸레 패드처럼 자주 바꾸는 소모품을 준비할 때 사용해요.</div><div class="coupon-benefit">혜택: 소모품 키트 구매 할인</div><div class="reward-status" id="statusCouponCleanKit"></div><button class="reward-btn" id="btnCouponCleanKit" data-action="couponCleanKit">180 코인</button></div>
-            <div class="reward-card coupon-card" id="cardCouponBatteryCare"><div class="reward-icon">🔋</div><div class="reward-title">배터리 케어 쿠폰</div><div class="reward-desc">로보킹을 오래 쓰기 위해 배터리 점검이나 관리 서비스를 받을 때 사용해요.</div><div class="coupon-benefit">혜택: 배터리 점검/케어 서비스</div><div class="reward-status" id="statusCouponBatteryCare"></div><button class="reward-btn" id="btnCouponBatteryCare" data-action="couponBatteryCare">250 코인</button></div>
+            <div class="reward-card coupon-card" id="cardCouponCleanKit"><div class="reward-icon">🧹</div><div class="reward-title">홈지니 클린 키트 쿠폰</div><div class="reward-desc">필터, 브러시, 물걸레 패드처럼 자주 바꾸는 소모품을 준비할 때 사용해요.</div><div class="coupon-benefit">혜택: 소모품 키트 구매 할인</div><div class="reward-status" id="statusCouponCleanKit"></div><button class="reward-btn" id="btnCouponCleanKit" data-action="couponCleanKit">180 코인</button></div>
+            <div class="reward-card coupon-card" id="cardCouponBatteryCare"><div class="reward-icon">🔋</div><div class="reward-title">배터리 케어 쿠폰</div><div class="reward-desc">홈지니을 오래 쓰기 위해 배터리 점검이나 관리 서비스를 받을 때 사용해요.</div><div class="coupon-benefit">혜택: 배터리 점검/케어 서비스</div><div class="reward-status" id="statusCouponBatteryCare"></div><button class="reward-btn" id="btnCouponBatteryCare" data-action="couponBatteryCare">250 코인</button></div>
             <div class="reward-card coupon-card" id="cardCouponMoveIn"><div class="reward-icon">📺</div><div class="reward-title">제휴 OTT 50% 할인 쿠폰</div><div class="reward-desc">넷플릭스, 디즈니플러스, 유튜브 프리미엄 등 제휴 OTT를 더 가볍게 즐길 수 있어요.</div><div class="coupon-benefit">혜택: 넷플릭스·디즈니+·유튜브 프리미엄 50% 할인</div><div class="reward-status" id="statusCouponMoveIn"></div><button class="reward-btn" id="btnCouponMoveIn" data-action="couponMoveIn">300 코인</button></div>
           </div>
         </div>
@@ -3592,12 +3592,12 @@ function setGuide(message,tone="normal"){
   }
 }
 function guideForCurrentState(){
-  if(state.mapping)return "로보킹이 우리 집을 배우는 중이에요. 집 구조와 바닥 상태를 차근차근 기억하고 있어요.";
+  if(state.mapping)return "홈지니이 우리 집을 배우는 중이에요. 집 구조와 바닥 상태를 차근차근 기억하고 있어요.";
   if(!state.profileReady)return "<b>1단계</b> 먼저 1회차 학습 청소로 우리 집을 알려주세요.";
   if(state.profileReady && !state.predicted)return "<b>2단계</b> AI 자동청소를 고르거나, 바로 청소하기를 눌러주세요.";
-  if(state.charging)return "로보킹이 잠깐 쉬면서 힘을 채우고 있어요. 필요한 만큼 채우면 알아서 멈춰요.";
-  if(state.cleaning)return "청소 중이에요. 배터리가 무리하지 않도록 로보킹이 알아서 조절하고 있어요.";
-  if(state.celebrating || state.missionDone)return "청소가 끝났어요! 로보킹이 배터리를 아끼며 마무리했어요.";
+  if(state.charging)return "홈지니이 잠깐 쉬면서 힘을 채우고 있어요. 필요한 만큼 채우면 알아서 멈춰요.";
+  if(state.cleaning)return "청소 중이에요. 배터리가 무리하지 않도록 홈지니이 알아서 조절하고 있어요.";
+  if(state.celebrating || state.missionDone)return "청소가 끝났어요! 홈지니이 배터리를 아끼며 마무리했어요.";
   if(state.predicted && state.soc<state.targetSoc)return "<b>3단계</b> 준비가 끝났어요. 청소하기를 누르면 필요한 만큼만 채우고 출발해요.";
   if(state.predicted)return "<b>3단계</b> 지금 바로 출동할 수 있어요. 청소하기를 눌러주세요.";
   return state.userGuide||"현재 상태를 확인 중입니다.";
@@ -3626,17 +3626,17 @@ const closetDefault={
   equipped:{head:"crown",aura:null}
 };
 const shopItems={
-  santa:{name:"산타클로스 모자",icon:"🎄",cost:50,slot:"head",value:"santa",message:"메리 크리스마스! 산타 모자를 씌워 로보킹이 크리스마스 에디션으로 변신했어요."},
-  ribbon:{name:"빨간 리본",icon:"🎀",cost:60,slot:"head",value:"ribbon",message:"빨간 리본을 달아줬어요! 로보킹이 더 사랑스러워졌어요."},
-  hat:{name:"탐험가 모자",icon:"🧢",cost:120,slot:"head",value:"hat",message:"탐험가 모자를 씌워줬어요! 이제 진짜 모험가 로보킹이에요."},
-  bunny:{name:"토끼 귀",icon:"🐰",cost:90,slot:"head",value:"bunny",message:"토끼 귀를 달아줬어요! 로보킹이 통통 튀는 기분이에요."},
-  cat:{name:"고양이 귀",icon:"🐱",cost:70,slot:"head",value:"cat",message:"고양이 귀를 달아줬어요! 로보킹이 더 새침해졌어요."},
+  santa:{name:"산타클로스 모자",icon:"🎄",cost:50,slot:"head",value:"santa",message:"메리 크리스마스! 산타 모자를 씌워 홈지니이 크리스마스 에디션으로 변신했어요."},
+  ribbon:{name:"빨간 리본",icon:"🎀",cost:60,slot:"head",value:"ribbon",message:"빨간 리본을 달아줬어요! 홈지니이 더 사랑스러워졌어요."},
+  hat:{name:"탐험가 모자",icon:"🧢",cost:120,slot:"head",value:"hat",message:"탐험가 모자를 씌워줬어요! 이제 진짜 모험가 홈지니이에요."},
+  bunny:{name:"토끼 귀",icon:"🐰",cost:90,slot:"head",value:"bunny",message:"토끼 귀를 달아줬어요! 홈지니이 통통 튀는 기분이에요."},
+  cat:{name:"고양이 귀",icon:"🐱",cost:70,slot:"head",value:"cat",message:"고양이 귀를 달아줬어요! 홈지니이 더 새침해졌어요."},
   sparkle:{name:"반짝이 오라",icon:"✨",cost:80,slot:"aura",value:"sparkle",message:"반짝이 오라를 켰어요! 청소할 때마다 기분이 좋아져요."}
 };
 
 const couponItems={
   lg5:{name:"LG 생활가전 5% 쿠폰",icon:"🎟",cost:300,benefit:"LG 생활가전 1개 구매 시 5% 할인",message:"LG 생활가전 5% 쿠폰을 보관함에 담았어요."},
-  cleanKit:{name:"로보킹 클린 키트 쿠폰",icon:"🧹",cost:180,benefit:"필터·브러시·물걸레 패드 등 소모품 키트 할인",message:"로보킹 클린 키트 쿠폰을 보관함에 담았어요."},
+  cleanKit:{name:"홈지니 클린 키트 쿠폰",icon:"🧹",cost:180,benefit:"필터·브러시·물걸레 패드 등 소모품 키트 할인",message:"홈지니 클린 키트 쿠폰을 보관함에 담았어요."},
   batteryCare:{name:"배터리 케어 쿠폰",icon:"🔋",cost:250,benefit:"배터리 점검 또는 관리 서비스 혜택",message:"배터리 케어 쿠폰을 보관함에 담았어요."},
   moveIn:{name:"제휴 OTT 50% 할인 쿠폰",icon:"📺",cost:300,benefit:"넷플릭스·디즈니플러스·유튜브 프리미엄 등 제휴 OTT 첫 달 50% 할인",message:"제휴 OTT 50% 할인 쿠폰을 보관함에 담았어요."}
 };
@@ -3652,7 +3652,7 @@ function saveCoupons(){
   try{localStorage.setItem("lgRoboCareCouponsV1",JSON.stringify(state.ownedCoupons));}catch(e){}
 }
 
-// 로보킹 첫 사용일을 브라우저에 저장해 배터리 케어 화면의 D+ 사용일을 계산합니다.
+// 홈지니 첫 사용일을 브라우저에 저장해 배터리 케어 화면의 D+ 사용일을 계산합니다.
 // 실제 제품 연동 시에는 localStorage 대신 제품 등록일/최초 활성화일을 연결하면 됩니다.
 function localDateString(date){
   const y=date.getFullYear();
@@ -4090,7 +4090,7 @@ function findMlScenarioFromChoices(choices){
   scenario.todayStateChoice=choices.todayState;
   scenario.todayStateLabel=todayStateLabels[choices.todayState]||"평소와 같음";
   scenario.targetSoc=targetFromRequired(scenario.requiredSoc);
-  scenario.matchNote="오늘 상태에 맞춰 로보킹이 준비";
+  scenario.matchNote="오늘 상태에 맞춰 홈지니이 준비";
   scenario.matchBasis="청소 방식·오염도·장애물 상태 반영";
 
   if(choices.cleanMode==="both" && getCleanModeCandidateValue(scenario)!=="both"){
@@ -4141,8 +4141,8 @@ function predictSocFromConditions(autoExecuteAfter=false){
   if(state.cleaning||state.charging||state.mapping){showToast("학습/청소/충전이 끝난 뒤 다시 준비할 수 있어요.");return}
 
   if(!state.profileReady){
-    setGuide("아직 로보킹이 우리 집을 잘 몰라요. 먼저 1회차 학습 청소를 시작해 주세요.","warning");
-    showToast("먼저 로보킹에게 우리 집을 알려주세요.");
+    setGuide("아직 홈지니이 우리 집을 잘 몰라요. 먼저 1회차 학습 청소를 시작해 주세요.","warning");
+    showToast("먼저 홈지니에게 우리 집을 알려주세요.");
     $("speech").innerHTML="<strong style='color:#ef8c32'>아직 학습 전이에요!</strong><br>먼저 우리 집을 알려주세요.";
     setModeChipText("🏠 1회차 학습 필요");
     switchPage("homePage");
@@ -4153,10 +4153,10 @@ function predictSocFromConditions(autoExecuteAfter=false){
   const matchedScenario=findMlScenarioFromChoices(choices);
   const loading=$('predictLoading');
   state.predicting=true;
-  if(loading){loading.textContent="로보킹이 오늘 청소를 준비하고 있어요...";loading.classList.add('active');}
+  if(loading){loading.textContent="홈지니이 오늘 청소를 준비하고 있어요...";loading.classList.add('active');}
   $("speech").innerHTML="<strong style='color:#2f8b3a'>잠깐만요!</strong><br>오늘 청소 준비를 하고 있어요.";
   setModeChipText("🤖 우리 집 기록으로 준비 중");
-  setGuide("오늘 상태를 보고 로보킹이 청소 준비를 하고 있어요. 잠시만 기다려 주세요.","charging");
+  setGuide("오늘 상태를 보고 홈지니이 청소 준비를 하고 있어요. 잠시만 기다려 주세요.","charging");
   showToast("청소 준비 중: 오늘 상태에 맞춰 준비하고 있어요.");
 
   setTimeout(()=>{
@@ -4174,7 +4174,7 @@ function predictSocFromConditions(autoExecuteAfter=false){
     state.chargeComplete=false;
     if(loading){
       const status=state.soc>=state.targetSoc?"바로 청소 가능":"충전 필요";
-      loading.textContent="준비 완료 · "+status+" · 로보킹이 필요한 만큼 준비했어요.";
+      loading.textContent="준비 완료 · "+status+" · 홈지니이 필요한 만큼 준비했어요.";
       loading.classList.remove('active');
     }
     render();
@@ -4183,7 +4183,7 @@ function predictSocFromConditions(autoExecuteAfter=false){
     setModeChipText("✅ 청소 준비 완료 · "+state.selectedLabel);
     addEvent("청소 준비 완료",state.selectedLabel+" 청소에 필요한 만큼만 배터리를 준비했어요.","맞춤 관리");
     setGuide(statusText.includes("바로")?"준비 완료! 바로 출동할게요.":"준비 완료! 필요한 만큼만 채우고 바로 출발할게요.", state.soc>=state.targetSoc?"done":"warning");
-    showToast("청소 준비 완료! 로보킹이 오늘 청소 준비를 마쳤어요.");
+    showToast("청소 준비 완료! 홈지니이 오늘 청소 준비를 마쳤어요.");
     if(autoExecuteAfter){
       setTimeout(()=>executeTopClean(),260);
     }
@@ -4233,7 +4233,7 @@ function startFirstMapping(){
 
   const startSoc=clamp(Math.round(Number(state.soc||0)),0,100);
   if(startSoc < MIN_SOC_AFTER_LEARNING + MIN_LEARNING_SOC_USE){
-    openModal("학습 전에 잠깐 충전할게요","처음 우리 집을 배우려면<br>로보킹에게 힘이 조금 더 필요해요.<br><br>잠깐 충전한 뒤 시작하면<br>집 구조를 더 안정적으로 배울 수 있어요.");
+    openModal("학습 전에 잠깐 충전할게요","처음 우리 집을 배우려면<br>홈지니에게 힘이 조금 더 필요해요.<br><br>잠깐 충전한 뒤 시작하면<br>집 구조를 더 안정적으로 배울 수 있어요.");
     return;
   }
 
@@ -4262,8 +4262,8 @@ function startFirstMapping(){
   state.chargeComplete=false;
   state.celebrating=false;
   switchPage("homePage");
-  setGuide("학습 청소를 시작했어요. 로보킹이 우리 집 구조와 바닥 상태를 차근차근 기억하고 있어요.","charging");
-  showToast("학습 시작: 로보킹이 우리 집을 배우고 있어요.");
+  setGuide("학습 청소를 시작했어요. 홈지니이 우리 집 구조와 바닥 상태를 차근차근 기억하고 있어요.","charging");
+  showToast("학습 시작: 홈지니이 우리 집을 배우고 있어요.");
   render();
 
   let tick=0;
@@ -4296,7 +4296,7 @@ function startFirstMapping(){
       addEvent("1회차 학습 청소 완료",eventMsg,"집 정보 저장");
       spawnEffect("🏠",8);spawnEffect("✨",9);
       render();
-      setGuide("우리 집 저장 완료! 이제 오늘 청소 조건을 고르면 로보킹이 알아서 준비해요.","done");
+      setGuide("우리 집 저장 완료! 이제 오늘 청소 조건을 고르면 홈지니이 알아서 준비해요.","done");
       setTimeout(()=>{render();checkMissionUnlock();},350);
     }
   },260);
@@ -4317,7 +4317,7 @@ function selectScenario(scope,zoneNumber=null){
   render();
   const status=state.soc>=state.targetSoc?"청소 가능":"충전 필요";
   const loading=$('predictLoading');
-  if(loading)loading.textContent=state.selectedLabel+" 선택 · "+status+" · 로보킹이 다시 준비했어요.";
+  if(loading)loading.textContent=state.selectedLabel+" 선택 · "+status+" · 홈지니이 다시 준비했어요.";
   $("speech").innerHTML="<strong>"+state.selectedLabel+" 선택!</strong><br>이 구역에 맞춰 다시 준비했어요.";
   setModeChipText("✨ "+state.selectedLabel+" 청소 준비 완료");
   setGuide((state.soc>=state.targetSoc)?state.selectedLabel+" 청소 준비가 끝났어요. 지금 바로 출동할 수 있어요.":state.selectedLabel+" 청소 준비가 끝났어요. 잠깐 충전하고 출발하면 좋아요.", state.soc>=state.targetSoc?"done":"warning");
@@ -4461,7 +4461,7 @@ function getCurrentRecommendation(){
   const noGo=(state.noGoZones||[]).length;
   if(dirty.length>=2)return {icon:"🔥",title:"더러운 곳만 먼저 해볼까요?",sub:dirty.join(", ")+"번 영역을 빠르게 청소할 수 있어요."};
   if(noGo>0)return {icon:"🚫",title:"금지구역은 조용히 지나갈게요",sub:"설정한 "+noGo+"곳은 빼고 청소해요."};
-  return {icon:"✨",title:"AI 자동청소가 좋아요",sub:"로보킹이 오늘 상태에 맞춰 알아서 준비해요."};
+  return {icon:"✨",title:"AI 자동청소가 좋아요",sub:"홈지니이 오늘 상태에 맞춰 알아서 준비해요."};
 }
 
 function getZoneConditionScore(zoneNo){
@@ -4959,24 +4959,24 @@ function renderPlan(){
   if(learnFill)learnFill.style.width=(state.profileReady?100:state.mappingProgress)+'%';
 
   if(state.mapping){
-    if(learnTitle)learnTitle.textContent="로보킹이 우리 집을 배우고 있어요";
+    if(learnTitle)learnTitle.textContent="홈지니이 우리 집을 배우고 있어요";
     if(learnDesc)learnDesc.textContent="맵·바닥 상태·배터리 사용량을 차례로 기록해요.";
     if(learnPill)learnPill.textContent="학습 중";
     if(learnStatus){
       const currentStep=mappingSteps[state.mappingStepIndex]||mappingSteps[0];
       learnStatus.innerHTML=currentStep.label+" 중 · "+state.mappingProgress+"%<br><b>배터리 "+Math.round(state.firstRunStartSoc)+"% → "+Math.round(state.soc)+"%</b>";
     }
-    if(learnBtn){learnBtn.textContent="로보킹이 집을 배우는 중...";learnBtn.disabled=true;}
+    if(learnBtn){learnBtn.textContent="홈지니이 집을 배우는 중...";learnBtn.disabled=true;}
     if(conditionPanel)conditionPanel.classList.add('locked-area');
   }else if(state.profileReady){
     if(learnTitle)learnTitle.textContent="우리 집 AI 맞춤청소를 사용할 수 있어요";
-    if(learnDesc)learnDesc.textContent="매핑된 집 정보를 바탕으로 로보킹이 청소를 알아서 준비해요.";
+    if(learnDesc)learnDesc.textContent="매핑된 집 정보를 바탕으로 홈지니이 청소를 알아서 준비해요.";
     if(learnPill)learnPill.textContent="AI 준비 완료";
     if(learnStatus)learnStatus.innerHTML="매핑 완료 · "+getHomeSizeLabel(activeRun.areaPyung)+" 집 구조 저장";
     if(learnBtn){learnBtn.textContent="🔄 학습 다시 실행";learnBtn.disabled=false;learnBtn.classList.add('ready');}
     if(conditionPanel)conditionPanel.classList.remove('locked-area');
   }else{
-    if(learnTitle)learnTitle.textContent="처음 사용할 때는 로보킹이 집을 먼저 배워요";
+    if(learnTitle)learnTitle.textContent="처음 사용할 때는 홈지니이 집을 먼저 배워요";
     if(learnDesc)learnDesc.textContent="처음 한 번만 집 구조와 바닥 상태를 배워요.";
     if(learnPill)learnPill.textContent="초기 학습";
     if(learnStatus)learnStatus.textContent="시작 버튼을 누르면 집 정보를 저장해요.";
@@ -5059,7 +5059,7 @@ function renderPlan(){
     }else if(!state.profileReady){
       startCleanPrimary.innerHTML='🏠 1회차 학습 청소가 먼저예요<small id="startCleanHint">집 구조를 저장한 뒤 청소할 수 있어요</small>';
     }else if(!state.predicted){
-      startCleanPrimary.innerHTML='🤖 오늘 청소 준비가 먼저예요<small id="startCleanHint">로보킹이 필요한 만큼 알아서 준비해요</small>';
+      startCleanPrimary.innerHTML='🤖 오늘 청소 준비가 먼저예요<small id="startCleanHint">홈지니이 필요한 만큼 알아서 준비해요</small>';
     }else if(state.soc<state.targetSoc){
       startCleanPrimary.innerHTML='🔋 충전하고 청소하기<small id="startCleanHint">필요한 만큼만 채우고 출발해요</small>';
     }else{
@@ -5152,7 +5152,7 @@ function renderHome(){
     $("speech").innerHTML="<strong>열심히 청소 중이에요!</strong><br>진행률 "+state.progress+"%";
     setModeChipText("🧹 "+state.selectedLabel+" 청소 중 · "+state.progress+"%");
     $("batteryFace").textContent="🧹";
-    $("batteryMessage").innerHTML="청소 중입니다.<br>로보킹이 청소하면서 배터리를 사용하고 있어요.";
+    $("batteryMessage").innerHTML="청소 중입니다.<br>홈지니이 청소하면서 배터리를 사용하고 있어요.";
     $("timeTip").textContent="청소 진행률 "+state.progress+"%";
     $("spark").textContent="💨";
   }else if(state.charging){
@@ -5178,7 +5178,7 @@ function renderHome(){
     }
     $("batteryFace").textContent="😌";
     $("batteryMessage").innerHTML="충전 스테이션에서 쉬면서<br>필요한 만큼만 채우고 있어요.";
-    $("timeTip").textContent="로보킹이 필요한 만큼만 채우고 있어요.";
+    $("timeTip").textContent="홈지니이 필요한 만큼만 채우고 있어요.";
     $("spark").textContent="⚡";
   }else if(state.soc<15){
     room.classList.add("low");
@@ -5189,7 +5189,7 @@ function renderHome(){
     $("timeTip").textContent="충전 후 청소를 시작해 주세요.";
     $("spark").textContent="💦";
   }else{
-    setModeChipText("✨ 로보킹 맞춤 준비");
+    setModeChipText("✨ 홈지니 맞춤 준비");
     $("batteryFace").textContent=state.soc>90?"😮":"😊";
     $("spark").textContent="✨";
 
@@ -5282,8 +5282,8 @@ function renderCare(){
 
   if(wm){
     wm.textContent=weeklyTotal>0
-      ? "이번 주 사용 패턴을 바탕으로 로보킹이 다음 배터리 습관을 알려드려요."
-      : "이번 주 사용을 시작하면 로보킹이 배터리 습관을 함께 살펴드려요.";
+      ? "이번 주 사용 패턴을 바탕으로 홈지니이 다음 배터리 습관을 알려드려요."
+      : "이번 주 사용을 시작하면 홈지니이 배터리 습관을 함께 살펴드려요.";
   }
 
   if(state.batteryStrategy==="ready"){
@@ -5302,7 +5302,7 @@ function renderCare(){
     wf.textContent=weeklyTotal>=5
       ? "이번 주는 배터리 사용 습관이 안정적이에요. 다음 주에도 지금 패턴을 이어가 보세요."
       : (weeklyTotal>0
-          ? "사용 기록이 쌓일수록 로보킹이 더 알맞은 배터리 습관을 코칭해드려요."
+          ? "사용 기록이 쌓일수록 홈지니이 더 알맞은 배터리 습관을 코칭해드려요."
           : "청소와 충전 기록이 쌓이면 이번 주 패턴에 맞는 코칭이 표시돼요.");
   }
 }
@@ -5483,9 +5483,9 @@ lostImages.slice(defaultLostItems.length).forEach((img,i)=>{
   lostItems.push({id:"lx"+i,emoji:"📦",src:img.src,title:img.title||"청소 중 발견",desc:img.note||"청소 중 바닥에서 발견했어요.",place:img.place||"거실",spot:"",time:img.time||"오늘",found:false});
 });
 const demoPhotos=[
-  {emoji:"🐶",title:"로보킹이 신기한 강아지",place:"안방",time:"오늘 오전 11:05",note:"안방에서 강아지가 로보킹에게 관심을 보여서 살포시 찍어봤어요."},
-  {emoji:"🐕",title:"강아지의 하루 기록",place:"침실",time:"오늘 오전",note:"로보킹이 청소하면서 반려동물의 모습을 사진첩에 남겼어요."},
-  {emoji:"🐾",title:"안방에서 쉬는 중",place:"안방",time:"오늘 오후",note:"안방에서 편안히 쉬고 있는 모습을 로보킹이 살포시 담았어요.",wide:true}
+  {emoji:"🐶",title:"홈지니이 신기한 강아지",place:"안방",time:"오늘 오전 11:05",note:"안방에서 강아지가 홈지니에게 관심을 보여서 살포시 찍어봤어요."},
+  {emoji:"🐕",title:"강아지의 하루 기록",place:"침실",time:"오늘 오전",note:"홈지니이 청소하면서 반려동물의 모습을 사진첩에 남겼어요."},
+  {emoji:"🐾",title:"안방에서 쉬는 중",place:"안방",time:"오늘 오후",note:"안방에서 편안히 쉬고 있는 모습을 홈지니이 살포시 담았어요.",wide:true}
 ];
 const realPhotos=((mediaData&&mediaData.photos)||[]).map(p=>{
   const name=String(p.name||"").toLowerCase();
@@ -5595,13 +5595,13 @@ function openFoundItem(el){
   openModal(it.title,body,{showCancel:true,cancelText:"닫기",confirmText:"✅ 찾았어요",onConfirm:()=>{
     it.found=true;closeModal();state.exp+=5;levelCheck();spawnEffect("🔍",7);
     addEvent("분실물 확인","'"+it.desc+"' 을(를) 확인했어요.","발견 기록");
-    renderFound();render();showToast("분실물을 확인했어요! 로보킹이 기뻐해요.");
+    renderFound();render();showToast("분실물을 확인했어요! 홈지니이 기뻐해요.");
   }});
 }
 function openFoundMapBig(){
   const today=lostItems[0];if(!today)return;
   if(!state.profileReady){
-    openModal("발견 위치 보기","먼저 1회차 학습 청소로 집 구조를 매핑해 주세요.<br><br>매핑이 끝나면 로보킹이 배운 집 구조에 맞춰 발견 위치를 표시해요.");
+    openModal("발견 위치 보기","먼저 1회차 학습 청소로 집 구조를 매핑해 주세요.<br><br>매핑이 끝나면 홈지니이 배운 집 구조에 맞춰 발견 위치를 표시해요.");
     return;
   }
   openModal("발견 위치","<div class='found-map' style='height:230px;margin-bottom:10px'>"+foundMapSvg(today)+"</div>📍 <b>"+esc((today.place+" "+today.spot).trim())+"</b> · "+esc(today.time)+"<br>"+esc(today.desc));
@@ -5610,7 +5610,7 @@ function openFoundMapBig(){
 const missionDefs=[
   {key:"clean",icon:"🧹",name:"청소 마스터",unit:"회 청소",tiers:[{goal:10,coins:5},{goal:100,coins:20},{goal:1000,coins:100}],get:()=>totalCleanCount()},
   {key:"charge",icon:"🔋",name:"배터리 지킴이",unit:"회 맞춤 충전",tiers:[{goal:5,coins:5},{goal:30,coins:20},{goal:100,coins:60}],get:()=>state.acceptCount},
-  {key:"lost",icon:"🔍",name:"탐정 로보킹",unit:"개 분실물 발견",tiers:[{goal:3,coins:5},{goal:20,coins:20},{goal:100,coins:80}],get:()=>lostItems.length},
+  {key:"lost",icon:"🔍",name:"탐정 홈지니",unit:"개 분실물 발견",tiers:[{goal:3,coins:5},{goal:20,coins:20},{goal:100,coins:80}],get:()=>lostItems.length},
   {key:"photo",icon:"📷",name:"반려동물 사진가",unit:"장 촬영",tiers:[{goal:3,coins:5},{goal:30,coins:20},{goal:100,coins:80}],get:()=>photos.length},
   {key:"learn",icon:"🏠",name:"우리 집 알아가기",unit:"회 학습",tiers:[{goal:1,coins:10}],get:()=>state.learnCount}
 ];
@@ -5670,7 +5670,7 @@ function renderPhotos(){
 function openPhoto(el){
   const p=photos[Number(el.dataset.idx)];if(!p)return;
   const visual=p.src?"<img class='modal-img' src='"+p.src+"' alt=''>":"<div class='modal-emoji'>"+(p.emoji||"🐾")+"</div>";
-  openModal(p.title||"로보킹 사진",visual+(p.place?"📍 <b>"+esc(p.place)+"</b>":"")+(p.time?" · 🕒 "+esc(p.time):"")+(p.note?"<br>"+esc(p.note):"")+"<br><br>움직임을 감지했을 때 로보킹이 자동으로 찍어둔 사진이에요.");
+  openModal(p.title||"홈지니 사진",visual+(p.place?"📍 <b>"+esc(p.place)+"</b>":"")+(p.time?" · 🕒 "+esc(p.time):"")+(p.note?"<br>"+esc(p.note):"")+"<br><br>움직임을 감지했을 때 홈지니이 자동으로 찍어둔 사진이에요.");
 }
 function renderEvents(){
   const tabs={found:"evTabFound",mission:"evTabMission",photo:"evTabPhoto"};
@@ -5880,14 +5880,14 @@ function addEvent(title,description,tag){
   while(list.children.length>30)list.removeChild(list.lastChild);
 }
 
-function petRobot(){if(state.cleaning){showToast("청소가 끝난 후 로보킹을 쓰다듬어 주세요.");return}state.heart=Math.min(100,state.heart+2);state.exp+=1;pulseRobot();spawnEffect("💖",7);levelCheck();render();showToast("로보킹의 기분이 좋아졌어요.")}
+function petRobot(){if(state.cleaning){showToast("청소가 끝난 후 홈지니을 쓰다듬어 주세요.");return}state.heart=Math.min(100,state.heart+2);state.exp+=1;pulseRobot();spawnEffect("💖",7);levelCheck();render();showToast("홈지니의 기분이 좋아졌어요.")}
 function feedRobot(){if(state.food<=0){showToast("음식이 부족해요. 리워드에서 구매해 주세요.");return}state.food-=1;state.soc+=12;state.exp+=8;pulseRobot();spawnEffect("⚡",8);levelCheck();render();showToast("배터리가 12% 회복되었습니다.")}
-function playRobot(){if(state.soc<5){showToast("배터리가 부족해서 놀 수 없어요.");return}state.soc-=3;state.exp+=5;pulseRobot();spawnEffect("💖",8);levelCheck();render();showToast("로보킹의 친밀도와 경험치가 올랐어요.")}
-function trainRobot(){if(state.soc<8){showToast("훈련 전에 충전이 필요해요.");return}state.soc-=6;state.health=Math.min(100,state.health+3);state.exp+=12;pulseRobot();spawnEffect("✨",8);levelCheck();render();showToast("로보킹이 훈련을 완료했습니다.")}
-function takePhoto(){pulseRobot();spawnEffect("📸",5);state.eventTab="photo";switchPage("eventPage");showToast("로보킹 사진첩을 열었어요.")}
+function playRobot(){if(state.soc<5){showToast("배터리가 부족해서 놀 수 없어요.");return}state.soc-=3;state.exp+=5;pulseRobot();spawnEffect("💖",8);levelCheck();render();showToast("홈지니의 친밀도와 경험치가 올랐어요.")}
+function trainRobot(){if(state.soc<8){showToast("훈련 전에 충전이 필요해요.");return}state.soc-=6;state.health=Math.min(100,state.health+3);state.exp+=12;pulseRobot();spawnEffect("✨",8);levelCheck();render();showToast("홈지니이 훈련을 완료했습니다.")}
+function takePhoto(){pulseRobot();spawnEffect("📸",5);state.eventTab="photo";switchPage("eventPage");showToast("홈지니 사진첩을 열었어요.")}
 function decorateRobot(){
   switchPage("rewardPage");
-  showToast("리워드에서 아이템을 사면 로보킹에게 계속 장착돼요.");
+  showToast("리워드에서 아이템을 사면 홈지니에게 계속 장착돼요.");
 }
 
 function openBatteryCoachInfo(action,event){
@@ -5898,9 +5898,9 @@ function openBatteryCoachInfo(action,event){
 
   const coachVisual = `
     <div class="battery-coach-copy">
-      <p>로보킹은 첫 매핑 학습으로 <b>집 크기와 청소 구역</b>을 기억해요.</p>
+      <p>홈지니은 첫 매핑 학습으로 <b>집 크기와 청소 구역</b>을 기억해요.</p>
       <p>그래서 매번 100%까지 채우지 않아도 오늘 청소에 필요한 만큼만 준비할 수 있어요.</p>
-      <p>배터리를 너무 가득 채우거나 너무 낮게 쓰는 습관을 줄이면 로보킹을 더 오래 건강하게 사용할 수 있어요.</p>
+      <p>배터리를 너무 가득 채우거나 너무 낮게 쓰는 습관을 줄이면 홈지니을 더 오래 건강하게 사용할 수 있어요.</p>
     </div>
     <div class="battery-coach-visual">
       <div class="coach-speech">
@@ -5941,7 +5941,7 @@ function openBatteryLifeInfo(action,event){
         <b style="color:#4b3324;font-size:15px;">배터리 수명·점검 기준</b>
         <span style="padding:4px 8px;border-radius:999px;background:#eaf4df;color:#2f8b3a;font-size:11px;font-weight:800;white-space:nowrap;">D+${usageDays}</span>
       </div>
-      로보킹을 처음 사용한 날은 <b>${formatFirstUseDate()}</b>이고, 현재 <b>사용 D+${usageDays}일째</b>예요.<br><br>
+      홈지니을 처음 사용한 날은 <b>${formatFirstUseDate()}</b>이고, 현재 <b>사용 D+${usageDays}일째</b>예요.<br><br>
       완전 충전 후 완전 방전을 <b>1 Cycle</b>로 보며, <b>500 Cycle 사용 후에도 80% 성능 유지</b>를 수명 시험 기준으로 봐요.<br><br>
       주 3회 사용하면 1년에 약 156회이므로 500 Cycle은 <b>약 3년 1개월</b>에 해당해요.<br><br>
       그래서 <b>약 3년 주기로 배터리 상태 점검·교체를 권장</b>해요. 사용 중 특별한 불편이 없다면 3년 이상 사용할 수도 있어요.<br><br>
@@ -5952,17 +5952,17 @@ function openBatteryLifeInfo(action,event){
 
 function showStatus(){
   if(!state.profileReady){
-    openModal("먼저 우리 집을 배울게요","아직 로보킹이 우리 집을 잘 몰라요.<br><br>1회차 학습 청소를 시작하면 방 구조와 바닥 상태를 기억하고, 다음부터 더 똑똑하게 청소를 준비할 수 있어요.");
+    openModal("먼저 우리 집을 배울게요","아직 홈지니이 우리 집을 잘 몰라요.<br><br>1회차 학습 청소를 시작하면 방 구조와 바닥 상태를 기억하고, 다음부터 더 똑똑하게 청소를 준비할 수 있어요.");
     return;
   }
   if(!state.predicted){
-    openModal("우리 집을 기억했어요","1회차 학습 청소가 끝났어요.<br><br>이제 오늘 청소 조건을 고르고 <b>오늘 청소 준비하기</b>를 눌러 주세요.<br>로보킹이 알아서 필요한 만큼 준비할게요.");
+    openModal("우리 집을 기억했어요","1회차 학습 청소가 끝났어요.<br><br>이제 오늘 청소 조건을 고르고 <b>오늘 청소 준비하기</b>를 눌러 주세요.<br>홈지니이 알아서 필요한 만큼 준비할게요.");
     return;
   }
   const scopeText=state.selectedScope==="home"?"집 전체":state.selectedLabel;
   const zoneInfo=state.selectedScope==="zone"?"<br>바닥: <b>"+(state.floorType||"정보 없음")+"</b><br>상태: <b>"+(state.dirtLevel||"평소")+"</b>":"";
   const readyText=state.soc>=state.targetSoc?"지금 바로 출동할 수 있어요.":"잠깐만 충전하면 출동할 수 있어요.";
-  openModal("오늘 청소 준비 완료",scopeText+" 청소를 준비했어요."+zoneInfo+"<br><br>오늘 조건: <b>"+state.cleanModeLabel+" · "+state.intensityLabel+" · "+state.todayStateLabel+"</b><br><br>"+readyText+"<br>로보킹이 배터리를 아끼면서 청소할게요.");
+  openModal("오늘 청소 준비 완료",scopeText+" 청소를 준비했어요."+zoneInfo+"<br><br>오늘 조건: <b>"+state.cleanModeLabel+" · "+state.intensityLabel+" · "+state.todayStateLabel+"</b><br><br>"+readyText+"<br>홈지니이 배터리를 아끼면서 청소할게요.");
 }
 
 function getRemainingCleaningSoc(){
@@ -5987,7 +5987,7 @@ function showSplitCleaningModal(){
   state.splitCleaning=true;
   render();
   const body="청소할 양이 많아서<br>"
-    +"한 번에 무리하면 로보킹이 금방 지칠 수 있어요.<br><br>"
+    +"한 번에 무리하면 홈지니이 금방 지칠 수 있어요.<br><br>"
     +"배터리를 아끼기 위해<br>"
     +"잠깐 쉬어가며 이어서 청소할게요.";
   openModal("이번 청소는 나눠서 할게요",body,{
@@ -6010,7 +6010,7 @@ function showReserveChargeModal(autoStartAfterCharge=false){
   const needed=targetFromRequired(remaining);
   state.targetSoc=needed;
   render();
-  const body=state.selectedLabel+" 청소를 바로 시작하기엔<br>로보킹의 힘이 조금 부족해요.<br><br>잠깐 충전하고 나면<br>청소를 더 편하게 마칠 수 있어요.<br><br>필요한 만큼만 채우고 바로 출발할게요!";
+  const body=state.selectedLabel+" 청소를 바로 시작하기엔<br>홈지니의 힘이 조금 부족해요.<br><br>잠깐 충전하고 나면<br>청소를 더 편하게 마칠 수 있어요.<br><br>필요한 만큼만 채우고 바로 출발할게요!";
   openModal("먼저 힘을 채울게요",body,{
     showCancel:true,
     cancelText:"취소",
@@ -6029,7 +6029,7 @@ function showChargeChoiceModal(autoStartAfterCharge=false){
   state.targetSoc=needed;
   render();
   const scopeText=state.selectedScope==="zone"?state.selectedLabel+"은 <b>"+(state.floorType||"바닥 정보")+"</b> 바닥이라 조금 더 힘이 필요해요.<br><br>":"";
-  const body=scopeText+"이번 청소를 끝까지 편하게 마치려면<br>로보킹이 힘을 조금 더 채우면 좋아요.<br><br>필요한 만큼만 충전하고<br>바로 청소를 시작할게요.";
+  const body=scopeText+"이번 청소를 끝까지 편하게 마치려면<br>홈지니이 힘을 조금 더 채우면 좋아요.<br><br>필요한 만큼만 충전하고<br>바로 청소를 시작할게요.";
   openModal("아직 배가 조금 고파요!",body,{
     showCancel:true,
     cancelText:"취소",
@@ -6215,7 +6215,7 @@ function manualCleanAndGo(){
   if(state.mapping){showToast("집을 다 배운 뒤 청소할 수 있어요.");return}
   if(!state.profileReady){
     setGuide("먼저 1회차 학습 청소로 우리 집을 알려주세요.","warning");
-    showToast("먼저 로보킹에게 우리 집을 알려주세요.");
+    showToast("먼저 홈지니에게 우리 집을 알려주세요.");
     return;
   }
 
@@ -6240,7 +6240,7 @@ function executeTopClean(){
   if(state.mapping){showToast("집을 다 배운 뒤 청소할 수 있어요.");return}
   if(!state.profileReady){
     setGuide("먼저 1회차 학습 청소로 우리 집을 알려주세요.","warning");
-    showToast("먼저 로보킹에게 우리 집을 알려주세요.");
+    showToast("먼저 홈지니에게 우리 집을 알려주세요.");
     return;
   }
 
@@ -6301,8 +6301,8 @@ function startCleaning(){
   if(state.charging){showToast("충전이 끝난 후 청소할게요.");return}
   if(state.mapping){showToast("1회차 학습이 끝난 뒤 청소할 수 있어요.");return}
   if(!state.profileReady){
-    setGuide("아직 로보킹이 우리 집을 잘 몰라요. 먼저 1회차 학습 청소를 시작해 주세요.","warning");
-    showToast("먼저 로보킹에게 우리 집을 알려주세요.");
+    setGuide("아직 홈지니이 우리 집을 잘 몰라요. 먼저 1회차 학습 청소를 시작해 주세요.","warning");
+    showToast("먼저 홈지니에게 우리 집을 알려주세요.");
     $("speech").innerHTML="<strong style='color:#ef8c32'>학습이 먼저예요</strong><br>집 정보를 저장한 뒤 청소할 수 있어요.";
     switchPage("homePage");
     return;
@@ -6376,8 +6376,8 @@ function startCleaning(){
   state.cleanAnim={startedAt:Date.now(),duration:20*320,fromProgress:startProgress,toProgress:endProgress};
   render();
   startMapRobotAnim();
-  setGuide(state.selectedLabel+" 청소를 시작했어요. 로보킹이 배터리를 아끼면서 깨끗하게 청소할게요.","normal");
-  showToast("청소 시작! 로보킹이 배터리를 아끼며 청소해요.");
+  setGuide(state.selectedLabel+" 청소를 시작했어요. 홈지니이 배터리를 아끼면서 깨끗하게 청소할게요.","normal");
+  showToast("청소 시작! 홈지니이 배터리를 아끼며 청소해요.");
 
   let step=0;
   const totalSteps=20;
@@ -6416,7 +6416,7 @@ function startCleaning(){
         addEvent("잠깐 쉬어가기",state.selectedLabel+" 청소 중 배터리 잔량이 낮아져 스스로 도킹했어요. 잠깐 충전 후 남은 곳을 이어서 청소해요.","저잔량 보호");
         render();
         $("speech").innerHTML="<strong style='color:#ef8c32'>잠깐 쉬어갈게요!</strong><br>조금만 쉬고 다시 힘낼게요.";
-        setGuide("로보킹이 조금 지쳤어요. 잠깐 충전하고 남은 곳을 이어서 청소할게요.","warning");
+        setGuide("홈지니이 조금 지쳤어요. 잠깐 충전하고 남은 곳을 이어서 청소할게요.","warning");
         showToast("잠깐 충전하고 남은 곳을 이어서 청소할게요.");
         setTimeout(()=>openModal("잠깐 쉬어갈게요!","제가 조금 지쳤어요.<br>잠깐 충전하고 나면<br>남은 곳도 다시 힘내서 청소할게요!<br><br>지금 배터리: <b>"+fmtSoc(state.soc)+"%</b>",{
           showCancel:true,
@@ -6446,7 +6446,7 @@ function startCleaning(){
       $("speech").innerHTML="<strong style='color:#2f8b3a'>청소 완료!</strong><br>+50코인을 받았어요.";
       setModeChipText("🏆 "+state.selectedLabel+" 완료 · +50코인");
       setGuide("청소 완료! 배터리를 아껴 쓰며 마무리했어요. 보상으로 +50코인과 경험치를 받았어요.","done");
-      showToast("청소 완료! 로보킹이 +50코인을 가져왔어요.");
+      showToast("청소 완료! 홈지니이 +50코인을 가져왔어요.");
       setTimeout(()=>{
         state.celebrating=false;
         clearCleaningZoneProgress();
@@ -6556,7 +6556,7 @@ function chargeRobot(autoStart=false,purpose='current'){
     setGuide(state.batteryStrategy==="ready"?"청소 준비 우선 모드로 최대 충전 상한까지 여유 있게 준비하고 있어요.":"다음 청소에 필요한 만큼만 미리 충전하고 있어요.","charging");
     showToast(state.batteryStrategy==="ready"?"다음 청소를 위해 여유 있게 미리 준비할게요.":"다음 청소에 필요한 만큼만 미리 충전할게요.");
   }else{
-    setGuide("로보킹이 스테이션으로 돌아가고 있어요. 필요한 만큼만 충전하고 출발할게요.","charging");
+    setGuide("홈지니이 스테이션으로 돌아가고 있어요. 필요한 만큼만 충전하고 출발할게요.","charging");
     showToast("스테이션으로 돌아가 힘을 채울게요.");
   }
   setTimeout(()=>{state.robotMotion='docked';render();},950);
@@ -6601,8 +6601,8 @@ function chargeRobot(autoStart=false,purpose='current'){
       }else{
         if(speech)speech.innerHTML="<strong>배불러요!</strong><br>출동할 준비가 됐어요!";
         if(chip)chip.textContent="💖 충전 완료 · 출동 준비";
-        setGuide("충전 완료! 로보킹이 곧 바로 출동할게요.","done");
-        showToast("충전 완료! 이제 로보킹이 출동할 수 있어요.");
+        setGuide("충전 완료! 홈지니이 곧 바로 출동할게요.","done");
+        showToast("충전 완료! 이제 홈지니이 출동할 수 있어요.");
       }
       setTimeout(()=>{state.chargeComplete=false;render()},3200);
       if(autoStart){setTimeout(()=>{state.robotMotion='departing';render();setTimeout(()=>{state.robotMotion='idle';startCleaning();},850)},900)}

@@ -1088,11 +1088,16 @@ button,input,select{font-family:inherit} button{cursor:pointer}
 /* ===== Battery coach popup: happy winking Roboking illustration ===== */
 .battery-coach-copy{
   color:#6c513c;
-  font-size:15px;
-  line-height:1.72;
-  font-weight:750;
+  font-size:14px;
+  line-height:1.65;
+  font-weight:600;
+  text-align:left;
+  word-break:keep-all;
+  overflow-wrap:break-word;
 }
-.battery-coach-copy b{color:#4b3324;font-weight:1000;}
+.battery-coach-copy p{margin:0 0 13px;}
+.battery-coach-copy p:last-child{margin-bottom:0;}
+.battery-coach-copy b{color:#4b3324;font-weight:800;}
 .battery-coach-visual{
   position:relative;
   margin-top:17px;
@@ -2516,7 +2521,10 @@ body,button,input,select{
 .battery-life-guide{display:flex;align-items:center;gap:9px;margin-top:9px;padding:10px 11px;border:1px solid rgba(124,83,43,.10);border-radius:13px;background:rgba(255,255,255,.70);color:#60452f;}
 .battery-life-guide-icon{flex:0 0 auto;width:31px;height:31px;display:grid;place-items:center;border-radius:10px;background:#fff2cf;font-size:18px;}
 .battery-life-guide-copy{flex:1 1 auto;min-width:0;font-size:10.5px;line-height:1.45;font-weight:550;}
-.battery-life-guide-copy b{display:block;margin-bottom:2px;color:#4b3324;font-size:11px;font-weight:750;}
+.battery-life-guide-copy b{display:block;margin-bottom:4px;color:#4b3324;font-size:11px;font-weight:750;}
+.battery-life-usage-row{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:3px;}
+.battery-use-day{display:inline-flex;align-items:center;min-height:22px;padding:3px 7px;border-radius:999px;background:#eaf4df;color:#2f8b3a;font-size:10px;line-height:1;font-weight:800;white-space:nowrap;}
+.battery-life-sub{color:#765b43;font-size:9.8px;line-height:1.4;font-weight:550;}
 .battery-life-guide-btn{flex:0 0 auto;min-height:31px;padding:0 8px;border:1px solid rgba(74,155,66,.20);border-radius:10px;background:#eaf4df;color:#2f8b3a;font-size:9.5px;font-weight:750;white-space:nowrap;}
 .battery-care-stats .care-stat b{font-size:22px;font-weight:800;}
 .battery-care-stats .care-stat small{font-size:9.5px;font-weight:600;}
@@ -3304,7 +3312,11 @@ strong,b{font-weight:700;}
 
           <div class="battery-life-guide">
             <div class="battery-life-guide-icon">🗓️</div>
-            <div class="battery-life-guide-copy"><b>약 3년 주기로 점검·교체를 권장해요</b>사용에 불편이 없다면 3년 이상 사용할 수도 있어요.</div>
+            <div class="battery-life-guide-copy">
+              <b>약 3년 주기로 점검·교체를 권장해요</b>
+              <div class="battery-life-usage-row"><span class="battery-use-day" id="batteryUseDay">사용 D+1일째</span></div>
+              <div class="battery-life-sub">사용에 불편이 없다면 3년 이상 사용할 수도 있어요.</div>
+            </div>
             <button type="button" class="battery-life-guide-btn" data-action="batteryLifeInfo">자세히</button>
           </div>
 
@@ -3580,6 +3592,39 @@ function loadCoupons(){
 }
 function saveCoupons(){
   try{localStorage.setItem("lgRoboCareCouponsV1",JSON.stringify(state.ownedCoupons));}catch(e){}
+}
+
+// 로보킹 첫 사용일을 브라우저에 저장해 배터리 케어 화면의 D+ 사용일을 계산합니다.
+// 실제 제품 연동 시에는 localStorage 대신 제품 등록일/최초 활성화일을 연결하면 됩니다.
+function localDateString(date){
+  const y=date.getFullYear();
+  const m=String(date.getMonth()+1).padStart(2,"0");
+  const d=String(date.getDate()).padStart(2,"0");
+  return y+"-"+m+"-"+d;
+}
+function loadFirstUseDate(){
+  const key="lgRoboCareFirstUseDateV1";
+  try{
+    let saved=localStorage.getItem(key);
+    if(saved && /^\d{4}-\d{2}-\d{2}$/.test(saved))return saved;
+    saved=localDateString(new Date());
+    localStorage.setItem(key,saved);
+    return saved;
+  }catch(e){
+    return localDateString(new Date());
+  }
+}
+const firstUseDate=loadFirstUseDate();
+function getUsageDayCount(){
+  const first=new Date(firstUseDate+"T00:00:00");
+  const now=new Date();
+  const today=new Date(now.getFullYear(),now.getMonth(),now.getDate());
+  if(Number.isNaN(first.getTime()))return 1;
+  return Math.max(1,Math.floor((today-first)/86400000)+1);
+}
+function formatFirstUseDate(){
+  const parts=firstUseDate.split("-");
+  return parts.length===3 ? parts[0]+"."+parts[1]+"."+parts[2] : firstUseDate;
 }
 
 function loadCloset(){
@@ -5057,6 +5102,7 @@ function renderCare(){
   // 배터리 케어: 검증이 필요한 수명 연장/비용 절감 예측 대신 현재 상태와 실제 케어 행동을 보여줍니다.
   const a=$("careAcceptText"); if(a)a.textContent=state.acceptCount;
   const r=$("careReserveText"); if(r)r.textContent=state.reserveGuardCount;
+  const useDay=$("batteryUseDay"); if(useDay)useDay.textContent="사용 D+"+getUsageDayCount()+"일째";
 
   const health=clamp(Math.round(Number(state.health||0)),0,100);
   const hf=$("careHealthFill"); if(hf)hf.style.width=health+"%";
@@ -5666,11 +5712,9 @@ function openBatteryCoachInfo(action,event){
 
   const coachVisual = `
     <div class="battery-coach-copy">
-      로보킹은 첫 매핑 학습으로 <b>집 크기와 청소 구역</b>을 기억해요.<br><br>
-      그래서 매번 100%까지 채우지 않아도,<br>
-      오늘 청소에 필요한 만큼만 준비할 수 있어요.<br><br>
-      배터리를 너무 가득 채우거나 너무 낮게 쓰는 습관을 줄이면,<br>
-      로보킹을 더 오래 건강하게 사용할 수 있어요.
+      <p>로보킹은 첫 매핑 학습으로 <b>집 크기와 청소 구역</b>을 기억해요.</p>
+      <p>그래서 매번 100%까지 채우지 않아도 오늘 청소에 필요한 만큼만 준비할 수 있어요.</p>
+      <p>배터리를 너무 가득 채우거나 너무 낮게 쓰는 습관을 줄이면 로보킹을 더 오래 건강하게 사용할 수 있어요.</p>
     </div>
     <div class="battery-coach-visual">
       <div class="coach-speech">
@@ -5704,15 +5748,17 @@ function openBatteryCoachInfo(action,event){
 
 function openBatteryLifeInfo(action,event){
   if(event){event.preventDefault();event.stopPropagation();}
+  const usageDays=getUsageDayCount();
   const body=`
-    <div style="font-size:13px;line-height:1.7;color:#6c513c;">
-      <b style="color:#4b3324;font-size:15px;">배터리 수명·점검 기준</b><br><br>
-      완전 충전 후 완전 방전을 <b>1 Cycle</b>로 보며,<br>
-      <b>500 Cycle 사용 후에도 80% 성능 유지</b>를 수명 시험 기준으로 봐요.<br><br>
-      주 3회 사용하면 1년에 약 156회이므로,<br>
-      500 Cycle은 <b>약 3년 1개월</b>에 해당해요.<br><br>
-      그래서 <b>약 3년 주기로 배터리 상태 점검·교체를 권장</b>해요.<br>
-      사용 중 특별한 불편이 없다면 3년 이상 사용할 수도 있어요.<br><br>
+    <div style="font-size:13px;line-height:1.7;color:#6c513c;word-break:keep-all;">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:13px;">
+        <b style="color:#4b3324;font-size:15px;">배터리 수명·점검 기준</b>
+        <span style="padding:4px 8px;border-radius:999px;background:#eaf4df;color:#2f8b3a;font-size:11px;font-weight:800;white-space:nowrap;">D+${usageDays}</span>
+      </div>
+      로보킹을 처음 사용한 날은 <b>${formatFirstUseDate()}</b>이고, 현재 <b>사용 D+${usageDays}일째</b>예요.<br><br>
+      완전 충전 후 완전 방전을 <b>1 Cycle</b>로 보며, <b>500 Cycle 사용 후에도 80% 성능 유지</b>를 수명 시험 기준으로 봐요.<br><br>
+      주 3회 사용하면 1년에 약 156회이므로 500 Cycle은 <b>약 3년 1개월</b>에 해당해요.<br><br>
+      그래서 <b>약 3년 주기로 배터리 상태 점검·교체를 권장</b>해요. 사용 중 특별한 불편이 없다면 3년 이상 사용할 수도 있어요.<br><br>
       <span style="font-size:11px;color:#8a6a45;">※ 실제 사용 가능 기간은 사용 빈도와 환경에 따라 달라질 수 있어요.</span>
     </div>`;
   openModal("배터리 수명 안내",body);

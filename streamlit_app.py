@@ -2740,6 +2740,18 @@ body,button,input,select{
   box-shadow:none;
 }
 .map-section .home-map-head{margin:0 0 7px;}
+/* 맵 색상 범례: 학습 완료 후 지도 바로 아래에 항상 표시 */
+.map-section .map-legend{
+  margin-top:8px;
+  padding:8px 6px;
+  border-radius:13px;
+  background:rgba(255,250,235,.88);
+  font-size:11px;
+  gap:6px 9px;
+}
+.map-section .map-legend-title{font-size:11px;font-weight:800;}
+.map-section .map-legend-item{font-size:10.5px;font-weight:700;gap:4px;}
+.map-section .map-dot{width:10px;height:10px;}
 .room .mode-chip{display:none!important;}
 .prep-section{margin-bottom:10px!important;}
 .prep-section .plan-head{align-items:center;}
@@ -4660,9 +4672,11 @@ function getMapPrepCardHtml(){
 function getLearnedMapHtml(){
   const area=(activeRun && activeRun.areaPyung) ? activeRun.areaPyung : state.areaPyung;
   const type=getHomeSizeType(area);
-  // 맵 영역에는 지도만 표시합니다. AI 청소 선택/실행은 아래의 별도 AI 맞춤청소 카드에서 담당합니다.
+  // 맵 영역에는 지도와 색상 범례만 표시합니다.
+  // AI 청소 선택/실행은 아래의 별도 AI 맞춤청소 카드에서 담당합니다.
   return "<div class='home-map-card map-only-card'>"
     +"<div class='home-map-img-wrap'>"+getMapSvg(type)+"</div>"
+    +getDirtLegendHtml()
     +"</div>";
 }
 

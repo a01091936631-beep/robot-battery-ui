@@ -3051,40 +3051,27 @@ strong,b{font-weight:700;}
 /* ===== Home · Battery preparation strategy selector ===== */
 .battery-strategy-section{
   margin-bottom:10px;
-  padding:12px 11px;
+  padding:14px 12px;
   background:rgba(255,248,231,.98);
 }
+.battery-strategy-section .home-section-kicker{font-size:11.5px!important;line-height:1.15!important;letter-spacing:1px!important;}
 .battery-strategy-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:9px;}
-.battery-strategy-section-title{color:#4b3324;font-size:15px;line-height:1.25;font-weight:800;}
-.battery-strategy-badge{padding:5px 8px;border-radius:999px;background:#edf7e4;color:#2f8b3a;font-size:9.5px;font-weight:750;white-space:nowrap;}
+.battery-strategy-section-title{color:#4b3324;font-size:18px;line-height:1.25;font-weight:800;}
+.battery-strategy-badge{padding:6px 10px;border-radius:999px;background:#edf7e4;color:#2f8b3a;font-size:11px;font-weight:750;white-space:nowrap;}
 .battery-strategy-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
 .battery-strategy-btn{
-  min-height:62px;padding:8px 7px;border:1px solid #ead9b7;border-radius:14px;background:#fff;color:#60452f;
+  min-height:72px;padding:10px 8px;border:1px solid #ead9b7;border-radius:14px;background:#fff;color:#60452f;
   display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;text-align:center;box-shadow:0 3px 7px rgba(79,48,21,.06);
 }
-.battery-strategy-btn .strategy-main{font-size:11px;line-height:1.25;font-weight:750;word-break:keep-all;}
-.battery-strategy-btn .strategy-sub{font-size:9px;line-height:1.25;font-weight:500;color:#8a6a45;word-break:keep-all;}
+.battery-strategy-btn .strategy-main{font-size:13.5px;line-height:1.25;font-weight:750;word-break:keep-all;}
+.battery-strategy-btn .strategy-sub{font-size:10.5px;line-height:1.3;font-weight:500;color:#8a6a45;word-break:keep-all;}
 .battery-strategy-btn.active{border-color:transparent;background:linear-gradient(180deg,#64b84e,#47a342);color:#fff;box-shadow:0 6px 12px rgba(67,126,56,.18);}
 .battery-strategy-btn.active .strategy-sub{color:rgba(255,255,255,.9);}
 .battery-strategy-btn.ready.active{background:linear-gradient(180deg,#f1a23d,#ed842b);box-shadow:0 6px 12px rgba(210,117,35,.18);}
 .battery-strategy-btn:disabled{opacity:.55;cursor:not-allowed;}
-.battery-strategy-note{margin-top:8px;padding:7px 8px;border-radius:10px;background:#fff7e5;color:#765b43;font-size:9.8px;line-height:1.45;font-weight:500;text-align:center;word-break:keep-all;}
+.battery-strategy-note{margin-top:9px;padding:8px 9px;border-radius:10px;background:#fff7e5;color:#765b43;font-size:11.5px;line-height:1.45;font-weight:500;text-align:center;word-break:keep-all;}
 .battery-strategy-note b{color:#2f8b3a;font-weight:750;}
 
-/* ===== Page 2 · Weekly battery habit report ===== */
-.weekly-battery-report{margin:0 0 10px;padding:12px 13px;background:rgba(255,248,231,.97);}
-.weekly-battery-head{display:flex;align-items:center;justify-content:space-between;gap:8px;}
-.weekly-battery-title{color:#4b3324;font-size:13.5px;font-weight:800;}
-.weekly-battery-grade{padding:5px 8px;border-radius:999px;background:#eaf4df;color:#2f8b3a;font-size:9.5px;font-weight:750;white-space:nowrap;}
-.weekly-battery-message{margin-top:6px;color:#765b43;font-size:10.5px;line-height:1.45;font-weight:500;word-break:keep-all;}
-.weekly-battery-insights{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:9px;}
-.weekly-battery-insight{min-height:82px;padding:9px 8px;border-radius:12px;background:#fff2cf;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;}
-.weekly-battery-insight.coach{background:#eef7e7;}
-.weekly-insight-label{display:block;color:#7a5a3c;font-size:9.3px;line-height:1.25;font-weight:600;}
-.weekly-battery-insight b{display:block;margin-top:4px;color:#2f8b3a;font-size:13.2px;line-height:1.2;font-weight:800;word-break:keep-all;}
-.weekly-battery-insight small{display:block;margin-top:4px;color:#7a5a3c;font-size:8.8px;line-height:1.35;font-weight:500;word-break:keep-all;}
-.weekly-battery-insight.coach b{color:#4b7f39;}
-.weekly-battery-foot{margin-top:8px;padding:7px 8px;border-radius:10px;background:#f1f8ea;color:#3f7f3b;font-size:9.6px;line-height:1.4;font-weight:600;text-align:center;word-break:keep-all;}
 </style>
 </head>
 
@@ -3393,27 +3380,6 @@ strong,b{font-weight:700;}
           </div>
 
           <div class="care-note" id="careNote">오늘도 과충전 없이 관리 중이에요.</div>
-        </div>
-
-        <div class="panel weekly-battery-report">
-          <div class="weekly-battery-head">
-            <div class="weekly-battery-title">🌿 이번 주 배터리 습관</div>
-            <div class="weekly-battery-grade" id="weeklyBatteryGrade">아주 좋아요</div>
-          </div>
-          <div class="weekly-battery-message" id="weeklyBatteryMessage">이번 주 사용 패턴을 바탕으로 로보킹이 배터리 습관을 코칭해요.</div>
-          <div class="weekly-battery-insights">
-            <div class="weekly-battery-insight">
-              <span class="weekly-insight-label">이번 주 충전 패턴</span>
-              <b id="weeklyChargePattern">필요량 중심</b>
-              <small id="weeklyChargePatternSub">청소할 만큼만 준비하는 패턴이에요.</small>
-            </div>
-            <div class="weekly-battery-insight coach">
-              <span class="weekly-insight-label">다음 코칭</span>
-              <b id="weeklyNextCoach">현재 습관 유지</b>
-              <small id="weeklyNextCoachSub">지금처럼 배터리에 부담을 줄이는 습관을 이어가 보세요.</small>
-            </div>
-          </div>
-          <div class="weekly-battery-foot" id="weeklyBatteryFoot">로보킹이 사용 패턴을 보고 다음 배터리 습관을 추천해요.</div>
         </div>
 
         <!-- 2. 현재 부품 상태 -->

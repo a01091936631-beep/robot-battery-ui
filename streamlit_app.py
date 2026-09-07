@@ -2510,10 +2510,6 @@ body,button,input,select{
 .battery-health-state{margin-top:3px;color:#2f8b3a;font-size:12px;font-weight:700;}
 .battery-health-value{color:#2f8b3a;font-size:28px;line-height:1;font-weight:800;letter-spacing:-.8px;}
 .battery-health-track{height:10px!important;margin-top:10px!important;}
-.battery-life-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:10px;}
-.battery-life-item{min-height:54px;padding:8px 9px;border-radius:11px;background:#f8efd9;color:#7a5a3c;text-align:left;}
-.battery-life-item span{display:block;font-size:9.5px;line-height:1.25;font-weight:600;}
-.battery-life-item b{display:block;margin-top:4px;color:#4b3324;font-size:13px;line-height:1.28;font-weight:750;letter-spacing:-.2px;}
 .battery-care-stats{grid-template-columns:repeat(2,1fr)!important;margin-top:9px!important;}
 .battery-care-stats .care-stat{min-height:72px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:9px 5px;background:#fff2cf;}
 .battery-care-stats .care-stat span{min-height:22px;display:flex;align-items:center;justify-content:center;font-size:10px;line-height:1.25;font-weight:700;}
@@ -3298,10 +3294,6 @@ strong,b{font-weight:700;}
             </div>
             <div class="care-health-track battery-health-track">
               <div class="care-health-fill" id="careHealthFill" style="width:100%"></div>
-            </div>
-            <div class="battery-life-grid">
-              <div class="battery-life-item"><span>성능 유지 기준</span><b>500 Cycle 후 80%</b></div>
-              <div class="battery-life-item"><span>주 3회 사용 기준</span><b>약 3년 1개월</b></div>
             </div>
           </div>
 

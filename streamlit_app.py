@@ -3392,7 +3392,6 @@ strong,b{font-weight:700;}
           <div id="eventList">
             <div class="event-item"><div class="event-time">14:20</div><div class="event-content"><strong>맞춤 충전 완료<span class="event-tag">배터리 보호</span></strong><span>청소에 필요한 만큼만 충전하고 멈췄어요.</span></div></div>
             <div class="event-item"><div class="event-time">10:15</div><div class="event-content"><strong>청소 준비 완료<span class="event-tag">맞춤 관리</span></strong><span>우리 집 상태에 맞춰 필요한 배터리를 계산했어요.</span></div></div>
-            <div class="event-item"><div class="event-time">08:40</div><div class="event-content"><strong>배터리 컨디션 정상<span class="event-tag">온도 안정</span></strong><span>배터리 온도가 안정 범위 안에 있어요.</span></div></div>
           </div>
         </div>
       </section>
@@ -4219,22 +4218,13 @@ function dirtSummary(){
 }
 function obstacleSummary(){return activeRun && activeRun.home ? (activeRun.home.obstacleLevel||"중간") : "중간";}
 function profileResultBody(){
-  const startSoc=Number(state.firstRunStartSoc||0);
-  const endSoc=Number(state.firstRunEndSoc||state.soc||0);
-  const recorded=Number(state.firstRunSocUsed||state.firstRunRequiredSoc||0);
-  const used=Number(state.firstRunSocUsed||0);
-  const socLine=state.firstRunSocEnough
-    ? "배터리 변화: <b>"+Math.round(startSoc)+"% → "+Math.round(endSoc)+"%</b>"
-    : "배터리 변화: <b>"+Math.round(startSoc)+"% → "+Math.round(endSoc)+"%</b> <small>(배터리 부족)</small>";
   return "<b>우리 집 저장 완료</b><br><br>"
     +"집 크기: <b>"+activeRun.areaPyung+"평 · "+activeRun.home.cleaningAreaM2+"㎡</b><br>"
     +"구역: <b>"+getDisplayZoneCount()+"개</b><br>"
     +"바닥: <b>"+floorKindCount()+"종 혼합</b><br>"
     +"오염도: <b>"+dirtSummaryShort()+"</b><br>"
     +"장애물: <b>"+obstacleSummary()+"</b><br>"
-    +"학습 중 사용한 배터리: <b>"+fmtSoc(recorded)+"%</b><br>"
-    +socLine+"<br>"
-    +"현재 배터리: <b>"+Math.round(state.soc)+"%</b><br><br>"
+    +"배터리를 무리하지 않도록 여유 잔량을 남기며 학습을 마쳤어요.<br><br>"
     +"다음 단계: <b>오늘 청소 준비하기</b>";
 }
 function startFirstMapping(){
@@ -4302,7 +4292,7 @@ function startFirstMapping(){
       const todayStateSelect=$("todayStateSelect"); if(todayStateSelect)todayStateSelect.value='normal';
       state.temperature=29;
       state.learnCount=(state.learnCount||0)+1;
-      const eventMsg="집 구조와 바닥 상태를 기억했어요. 학습에 배터리 "+fmtSoc(learningUse)+"%만 사용하고 15% 이상 남겼어요.";
+      const eventMsg="집 구조와 바닥 상태를 기억했어요. 배터리를 무리하지 않도록 여유 잔량을 남기며 학습을 마쳤어요.";
       addEvent("1회차 학습 청소 완료",eventMsg,"집 정보 저장");
       spawnEffect("🏠",8);spawnEffect("✨",9);
       render();
@@ -5229,7 +5219,6 @@ function getPartStatuses(){
   let battery={level:"good",text:"편안해요"};
   if(state.charging)battery={level:"good",text:"쉬면서 힘을 채우고 있어요"};
   else if(state.soc<15)battery={level:"bad",text:"배가 고파요"};
-  else if(state.temperature>34)battery={level:"check",text:"조금 더워요, 쉬어갈게요"};
   const faces={good:"🙂",check:"😐",bad:"😟"};
   return [
     {key:"wheel",icon:"🛞",name:"바퀴 상태",...wheels,face:faces[wheels.level],

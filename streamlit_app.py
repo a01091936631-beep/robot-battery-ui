@@ -2490,6 +2490,38 @@ body,button,input,select{
 .modal-emoji{font-size:64px;text-align:center;padding:10px 0 14px;}
 .modal-img{width:100%;max-height:300px;object-fit:cover;border-radius:14px;margin-bottom:10px;display:block;}
 
+
+/* ===== Page 2 · Battery care simplified: current state first ===== */
+.battery-care-main{
+  margin-bottom:10px;
+  padding:14px 13px 13px;
+  background:linear-gradient(145deg,#fff8e8 0%,#fff1cc 100%);
+  border:1px solid rgba(124,83,43,.12);
+}
+.battery-care-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;}
+.battery-care-kicker{color:#4a9b42;font-size:9px;font-weight:800;letter-spacing:1px;}
+.battery-care-title{margin-top:3px;color:#4b3324;font-size:18px;line-height:1.25;font-weight:800;}
+.battery-care-badge{flex:0 0 auto;padding:6px 9px;border-radius:999px;background:#fff3cf;color:#7b5b3d;font-size:10px;font-weight:700;border:1px solid rgba(124,83,43,.10);}
+.battery-care-copy{margin-top:9px;color:#6f543d;font-size:11.5px;line-height:1.6;font-weight:500;}
+.battery-care-copy b{color:#2f8b3a;font-weight:700;}
+.battery-health-card{margin-top:11px;padding:12px 11px;border-radius:15px;background:rgba(255,255,255,.86);border:1px solid rgba(124,83,43,.10);box-shadow:0 5px 12px rgba(73,48,28,.07);}
+.battery-health-top{display:flex;align-items:flex-end;justify-content:space-between;gap:10px;}
+.battery-health-label{color:#76553e;font-size:11px;font-weight:700;}
+.battery-health-state{margin-top:3px;color:#2f8b3a;font-size:12px;font-weight:700;}
+.battery-health-value{color:#2f8b3a;font-size:28px;line-height:1;font-weight:800;letter-spacing:-.8px;}
+.battery-health-track{height:10px!important;margin-top:10px!important;}
+.battery-live-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:10px;}
+.battery-live-item{display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:38px;padding:8px 9px;border-radius:11px;background:#f8efd9;color:#7a5a3c;font-size:10.5px;font-weight:500;}
+.battery-live-item b{color:#4b3324;font-size:13px;font-weight:700;white-space:nowrap;}
+.battery-care-stats{margin-top:9px!important;}
+.battery-care-stats .care-stat{min-height:76px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:9px 5px;background:#fff2cf;}
+.battery-care-stats .care-stat span{min-height:27px;display:flex;align-items:center;justify-content:center;font-size:10px;line-height:1.25;font-weight:700;}
+.battery-care-stats .care-stat b{font-size:22px;font-weight:800;}
+.battery-care-stats .care-stat small{font-size:9.5px;font-weight:600;}
+.battery-care-main .care-note{margin-top:9px;padding:9px 10px;border-radius:12px;background:#eaf4df;color:#2f8b3a;font-size:10.8px;line-height:1.5;font-weight:600;}
+.care-subhead{margin-top:12px!important;}
+.care-events-panel{margin-top:10px!important;}
+
 /* ============================================================
    NEW PAGE 3 · 예약 청소 (출퇴근 맞춤 + 테마 기간 청소)
    ============================================================ */
@@ -3235,61 +3267,58 @@ strong,b{font-weight:700;}
         <div class="section-kicker">PARTS CARE</div>
         <div class="section-title">부품 케어</div>
 
-        <div class="panel care-impact-hero">
-          <div class="care-impact-top">
+        <!-- 1. 배터리 케어 -->
+        <div class="panel battery-care-main">
+          <div class="battery-care-head">
             <div>
-              <div class="care-impact-eyebrow">BATTERY CARE EFFECT</div>
-              <div class="care-impact-title">🔋 배터리를 오래 쓰면<br>교체 부담도 줄어들어요</div>
+              <div class="battery-care-kicker">BATTERY CARE</div>
+              <div class="battery-care-title">🔋 배터리 케어</div>
             </div>
-            <div class="care-impact-badge">사용 패턴 기준 예상</div>
+            <div class="battery-care-badge">자동 케어</div>
           </div>
-          <div class="care-impact-copy">
-            필요한 만큼만 충전하고 15% 잔량을 지키는 습관으로<br>
-            <b>배터리 수명과 교체 비용을 함께 아끼고 있어요.</b>
-          </div>
-          <div class="care-impact-grid">
-            <div class="care-impact-card life">
-              <div class="care-impact-icon">⏳</div>
-              <div class="care-impact-label">예상 배터리 수명</div>
-              <div class="care-impact-value"><strong id="careLifeMonths">+6</strong><span>개월</span></div>
-              <div class="care-impact-sub">교체 시점을 더 늦게</div>
-            </div>
-            <div class="care-impact-card money">
-              <div class="care-impact-icon">💰</div>
-              <div class="care-impact-label">예상 교체 비용 절감</div>
-              <div class="care-impact-value"><strong id="careCostSaved">60,000</strong><span>원</span></div>
-              <div class="care-impact-sub">불필요한 교체 부담 감소</div>
-            </div>
-          </div>
-          <div class="care-impact-foot">✨ 지금까지 <b id="careProtectionCount">5회</b>&nbsp; 배터리 보호 습관을 지켰어요</div>
-          <div class="care-impact-disclaimer">※ 현재 충전·청소 사용 패턴을 바탕으로 한 예상 효과입니다.</div>
-        </div>
 
-        <div class="care-subhead"><span>현재 부품 상태</span><small>누르면 상세 확인</small></div>
-        <div class="parts-grid" id="partsGrid"></div>
+          <div class="battery-care-copy">
+            100% 완충을 반복하지 않고 <b>청소에 필요한 만큼만 충전</b>하며,<br>
+            15% 아래로 내려가기 전에 쉬어가도록 관리해요.
+          </div>
 
-        <div class="panel care-summary">
-          <div class="panel-head"><div class="panel-title">이렇게 배터리를 보호하고 있어요</div><div class="badge">자동 케어</div></div>
-          <div class="care-lead">100% 완충을 반복하지 않고 청소에 필요한 만큼만 채우며, 15% 아래로 내려가기 전에 쉬어가요.</div>
-          <div class="care-stats">
-            <div class="care-stat"><span>맞춤 충전</span><b id="careAcceptText">4</b><small>회</small></div>
+          <div class="battery-health-card">
+            <div class="battery-health-top">
+              <div>
+                <div class="battery-health-label">현재 배터리 건강도</div>
+                <div class="battery-health-state" id="careHealthState">매우 좋음</div>
+              </div>
+              <div class="battery-health-value" id="careHealthText">100%</div>
+            </div>
+            <div class="care-health-track battery-health-track">
+              <div class="care-health-fill" id="careHealthFill" style="width:100%"></div>
+            </div>
+            <div class="battery-live-grid">
+              <div class="battery-live-item"><span>현재 잔량</span><b id="careCurrentSoc">80%</b></div>
+              <div class="battery-live-item"><span>배터리 온도</span><b id="careTempText">29℃</b></div>
+            </div>
+          </div>
+
+          <div class="care-stats battery-care-stats">
+            <div class="care-stat"><span>맞춤 충전</span><b id="careAcceptText">5</b><small>회</small></div>
             <div class="care-stat"><span>15% 잔량 보호</span><b id="careReserveText">1</b><small>회</small></div>
-            <div class="care-stat"><span>누적 충전 절약</span><b id="careSavedText">76</b><small>%</small></div>
+            <div class="care-stat"><span>누적 덜 채운 충전량</span><b id="careSavedText">123</b><small>%</small></div>
           </div>
-          <div class="care-health-row">
-            <span>현재 배터리 건강도</span>
-            <div class="care-health-track"><div class="care-health-fill" id="careHealthFill" style="width:100%"></div></div>
-            <b id="careHealthText">100%</b>
-          </div>
+
           <div class="care-note" id="careNote">오늘도 과충전 없이 관리 중이에요.</div>
         </div>
 
-        <div class="panel events">
+        <!-- 2. 현재 부품 상태 -->
+        <div class="care-subhead"><span>현재 부품 상태</span><small>누르면 상세 확인</small></div>
+        <div class="parts-grid" id="partsGrid"></div>
+
+        <!-- 3. 실시간 케어 기록 -->
+        <div class="panel events care-events-panel">
           <div class="panel-head"><div class="panel-title">실시간 케어 기록</div><div class="badge">자동 기록</div></div>
           <div id="eventList">
-            <div class="event-item"><div class="event-time">14:20</div><div class="event-content"><strong>맞춤 충전 완료<span class="event-tag">수명 보호</span></strong><span>81%까지만 채우고 멈췄어요. 완충 대비 19% 덜 채워 과충전을 막았어요.</span></div></div>
-            <div class="event-item"><div class="event-time">10:15</div><div class="event-content"><strong>청소 준비 완료<span class="event-tag">배터리 절약</span></strong><span>거실 상태에 맞춰 필요한 배터리만 계산했어요.</span></div></div>
-            <div class="event-item"><div class="event-time">08:40</div><div class="event-content"><strong>배터리 컨디션 정상<span class="event-tag">온도 안정</span></strong><span>배터리 온도 29℃, 안정 범위(15~50℃) 안에 있어요.</span></div></div>
+            <div class="event-item"><div class="event-time">14:20</div><div class="event-content"><strong>맞춤 충전 완료<span class="event-tag">배터리 보호</span></strong><span>청소에 필요한 만큼만 충전하고 멈췄어요.</span></div></div>
+            <div class="event-item"><div class="event-time">10:15</div><div class="event-content"><strong>청소 준비 완료<span class="event-tag">맞춤 관리</span></strong><span>우리 집 상태에 맞춰 필요한 배터리를 계산했어요.</span></div></div>
+            <div class="event-item"><div class="event-time">08:40</div><div class="event-content"><strong>배터리 컨디션 정상<span class="event-tag">온도 안정</span></strong><span>배터리 온도가 안정 범위 안에 있어요.</span></div></div>
           </div>
         </div>
       </section>
@@ -5021,26 +5050,28 @@ function renderCare(){
     +"<div class='part-icon'>"+p.icon+"</div>"
     +"<div class='part-info'><div class='part-name'>"+p.name+"</div><div class='part-status'>"+p.text+"</div></div>"
     +"<div class='part-face'>"+p.face+"</div></button>").join(""));
+
+  // 배터리 케어: 검증이 필요한 수명 연장/비용 절감 예측 대신 현재 상태와 실제 케어 행동을 보여줍니다.
   const a=$("careAcceptText"); if(a)a.textContent=state.acceptCount;
   const r=$("careReserveText"); if(r)r.textContent=state.reserveGuardCount;
   const s=$("careSavedText"); if(s)s.textContent=Math.round(state.savedChargePct);
 
-  // 공모전 UI용 예상 혜택 값. 실제 제품에서는 배터리 열화 모델과 서비스 부품 단가를 연결하면 됩니다.
-  const protectionCount=Math.max(0,Number(state.acceptCount||0)+Number(state.reserveGuardCount||0));
-  const estimatedLifeMonths=clamp(Math.round(Number(state.savedChargePct||0)/13),1,12);
-  const estimatedCostSaved=Math.max(10000,estimatedLifeMonths*10000);
-  const lm=$("careLifeMonths"); if(lm)lm.textContent="+"+estimatedLifeMonths;
-  const cs=$("careCostSaved"); if(cs)cs.textContent=estimatedCostSaved.toLocaleString("ko-KR");
-  const pc=$("careProtectionCount"); if(pc)pc.textContent=protectionCount+"회";
+  const health=clamp(Math.round(Number(state.health||0)),0,100);
+  const hf=$("careHealthFill"); if(hf)hf.style.width=health+"%";
+  const ht=$("careHealthText"); if(ht)ht.textContent=health+"%";
+  const hs=$("careHealthState");
+  if(hs){
+    hs.textContent=health>=90?"매우 좋음":(health>=80?"좋음":(health>=65?"관리 필요":"점검 권장"));
+  }
+  const currentSoc=$("careCurrentSoc"); if(currentSoc)currentSoc.textContent=clamp(Math.round(state.soc),0,100)+"%";
+  const temp=$("careTempText"); if(temp)temp.textContent=Number(state.temperature||0).toFixed(0)+"℃";
 
-  const hf=$("careHealthFill"); if(hf)hf.style.width=clamp(state.health,0,100)+"%";
-  const ht=$("careHealthText"); if(ht)ht.textContent=clamp(Math.round(state.health),0,100)+"%";
   const note=$("careNote");
   if(note){
-    if(state.charging)note.textContent="지금 "+state.targetSoc+"%까지만 채우고 있어요. 완충보다 "+(100-state.targetSoc)+"% 덜 채워 배터리 부담을 줄여요.";
-    else if(state.cleaning)note.textContent="청소 중이에요. 15%가 되면 무리하지 않고 스스로 쉬어가요.";
-    else if(state.mapping)note.textContent="학습 청소 중에도 배터리 15% 이상은 항상 남겨두고 있어요.";
-    else note.textContent="완충 대신 필요한 만큼만 채운 덕분에 지금까지 충전량 "+Math.round(state.savedChargePct)+"%를 덜 채웠어요. 오늘도 과충전 없이 관리 중이에요.";
+    if(state.charging)note.textContent="지금 청소에 필요한 "+state.targetSoc+"%까지만 충전하고 있어요.";
+    else if(state.cleaning)note.textContent="청소 중이에요. 배터리가 너무 낮아지기 전에 스스로 쉬어가요.";
+    else if(state.mapping)note.textContent="학습 청소 중에도 15% 이상 잔량을 남기도록 관리하고 있어요.";
+    else note.textContent="필요한 만큼만 충전하고 적정 잔량을 유지하며 배터리를 관리하고 있어요.";
   }
 }
 function openPartDetail(el){

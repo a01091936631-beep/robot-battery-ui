@@ -4181,7 +4181,7 @@ function predictSocFromConditions(autoExecuteAfter=false){
     const statusText=state.soc>=state.targetSoc?"바로 청소할 수 있어요":"잠깐 충전하면 청소할 수 있어요";
     $("speech").innerHTML="<strong style='color:#2f8b3a'>준비 완료!</strong><br>"+statusText;
     setModeChipText("✅ 청소 준비 완료 · "+state.selectedLabel);
-    addEvent("청소 준비 완료",state.selectedLabel+" 청소를 위해 필요한 배터리 "+state.targetSoc+"%만 준비했어요.","배터리 절약");
+    addEvent("청소 준비 완료",state.selectedLabel+" 청소에 필요한 만큼만 배터리를 준비했어요.","맞춤 관리");
     setGuide(statusText.includes("바로")?"준비 완료! 바로 출동할게요.":"준비 완료! 필요한 만큼만 채우고 바로 출발할게요.", state.soc>=state.targetSoc?"done":"warning");
     showToast("청소 준비 완료! 로보킹이 오늘 청소 준비를 마쳤어요.");
     if(autoExecuteAfter){
@@ -6413,7 +6413,7 @@ function startCleaning(){
         state.reserveGuardCount+=1;
         ensureWeeklyBatteryHabit().reserveGuard+=1;
         saveWeeklyBatteryHabit();
-        addEvent("잠깐 쉬어가기",state.selectedLabel+" 청소 중 배터리 15%가 되어 스스로 도킹했어요. 잠깐 충전 후 남은 곳을 이어서 청소해요.","잔량 15% 보호");
+        addEvent("잠깐 쉬어가기",state.selectedLabel+" 청소 중 배터리 잔량이 낮아져 스스로 도킹했어요. 잠깐 충전 후 남은 곳을 이어서 청소해요.","저잔량 보호");
         render();
         $("speech").innerHTML="<strong style='color:#ef8c32'>잠깐 쉬어갈게요!</strong><br>조금만 쉬고 다시 힘낼게요.";
         setGuide("로보킹이 조금 지쳤어요. 잠깐 충전하고 남은 곳을 이어서 청소할게요.","warning");
@@ -6440,7 +6440,7 @@ function startCleaning(){
       state.average=Math.round((state.average+Math.max(15,Math.round(state.requiredSoc*1.4)))/2);
       levelCheck();
       // [부품케어 탭 연동] 배터리 절약 기록
-      addEvent(state.selectedLabel+" 청소 완료","배터리 "+fmtSoc(totalRequired)+"%만 사용해 청소를 마쳤어요. 15% 이상 남겨 배터리에 무리를 주지 않았어요.","배터리 절약");
+      addEvent(state.selectedLabel+" 청소 완료","배터리를 아껴 쓰며 청소를 마쳤어요. 적정 잔량을 남겨 배터리에 무리를 주지 않았어요.","배터리 보호");
       spawnEffect("🎉",15);spawnEffect("⭐",9);
       render();
       $("speech").innerHTML="<strong style='color:#2f8b3a'>청소 완료!</strong><br>+50코인을 받았어요.";
@@ -6584,7 +6584,7 @@ function chargeRobot(autoStart=false,purpose='current'){
         else
           addEvent("다음 청소 준비 완료","다음 청소에 필요한 만큼만 미리 충전해 준비했어요.","맞춤 준비");
       }else{
-        addEvent("맞춤 충전 완료",state.selectedLabel+" 청소에 필요한 "+state.targetSoc+"%까지만 채우고 멈췄어요. 완충 대비 "+(100-state.targetSoc)+"% 덜 채워 과충전을 막았어요.","수명 보호");
+        addEvent("맞춤 충전 완료",state.selectedLabel+" 청소에 필요한 만큼만 충전하고 멈췄어요. 불필요한 완충을 줄여 배터리를 보호했어요.","배터리 보호");
       }
       spawnEffect("💖",12);
       spawnEffect("✨",8);

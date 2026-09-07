@@ -3049,28 +3049,26 @@ strong,b{font-weight:700;}
 }
 
 /* ===== Home · Battery preparation strategy selector ===== */
-.battery-strategy-card{
-  margin:0 0 10px;
-  padding:10px;
-  border:1px solid rgba(124,83,43,.11);
-  border-radius:13px;
-  background:#fffaf0;
+.battery-strategy-section{
+  margin-bottom:10px;
+  padding:12px 11px;
+  background:rgba(255,248,231,.98);
 }
-.battery-strategy-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:8px;}
-.battery-strategy-title{color:#4b3324;font-size:11px;font-weight:750;}
-.battery-strategy-badge{padding:4px 7px;border-radius:999px;background:#edf7e4;color:#2f8b3a;font-size:9px;font-weight:750;white-space:nowrap;}
-.battery-strategy-row{display:grid;grid-template-columns:1fr 1fr;gap:7px;}
+.battery-strategy-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:9px;}
+.battery-strategy-section-title{color:#4b3324;font-size:15px;line-height:1.25;font-weight:800;}
+.battery-strategy-badge{padding:5px 8px;border-radius:999px;background:#edf7e4;color:#2f8b3a;font-size:9.5px;font-weight:750;white-space:nowrap;}
+.battery-strategy-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
 .battery-strategy-btn{
-  min-height:58px;padding:7px 6px;border:1px solid #ead9b7;border-radius:13px;background:#fff;color:#60452f;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;text-align:center;box-shadow:0 3px 7px rgba(79,48,21,.06);
+  min-height:62px;padding:8px 7px;border:1px solid #ead9b7;border-radius:14px;background:#fff;color:#60452f;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;text-align:center;box-shadow:0 3px 7px rgba(79,48,21,.06);
 }
-.battery-strategy-btn .strategy-main{font-size:10.8px;line-height:1.2;font-weight:750;word-break:keep-all;}
-.battery-strategy-btn .strategy-sub{font-size:8.8px;line-height:1.25;font-weight:500;color:#8a6a45;word-break:keep-all;}
+.battery-strategy-btn .strategy-main{font-size:11px;line-height:1.25;font-weight:750;word-break:keep-all;}
+.battery-strategy-btn .strategy-sub{font-size:9px;line-height:1.25;font-weight:500;color:#8a6a45;word-break:keep-all;}
 .battery-strategy-btn.active{border-color:transparent;background:linear-gradient(180deg,#64b84e,#47a342);color:#fff;box-shadow:0 6px 12px rgba(67,126,56,.18);}
-.battery-strategy-btn.active .strategy-sub{color:rgba(255,255,255,.88);}
+.battery-strategy-btn.active .strategy-sub{color:rgba(255,255,255,.9);}
 .battery-strategy-btn.ready.active{background:linear-gradient(180deg,#f1a23d,#ed842b);box-shadow:0 6px 12px rgba(210,117,35,.18);}
 .battery-strategy-btn:disabled{opacity:.55;cursor:not-allowed;}
-.battery-strategy-note{margin-top:7px;color:#765b43;font-size:9.6px;line-height:1.4;font-weight:500;text-align:center;word-break:keep-all;}
+.battery-strategy-note{margin-top:8px;padding:7px 8px;border-radius:10px;background:#fff7e5;color:#765b43;font-size:9.8px;line-height:1.45;font-weight:500;text-align:center;word-break:keep-all;}
 .battery-strategy-note b{color:#2f8b3a;font-weight:750;}
 
 /* ===== Page 2 · Weekly battery habit report ===== */
@@ -3079,11 +3077,13 @@ strong,b{font-weight:700;}
 .weekly-battery-title{color:#4b3324;font-size:13.5px;font-weight:800;}
 .weekly-battery-grade{padding:5px 8px;border-radius:999px;background:#eaf4df;color:#2f8b3a;font-size:9.5px;font-weight:750;white-space:nowrap;}
 .weekly-battery-message{margin-top:6px;color:#765b43;font-size:10.5px;line-height:1.45;font-weight:500;word-break:keep-all;}
-.weekly-battery-stats{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:9px;}
-.weekly-battery-stat{padding:8px 7px;border-radius:11px;background:#fff2cf;text-align:center;}
-.weekly-battery-stat span{display:block;color:#7a5a3c;font-size:9.5px;line-height:1.25;font-weight:600;}
-.weekly-battery-stat b{display:inline-block;margin-top:3px;color:#2f8b3a;font-size:18px;line-height:1;font-weight:800;}
-.weekly-battery-stat small{margin-left:2px;color:#7a5a3c;font-size:9px;font-weight:600;}
+.weekly-battery-insights{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:9px;}
+.weekly-battery-insight{min-height:82px;padding:9px 8px;border-radius:12px;background:#fff2cf;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;}
+.weekly-battery-insight.coach{background:#eef7e7;}
+.weekly-insight-label{display:block;color:#7a5a3c;font-size:9.3px;line-height:1.25;font-weight:600;}
+.weekly-battery-insight b{display:block;margin-top:4px;color:#2f8b3a;font-size:13.2px;line-height:1.2;font-weight:800;word-break:keep-all;}
+.weekly-battery-insight small{display:block;margin-top:4px;color:#7a5a3c;font-size:8.8px;line-height:1.35;font-weight:500;word-break:keep-all;}
+.weekly-battery-insight.coach b{color:#4b7f39;}
 .weekly-battery-foot{margin-top:8px;padding:7px 8px;border-radius:10px;background:#f1f8ea;color:#3f7f3b;font-size:9.6px;line-height:1.4;font-weight:600;text-align:center;word-break:keep-all;}
 </style>
 </head>
@@ -3168,6 +3168,28 @@ strong,b{font-weight:700;}
             </div>
           </section>
 
+          <!-- AI 맞춤청소와 직접조건청소에 공통 적용되는 배터리 준비 모드 -->
+          <section class="panel battery-strategy-section" id="batteryStrategySection" aria-labelledby="batteryStrategySectionTitle">
+            <div class="battery-strategy-head">
+              <div>
+                <div class="home-section-kicker">BATTERY MODE</div>
+                <div class="battery-strategy-section-title" id="batteryStrategySectionTitle">🔋 배터리 준비 모드</div>
+              </div>
+              <div class="battery-strategy-badge" id="batteryStrategyBadge">케어 우선</div>
+            </div>
+            <div class="battery-strategy-row">
+              <button type="button" class="battery-strategy-btn" id="batteryStrategyCareBtn" data-action="batteryStrategyCare">
+                <span class="strategy-main">🌱 배터리 케어 우선</span>
+                <span class="strategy-sub">필요한 만큼만 충전</span>
+              </button>
+              <button type="button" class="battery-strategy-btn ready" id="batteryStrategyReadyBtn" data-action="batteryStrategyReady">
+                <span class="strategy-main">⚡ 청소 준비 우선</span>
+                <span class="strategy-sub">여유 있게 미리 준비</span>
+              </button>
+            </div>
+            <div class="battery-strategy-note" id="batteryStrategyNote"><b>배터리 케어 우선</b> · 청소에 필요한 만큼만 충전해요.</div>
+          </section>
+
           <section class="panel plan-panel prep-section" id="aiCleanSection" aria-labelledby="prepSectionTitle">
             <div class="plan-head">
               <div>
@@ -3198,24 +3220,6 @@ strong,b{font-weight:700;}
               <div class="ai-clean-intro">
                 <span class="ai-clean-intro-icon">✨</span>
                 <div class="ai-clean-intro-title">매핑한 우리 집에 맞춰 로보킹이 알아서 청소해요.</div>
-              </div>
-
-              <div class="battery-strategy-card" id="batteryStrategyCard">
-                <div class="battery-strategy-head">
-                  <div class="battery-strategy-title">🔋 배터리 준비 모드</div>
-                  <div class="battery-strategy-badge" id="batteryStrategyBadge">케어 우선</div>
-                </div>
-                <div class="battery-strategy-row">
-                  <button type="button" class="battery-strategy-btn" id="batteryStrategyCareBtn" data-action="batteryStrategyCare">
-                    <span class="strategy-main">🌱 배터리 케어 우선</span>
-                    <span class="strategy-sub">필요한 만큼만 준비</span>
-                  </button>
-                  <button type="button" class="battery-strategy-btn ready" id="batteryStrategyReadyBtn" data-action="batteryStrategyReady">
-                    <span class="strategy-main">⚡ 청소 준비 우선</span>
-                    <span class="strategy-sub">항상 90%까지 준비</span>
-                  </button>
-                </div>
-                <div class="battery-strategy-note" id="batteryStrategyNote">집 전체 예상 필요량에 맞춰 필요한 만큼만 충전해 둬요.</div>
               </div>
 
               <div class="ai-clean-mode-row">
@@ -3396,12 +3400,20 @@ strong,b{font-weight:700;}
             <div class="weekly-battery-title">🌿 이번 주 배터리 습관</div>
             <div class="weekly-battery-grade" id="weeklyBatteryGrade">아주 좋아요</div>
           </div>
-          <div class="weekly-battery-message" id="weeklyBatteryMessage">이번 주에도 필요한 만큼 충전하는 습관을 잘 지키고 있어요.</div>
-          <div class="weekly-battery-stats">
-            <div class="weekly-battery-stat"><span>배터리 보호 충전</span><b id="weeklySmartCharge">4</b><small>회</small></div>
-            <div class="weekly-battery-stat"><span>15% 잔량 보호</span><b id="weeklyReserveGuard">1</b><small>회</small></div>
+          <div class="weekly-battery-message" id="weeklyBatteryMessage">이번 주 사용 패턴을 바탕으로 로보킹이 배터리 습관을 코칭해요.</div>
+          <div class="weekly-battery-insights">
+            <div class="weekly-battery-insight">
+              <span class="weekly-insight-label">이번 주 충전 패턴</span>
+              <b id="weeklyChargePattern">필요량 중심</b>
+              <small id="weeklyChargePatternSub">청소할 만큼만 준비하는 패턴이에요.</small>
+            </div>
+            <div class="weekly-battery-insight coach">
+              <span class="weekly-insight-label">다음 코칭</span>
+              <b id="weeklyNextCoach">현재 습관 유지</b>
+              <small id="weeklyNextCoachSub">지금처럼 배터리에 부담을 줄이는 습관을 이어가 보세요.</small>
+            </div>
           </div>
-          <div class="weekly-battery-foot" id="weeklyBatteryFoot">좋은 배터리 습관을 로보킹과 함께 이어가고 있어요.</div>
+          <div class="weekly-battery-foot" id="weeklyBatteryFoot">로보킹이 사용 패턴을 보고 다음 배터리 습관을 추천해요.</div>
         </div>
 
         <!-- 2. 현재 부품 상태 -->
@@ -4823,15 +4835,15 @@ function setBatteryStrategy(strategy){
   saveBatteryStrategy();
   render();
   if(!state.profileReady){
-    showToast(strategy==="ready"?"학습 후 청소 준비 우선 모드를 적용할게요.":"학습 후 배터리 케어 우선 모드를 적용할게요.");
+    showToast(strategy==="ready"?"청소 준비 우선 모드를 적용할게요.":"배터리 케어 우선 모드를 적용할게요.");
     return;
   }
   if(strategy==="ready"){
     state.nextHomeTargetSoc=MAX_CHARGE_SOC;
-    showToast("청소 준비 우선: 청소 후 항상 90%까지 미리 준비해둘게요.");
+    showToast("청소 준비 우선: 청소 후 최대 충전 상한까지 여유 있게 준비해둘게요.");
   }else{
     state.nextHomeTargetSoc=getWholeHomeTargetSoc();
-    showToast("배터리 케어 우선: 다음 집 전체 청소에 필요한 만큼만 미리 준비해둘게요.");
+    showToast("배터리 케어 우선: 다음 청소에 필요한 만큼만 준비해둘게요.");
   }
 }
 
@@ -4869,6 +4881,7 @@ function renderPlan(){
   const batteryStrategyReadyBtn=$('batteryStrategyReadyBtn');
   const batteryStrategyBadge=$('batteryStrategyBadge');
   const batteryStrategyNote=$('batteryStrategyNote');
+  const batteryStrategySection=$('batteryStrategySection');
   if(flowGuide){
     const guideText=guideForCurrentState();
     let tone=state.userGuideTone||"normal";
@@ -4908,25 +4921,25 @@ function renderPlan(){
   if(aiMappedControls)aiMappedControls.style.display=aiReady?'block':'none';
   if(learnPanel)learnPanel.style.display=aiReady?'none':'block';
 
+  const strategyBusy=state.cleaning || state.charging || state.mapping || state.predicting;
+  if(batteryStrategyCareBtn){
+    batteryStrategyCareBtn.classList.toggle('active',state.batteryStrategy==='care');
+    batteryStrategyCareBtn.disabled=strategyBusy;
+  }
+  if(batteryStrategyReadyBtn){
+    batteryStrategyReadyBtn.classList.toggle('active',state.batteryStrategy==='ready');
+    batteryStrategyReadyBtn.disabled=strategyBusy;
+  }
+  if(batteryStrategyBadge)batteryStrategyBadge.textContent=state.batteryStrategy==='ready'?'준비 우선':'케어 우선';
+  if(batteryStrategyNote){
+    batteryStrategyNote.innerHTML=state.batteryStrategy==='ready'
+      ? '<b>청소 준비 우선</b> · 청소 후 최대 충전 상한까지 여유 있게 준비해요.'
+      : '<b>배터리 케어 우선</b> · 청소에 필요한 만큼만 충전해요.';
+  }
+
   if(aiReady){
     const noGoCount=(state.noGoZones||[]).length;
     const busy=state.cleaning || state.charging || state.mapping || state.predicting;
-    const wholeHomeTarget=getWholeHomeTargetSoc();
-
-    if(batteryStrategyCareBtn){
-      batteryStrategyCareBtn.classList.toggle('active',state.batteryStrategy==='care');
-      batteryStrategyCareBtn.disabled=busy;
-    }
-    if(batteryStrategyReadyBtn){
-      batteryStrategyReadyBtn.classList.toggle('active',state.batteryStrategy==='ready');
-      batteryStrategyReadyBtn.disabled=busy;
-    }
-    if(batteryStrategyBadge)batteryStrategyBadge.textContent=state.batteryStrategy==='ready'?'준비 우선':'케어 우선';
-    if(batteryStrategyNote){
-      batteryStrategyNote.innerHTML=state.batteryStrategy==='ready'
-        ? '<b>청소 준비 우선</b> · 집 전체 예측 SOC와 관계없이 청소 후 90%까지 미리 충전해 둬요.'
-        : '<b>배터리 케어 우선</b> · 다음 집 전체 청소에 필요한 '+wholeHomeTarget+'%까지만 미리 충전해 둬요.';
-    }
 
     if(aiHomeCleanBtn){
       aiHomeCleanBtn.classList.toggle('active',state.smartCleanMode==='auto' && state.mapMode!=='noGo');
@@ -5199,7 +5212,7 @@ function renderHome(){
     }else{
       if(state.chargePurpose==="nextHome"){
         $("speech").innerHTML=state.batteryStrategy==="ready"
-          ? "<strong style='color:#e48627'>다음 청소 준비 중!</strong><br>90%까지 미리 채울게요."
+          ? "<strong style='color:#e48627'>다음 청소 준비 중!</strong><br>여유 있게 미리 준비할게요."
           : "<strong style='color:#e48627'>다음 청소 준비 중!</strong><br>필요한 만큼만 미리 채울게요.";
         setModeChipText("⚡ 다음 전체 청소 준비 중");
       }else{
@@ -5288,11 +5301,11 @@ function renderCare(){
 
   const note=$("careNote");
   if(note){
-    if(state.charging && state.batteryStrategy==="ready" && state.chargePurpose==="nextHome")note.textContent="청소 준비 우선 모드로 다음 청소를 위해 90%까지 미리 충전하고 있어요.";
+    if(state.charging && state.batteryStrategy==="ready" && state.chargePurpose==="nextHome")note.textContent="청소 준비 우선 모드로 다음 청소를 위해 여유 있게 미리 충전하고 있어요.";
     else if(state.charging)note.textContent="지금 청소에 필요한 "+state.targetSoc+"%까지만 충전하고 있어요.";
     else if(state.cleaning)note.textContent="청소 중이에요. 배터리가 너무 낮아지기 전에 스스로 쉬어가요.";
     else if(state.mapping)note.textContent="학습 청소 중에도 15% 이상 잔량을 남기도록 관리하고 있어요.";
-    else if(state.batteryStrategy==="ready")note.textContent="청소 준비 우선 모드로 청소 후 최대 90%까지 미리 준비해요.";
+    else if(state.batteryStrategy==="ready")note.textContent="청소 준비 우선 모드로 청소 후 최대 충전 상한까지 미리 준비해요.";
     else note.textContent="필요한 만큼만 충전하고 적정 잔량을 유지하며 배터리를 관리하고 있어요.";
   }
 
@@ -5300,25 +5313,42 @@ function renderCare(){
   const weeklyTotal=Number(weekly.smartCharge||0)+Number(weekly.reserveGuard||0);
   const wg=$("weeklyBatteryGrade");
   const wm=$("weeklyBatteryMessage");
-  const ws=$("weeklySmartCharge");
-  const wr=$("weeklyReserveGuard");
+  const wp=$("weeklyChargePattern");
+  const wps=$("weeklyChargePatternSub");
+  const wc=$("weeklyNextCoach");
+  const wcs=$("weeklyNextCoachSub");
   const wf=$("weeklyBatteryFoot");
-  if(ws)ws.textContent=weekly.smartCharge||0;
-  if(wr)wr.textContent=weekly.reserveGuard||0;
+
   let grade="시작해볼까요";
   if(weeklyTotal>=5)grade="아주 좋아요";
   else if(weeklyTotal>=2)grade="좋아요";
   else if(weeklyTotal>=1)grade="잘하고 있어요";
   if(wg)wg.textContent=grade;
+
   if(wm){
     wm.textContent=weeklyTotal>0
-      ? "이번 주에도 과도한 완충과 낮은 잔량 사용을 줄이는 습관을 잘 지키고 있어요."
-      : "이번 주 첫 배터리 보호 습관을 로보킹과 함께 시작해 보세요.";
+      ? "이번 주 사용 패턴을 바탕으로 로보킹이 다음 배터리 습관을 알려드려요."
+      : "이번 주 사용을 시작하면 로보킹이 배터리 습관을 함께 살펴드려요.";
   }
+
+  if(state.batteryStrategy==="ready"){
+    if(wp)wp.textContent="여유 준비형";
+    if(wps)wps.textContent="청소 전에 배터리를 미리 여유 있게 준비하고 있어요.";
+    if(wc)wc.textContent="쉬는 날엔 케어 모드";
+    if(wcs)wcs.textContent="청소 계획이 없는 날에는 배터리 케어 우선으로 바꿔보세요.";
+  }else{
+    if(wp)wp.textContent="필요량 중심";
+    if(wps)wps.textContent="청소할 만큼만 준비하는 패턴을 유지하고 있어요.";
+    if(wc)wc.textContent="현재 습관 유지";
+    if(wcs)wcs.textContent="지금처럼 필요한 만큼 준비하는 습관을 이어가 보세요.";
+  }
+
   if(wf){
-    wf.textContent=state.batteryStrategy==="ready"
-      ? "현재는 청소 준비 우선 모드예요. 100% 완충 대신 90% 상한으로 준비해요."
-      : "현재는 배터리 케어 우선 모드예요. 집 전체 예상 필요량에 맞춰 준비해요.";
+    wf.textContent=weeklyTotal>=5
+      ? "이번 주는 배터리 사용 습관이 안정적이에요. 다음 주에도 지금 패턴을 이어가 보세요."
+      : (weeklyTotal>0
+          ? "사용 기록이 쌓일수록 로보킹이 더 알맞은 배터리 습관을 코칭해드려요."
+          : "청소와 충전 기록이 쌓이면 이번 주 패턴에 맞는 코칭이 표시돼요.");
   }
 }
 function openPartDetail(el){
@@ -5410,7 +5440,7 @@ function renderSchedule(){
       const plan=commutePlan();
       const target=state.profileReady?(state.batteryStrategy==="ready"?MAX_CHARGE_SOC:(state.predicted?state.targetSoc:activeRun.home.targetSoc)):null;
       prev.innerHTML="<b>"+commuteDayText()+"</b> "+plan.start+" 출발 → 약 <b>"+plan.mins+"분</b> 청소 후 "+plan.end+" 도킹"
-        +(target?(state.batteryStrategy==="ready"?"<br>청소 준비 우선 모드로 <b>90%</b>까지 준비해요.":"<br>준비 배터리 <b>"+target+"%</b>만 채우고 출발해요."):"<br>1회차 학습을 마치면 준비 배터리와 시간이 우리 집에 맞게 정해져요.")
+        +(target?(state.batteryStrategy==="ready"?"<br>청소 준비 우선 모드로 여유 있게 미리 준비해요.":"<br>청소에 필요한 만큼만 준비하고 출발해요."):"<br>1회차 학습을 마치면 준비 배터리와 시간이 우리 집에 맞게 정해져요.")
         +"<br>퇴근("+plan.ret+") 전에는 항상 조용히 마무리해요.";
     }
   }
@@ -5458,7 +5488,7 @@ function toggleCommute(){
   render();
   if(state.commuteOn){
     const p=commutePlan();
-    addEvent("출퇴근 예약 설정",commuteDayText()+" "+p.start+" 출발, "+p.end+" 도킹으로 예약했어요. "+(state.batteryStrategy==="ready"?"청소 준비 우선 모드로 90%까지 준비해요.":"필요한 만큼만 충전한 뒤 출발해요."),"예약");
+    addEvent("출퇴근 예약 설정",commuteDayText()+" "+p.start+" 출발, "+p.end+" 도킹으로 예약했어요. "+(state.batteryStrategy==="ready"?"청소 준비 우선 모드로 여유 있게 준비해요.":"필요한 만큼만 충전한 뒤 출발해요."),"예약");
     showToast("출퇴근 맞춤 예약을 켰어요. 집을 비운 시간에만 청소해요.");
   }else showToast("출퇴근 맞춤 예약을 껐어요.");
 }
@@ -6508,11 +6538,11 @@ function prepareNextWholeHomeCharge(){
     state.chargeComplete=true;
     render();
     const msg=state.batteryStrategy==="ready"
-      ? "청소 준비 우선 모드로 다음 청소를 위해 90%까지 준비해뒀어요."
+      ? "청소 준비 우선 모드로 다음 청소를 위해 여유 있게 준비해뒀어요."
       : "다음 전체 청소도 바로 할 수 있게 필요한 만큼 준비해뒀어요.";
     const speech=$("speech");
     if(speech)speech.innerHTML=state.batteryStrategy==="ready"
-      ? "<strong style='color:#2f8b3a'>청소 준비 완료!</strong><br>90%까지 미리 채워뒀어요."
+      ? "<strong style='color:#2f8b3a'>청소 준비 완료!</strong><br>여유 있게 미리 준비해뒀어요."
       : "<strong style='color:#2f8b3a'>다음 청소 준비 완료!</strong><br>필요한 만큼 채워뒀어요.";
     const chip=$("modeChip");
     if(chip)chip.textContent="✅ 다음 전체 청소 준비 완료";
@@ -6524,8 +6554,8 @@ function prepareNextWholeHomeCharge(){
 
   state.nextHomeReady=false;
   if(state.batteryStrategy==="ready"){
-    setGuide("청소가 끝났어요. 청소 준비 우선 모드로 90%까지 미리 충전해둘게요.","charging");
-    showToast("다음 청소에 바로 나갈 수 있게 90%까지 준비할게요.");
+    setGuide("청소가 끝났어요. 청소 준비 우선 모드로 최대 충전 상한까지 미리 준비해둘게요.","charging");
+    showToast("다음 청소에 바로 나갈 수 있게 여유 있게 준비할게요.");
   }else{
     setGuide("청소가 끝났어요. 다음 전체 청소에 필요한 만큼만 미리 충전해둘게요.","charging");
     showToast("다음 청소에 필요한 만큼만 미리 힘을 채울게요.");
@@ -6547,11 +6577,11 @@ function chargeRobot(autoStart=false,purpose='current'){
     const chip=$("modeChip");
     if(isNextHomeCharge){
       if(speech)speech.innerHTML=state.batteryStrategy==="ready"
-        ? "<strong style='color:#2f8b3a'>청소 준비 완료!</strong><br>90%까지 미리 채워뒀어요."
+        ? "<strong style='color:#2f8b3a'>청소 준비 완료!</strong><br>여유 있게 미리 준비해뒀어요."
         : "<strong style='color:#2f8b3a'>다음 청소 준비 완료!</strong><br>필요한 만큼 채워뒀어요.";
       if(chip)chip.textContent="✅ 다음 전체 청소 준비 완료";
-      setGuide(state.batteryStrategy==="ready"?"청소 준비 우선 모드로 90%까지 준비됐어요.":"다음 전체 청소에 필요한 만큼 준비됐어요.","done");
-      showToast(state.batteryStrategy==="ready"?"청소 준비 완료! 90%까지 채워뒀어요.":"다음 청소 준비 완료! 필요한 만큼 채워뒀어요.");
+      setGuide(state.batteryStrategy==="ready"?"청소 준비 우선 모드로 여유 있게 준비됐어요.":"다음 전체 청소에 필요한 만큼 준비됐어요.","done");
+      showToast(state.batteryStrategy==="ready"?"청소 준비 완료! 여유 있게 준비해뒀어요.":"다음 청소 준비 완료! 필요한 만큼 채워뒀어요.");
     }else{
       if(speech)speech.innerHTML="<strong>배불러요!</strong><br>이제 "+state.selectedLabel+" 청소가 가능해요.";
       if(chip)chip.textContent="💖 출동 준비 완료";
@@ -6568,8 +6598,8 @@ function chargeRobot(autoStart=false,purpose='current'){
   state.chargeComplete=false;
   render();
   if(isNextHomeCharge){
-    setGuide(state.batteryStrategy==="ready"?"청소 준비 우선 모드로 90%까지 미리 충전하고 있어요.":"다음 전체 청소에 필요한 만큼만 미리 충전하고 있어요.","charging");
-    showToast(state.batteryStrategy==="ready"?"90%까지 미리 준비할게요.":"다음 청소에 필요한 만큼만 미리 충전할게요.");
+    setGuide(state.batteryStrategy==="ready"?"청소 준비 우선 모드로 최대 충전 상한까지 여유 있게 준비하고 있어요.":"다음 청소에 필요한 만큼만 미리 충전하고 있어요.","charging");
+    showToast(state.batteryStrategy==="ready"?"다음 청소를 위해 여유 있게 미리 준비할게요.":"다음 청소에 필요한 만큼만 미리 충전할게요.");
   }else{
     setGuide("로보킹이 스테이션으로 돌아가고 있어요. 필요한 만큼만 충전하고 출발할게요.","charging");
     showToast("스테이션으로 돌아가 힘을 채울게요.");
@@ -6595,9 +6625,9 @@ function chargeRobot(autoStart=false,purpose='current'){
       state.chargeComplete=true;
       if(isNextHomeCharge){
         if(state.batteryStrategy==="ready")
-          addEvent("청소 준비 우선 충전 완료","집 전체 예측 SOC와 관계없이 90%까지만 미리 채워 다음 청소에 대비했어요.","90% 준비");
+          addEvent("청소 준비 우선 충전 완료","청소 후 최대 충전 상한까지 여유 있게 준비해 다음 청소에 대비했어요.","여유 준비");
         else
-          addEvent("다음 청소 준비 완료","집 전체 청소에 필요한 "+state.targetSoc+"%까지만 미리 채워뒀어요. 완충하지 않고 필요한 만큼만 준비했어요.","맞춤 준비");
+          addEvent("다음 청소 준비 완료","다음 청소에 필요한 만큼만 미리 충전해 준비했어요.","맞춤 준비");
       }else{
         addEvent("맞춤 충전 완료",state.selectedLabel+" 청소에 필요한 "+state.targetSoc+"%까지만 채우고 멈췄어요. 완충 대비 "+(100-state.targetSoc)+"% 덜 채워 과충전을 막았어요.","수명 보호");
       }
@@ -6608,11 +6638,11 @@ function chargeRobot(autoStart=false,purpose='current'){
       const chip=$("modeChip");
       if(isNextHomeCharge){
         if(speech)speech.innerHTML=state.batteryStrategy==="ready"
-          ? "<strong style='color:#2f8b3a'>청소 준비 완료!</strong><br>90%까지 미리 채워뒀어요."
+          ? "<strong style='color:#2f8b3a'>청소 준비 완료!</strong><br>여유 있게 미리 준비해뒀어요."
           : "<strong style='color:#2f8b3a'>다음 청소 준비 완료!</strong><br>필요한 만큼 채워뒀어요.";
         if(chip)chip.textContent="✅ 다음 전체 청소 준비 완료";
-        setGuide(state.batteryStrategy==="ready"?"청소 준비 우선 모드로 90%까지 준비됐어요.":"다음 전체 청소에 필요한 만큼 미리 준비됐어요.","done");
-        showToast(state.batteryStrategy==="ready"?"청소 준비 완료! 90%까지 채워뒀어요.":"다음 청소 준비 완료! 필요한 만큼 채워뒀어요.");
+        setGuide(state.batteryStrategy==="ready"?"청소 준비 우선 모드로 여유 있게 준비됐어요.":"다음 청소에 필요한 만큼 미리 준비됐어요.","done");
+        showToast(state.batteryStrategy==="ready"?"청소 준비 완료! 여유 있게 준비해뒀어요.":"다음 청소 준비 완료! 필요한 만큼 채워뒀어요.");
       }else{
         if(speech)speech.innerHTML="<strong>배불러요!</strong><br>출동할 준비가 됐어요!";
         if(chip)chip.textContent="💖 충전 완료 · 출동 준비";

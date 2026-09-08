@@ -3590,89 +3590,107 @@ function startVacuumSound(){
   const ctx=getAppAudioContext();
   if(!ctx)return;
 
-  // 청소기 소리는 높은 단일 주파수 대신
-  // 낮은 모터음 + 넓은 대역의 흡입 풍절음을 중심으로 만듭니다.
-  // 그래서 모기 같은 "삐이잉"보다는 실제 청소기의 "우우웅-슈우웅"에 가깝습니다.
+  // ==========================================================
+  // 청소 중 효과음: 바닥을 브러시가 "쓱싹-쓱싹" 훑는 느낌
+  // 높은 모터음/강한 바람음은 줄이고,
+  // 필터링한 마찰 노이즈를 좌우로 번갈아 움직여 바닥 청소 느낌을 냅니다.
+  // ==========================================================
+  const now=ctx.currentTime;
   const master=ctx.createGain();
-  master.gain.setValueAtTime(0.0001,ctx.currentTime);
-  master.gain.exponentialRampToValueAtTime(0.075,ctx.currentTime+0.28);
+  master.gain.setValueAtTime(0.0001,now);
+  master.gain.exponentialRampToValueAtTime(0.060,now+0.22);
   master.connect(ctx.destination);
 
-  // 낮은 모터 몸통
+  // 아주 약한 저주파 몸통 진동만 남겨 실제 기계가 움직이는 느낌을 보조합니다.
   const motor=ctx.createOscillator();
   const motorGain=ctx.createGain();
-  motor.type='triangle';
-  motor.frequency.setValueAtTime(68,ctx.currentTime);
-  motorGain.gain.value=0.20;
+  motor.type='sine';
+  motor.frequency.value=52;
+  motorGain.gain.value=0.055;
   motor.connect(motorGain).connect(master);
 
-  // 아주 약한 2차 고조파
-  const harmonic=ctx.createOscillator();
-  const harmonicGain=ctx.createGain();
-  harmonic.type='sine';
-  harmonic.frequency.setValueAtTime(136,ctx.currentTime);
-  harmonicGain.gain.value=0.055;
-  harmonic.connect(harmonicGain).connect(master);
-
-  // 흡입 풍절음용 brown-ish noise
-  const bufferSize=Math.max(1,Math.floor(ctx.sampleRate*2));
+  // 브러시 마찰음에 사용할 화이트 노이즈 버퍼
+  const bufferSize=Math.max(1,Math.floor(ctx.sampleRate*2.4));
   const noiseBuffer=ctx.createBuffer(1,bufferSize,ctx.sampleRate);
-  const data=noiseBuffer.getChannelData(0);
-  let brown=0;
+  const noiseData=noiseBuffer.getChannelData(0);
   for(let i=0;i<bufferSize;i++){
-    const white=Math.random()*2-1;
-    brown=(brown+0.04*white)/1.04;
-    data[i]=brown*3.2;
+    noiseData[i]=(Math.random()*2-1)*0.62;
   }
 
-  const airflow=ctx.createBufferSource();
-  airflow.buffer=noiseBuffer;
-  airflow.loop=true;
+  // 왼쪽 "쓱"
+  const sweepLeft=ctx.createBufferSource();
+  sweepLeft.buffer=noiseBuffer;
+  sweepLeft.loop=true;
+  const leftFilter=ctx.createBiquadFilter();
+  leftFilter.type='bandpass';
+  leftFilter.frequency.value=620;
+  leftFilter.Q.value=0.72;
+  const leftGain=ctx.createGain();
+  leftGain.gain.value=0.13;
+  const leftPan=ctx.createStereoPanner ? ctx.createStereoPanner() : null;
+  if(leftPan){
+    leftPan.pan.value=-0.32;
+    sweepLeft.connect(leftFilter).connect(leftGain).connect(leftPan).connect(master);
+  }else{
+    sweepLeft.connect(leftFilter).connect(leftGain).connect(master);
+  }
 
-  const hp=ctx.createBiquadFilter();
-  hp.type='highpass';
-  hp.frequency.value=130;
+  // 오른쪽 "싹"
+  const sweepRight=ctx.createBufferSource();
+  sweepRight.buffer=noiseBuffer;
+  sweepRight.loop=true;
+  const rightFilter=ctx.createBiquadFilter();
+  rightFilter.type='bandpass';
+  rightFilter.frequency.value=980;
+  rightFilter.Q.value=0.82;
+  const rightGain=ctx.createGain();
+  rightGain.gain.value=0.105;
+  const rightPan=ctx.createStereoPanner ? ctx.createStereoPanner() : null;
+  if(rightPan){
+    rightPan.pan.value=0.32;
+    sweepRight.connect(rightFilter).connect(rightGain).connect(rightPan).connect(master);
+  }else{
+    sweepRight.connect(rightFilter).connect(rightGain).connect(master);
+  }
 
-  const lp=ctx.createBiquadFilter();
-  lp.type='lowpass';
-  lp.frequency.value=1200;
-  lp.Q.value=0.45;
+  // "쓱-싹" 리듬: 두 마찰음의 세기를 서로 다른 속도로 부드럽게 흔듭니다.
+  const sweepLfo1=ctx.createOscillator();
+  const sweepLfoGain1=ctx.createGain();
+  sweepLfo1.type='sine';
+  sweepLfo1.frequency.value=1.65;
+  sweepLfoGain1.gain.value=0.095;
+  sweepLfo1.connect(sweepLfoGain1).connect(leftGain.gain);
 
-  const airflowGain=ctx.createGain();
-  airflowGain.gain.value=0.52;
-  airflow.connect(hp).connect(lp).connect(airflowGain).connect(master);
+  const sweepLfo2=ctx.createOscillator();
+  const sweepLfoGain2=ctx.createGain();
+  sweepLfo2.type='sine';
+  sweepLfo2.frequency.value=1.82;
+  sweepLfoGain2.gain.value=0.074;
+  sweepLfo2.connect(sweepLfoGain2).connect(rightGain.gain);
 
-  // 바닥 브러시가 닿는 느낌의 낮은 마찰음
-  const brush=ctx.createBufferSource();
-  brush.buffer=noiseBuffer;
-  brush.loop=true;
+  // 바닥에 닿는 브러시의 낮은 "사각" 질감
+  const floorRub=ctx.createBufferSource();
+  floorRub.buffer=noiseBuffer;
+  floorRub.loop=true;
+  const rubFilter=ctx.createBiquadFilter();
+  rubFilter.type='lowpass';
+  rubFilter.frequency.value=340;
+  rubFilter.Q.value=0.55;
+  const rubGain=ctx.createGain();
+  rubGain.gain.value=0.040;
+  floorRub.connect(rubFilter).connect(rubGain).connect(master);
 
-  const brushFilter=ctx.createBiquadFilter();
-  brushFilter.type='bandpass';
-  brushFilter.frequency.value=270;
-  brushFilter.Q.value=0.8;
+  motor.start(now);
+  sweepLeft.start(now);
+  sweepRight.start(now+0.08);
+  floorRub.start(now);
+  sweepLfo1.start(now);
+  sweepLfo2.start(now+0.16);
 
-  const brushGain=ctx.createGain();
-  brushGain.gain.value=0.15;
-  brush.connect(brushFilter).connect(brushGain).connect(master);
-
-  // 기계음이 너무 고정적으로 들리지 않도록 아주 조금만 흔들어줍니다.
-  const lfo=ctx.createOscillator();
-  const lfoGain=ctx.createGain();
-  lfo.type='sine';
-  lfo.frequency.value=1.4;
-  lfoGain.gain.value=0.9;
-  lfo.connect(lfoGain);
-  lfoGain.connect(motor.frequency);
-  lfoGain.connect(harmonic.frequency);
-
-  motor.start();
-  harmonic.start();
-  airflow.start();
-  brush.start();
-  lfo.start();
-
-  vacuumSound={master,motor,harmonic,airflow,brush,lfo};
+  vacuumSound={
+    master,motor,sweepLeft,sweepRight,floorRub,sweepLfo1,sweepLfo2,
+    leftPan,rightPan
+  };
 }
 
 function stopVacuumSound(){
@@ -3688,7 +3706,7 @@ function stopVacuumSound(){
     nodes.master.gain.exponentialRampToValueAtTime(0.0001,t+0.32);
   }catch(e){}
   setTimeout(()=>{
-    ['motor','harmonic','airflow','brush','lfo'].forEach(k=>{try{nodes[k].stop()}catch(e){}});
+    ['motor','sweepLeft','sweepRight','floorRub','sweepLfo1','sweepLfo2'].forEach(k=>{try{nodes[k].stop()}catch(e){}});
     try{nodes.master.disconnect()}catch(e){}
   },360);
 }
@@ -3696,7 +3714,7 @@ function stopVacuumSound(){
 // ============================================================
 // 충전 중 효과음
 // - 충전되는 동안만 아주 낮고 부드러운 "웅... 웅..." 느낌
-// - 충전이 끝나면 별도 완료음 없이 자연스럽게 사라집니다.
+// - 충전이 끝나면 지속음은 자연스럽게 사라지고, 짧은 완료 차임이 재생됩니다.
 // ============================================================
 function startChargingSound(){
   if(chargingSound)return;
@@ -3786,6 +3804,43 @@ function playCleaningCompleteSound(){
   note(now+0.34,783.99,0.36,0.58);
 
   setTimeout(()=>{try{master.disconnect()}catch(e){}},900);
+}
+
+
+// ============================================================
+// 충전 완료 효과음
+// - 충전이 끝났을 때만 부드러운 2음 차임
+// - 청소 완료음과 구분되도록 더 짧고 차분하게 구성
+// ============================================================
+function playChargingCompleteSound(){
+  const ctx=getAppAudioContext();
+  if(!ctx)return;
+
+  const now=ctx.currentTime;
+  const master=ctx.createGain();
+  master.gain.setValueAtTime(0.0001,now);
+  master.gain.exponentialRampToValueAtTime(0.060,now+0.012);
+  master.gain.exponentialRampToValueAtTime(0.0001,now+0.72);
+  master.connect(ctx.destination);
+
+  const note=(start,freq,duration,volume)=>{
+    const osc=ctx.createOscillator();
+    const gain=ctx.createGain();
+    osc.type='sine';
+    osc.frequency.setValueAtTime(freq,start);
+    gain.gain.setValueAtTime(0.0001,start);
+    gain.gain.exponentialRampToValueAtTime(volume,start+0.010);
+    gain.gain.exponentialRampToValueAtTime(0.0001,start+duration);
+    osc.connect(gain).connect(master);
+    osc.start(start);
+    osc.stop(start+duration+0.03);
+  };
+
+  // "딩-동♪" 느낌의 짧고 안정적인 충전 완료음
+  note(now,659.25,0.26,0.70);
+  note(now+0.20,880.00,0.34,0.58);
+
+  setTimeout(()=>{try{master.disconnect()}catch(e){}},800);
 }
 
 function playHomeGenieTouchSound(){
@@ -6843,6 +6898,7 @@ function chargeRobot(autoStart=false,purpose='current'){
       clearInterval(timer);
       state.charging=false;
       stopChargingSound();
+      playChargingCompleteSound();
       state.robotMotion='docked';
       state.temperature=29;
       state.acceptCount+=1;

@@ -3559,7 +3559,7 @@ const esc=(s)=>String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").r
 // ============================================================
 // 홈지니 효과음 시스템
 // - 전체 사운드 볼륨 강화
-// - 청소 중: 바닥 브러시의 "쓱-싹 / 쓱-싹" 마찰음 중심
+// - 청소 중: 부드러운 "위이이잉——" 로봇청소기 모터음
 // - 충전 중: 잔잔한 충전 펄스음
 // - 청소 완료: 밝은 3음 차임
 // - 충전 완료: 부드러운 2음 차임
@@ -3604,92 +3604,11 @@ function unlockAppAudio(){
   if(ctx.state==='suspended')ctx.resume().catch(()=>{});
 }
 
-// ------------------------------------------------------------
-// 반복 사용용 마찰 노이즈 생성
-// 단순 화이트노이즈보다 결이 거칠게 들리도록 저역 성분을 섞습니다.
-// ------------------------------------------------------------
-function createBrushNoiseBuffer(ctx,duration=0.55){
-  const size=Math.max(1,Math.floor(ctx.sampleRate*duration));
-  const buffer=ctx.createBuffer(1,size,ctx.sampleRate);
-  const data=buffer.getChannelData(0);
-  let smooth=0;
-  for(let i=0;i<size;i++){
-    const raw=Math.random()*2-1;
-    smooth=smooth*0.78+raw*0.22;
-    data[i]=(raw*0.36+smooth*0.92)*0.82;
-  }
-  return buffer;
-}
-
-// ------------------------------------------------------------
-// 한 번의 "쓱" 또는 "싹"을 만드는 짧은 마찰음
-// 지속 바람음이 아니라, 짧은 마찰음을 주기적으로 만들어
-// 실제 바닥을 훑는 느낌이 나도록 합니다.
-// ------------------------------------------------------------
-function playBrushSweep(ctx,master,noiseBuffer,side=1){
-  if(!ctx||!master||!noiseBuffer)return;
-  const now=ctx.currentTime;
-
-  const src=ctx.createBufferSource();
-  src.buffer=noiseBuffer;
-
-  const band=ctx.createBiquadFilter();
-  band.type='bandpass';
-  band.Q.value=0.62;
-  band.frequency.setValueAtTime(side<0?430:520,now);
-  band.frequency.exponentialRampToValueAtTime(side<0?1350:1550,now+0.16);
-  band.frequency.exponentialRampToValueAtTime(side<0?720:820,now+0.34);
-
-  const low=ctx.createBiquadFilter();
-  low.type='lowpass';
-  low.frequency.value=2100;
-
-  const gain=ctx.createGain();
-  gain.gain.setValueAtTime(0.0001,now);
-  gain.gain.exponentialRampToValueAtTime(0.92,now+0.025);
-  gain.gain.exponentialRampToValueAtTime(0.24,now+0.17);
-  gain.gain.exponentialRampToValueAtTime(0.0001,now+0.38);
-
-  // 브러시가 바닥을 "탁" 치는 느낌을 아주 약하게 추가
-  const grit=ctx.createOscillator();
-  const gritGain=ctx.createGain();
-  grit.type='triangle';
-  grit.frequency.setValueAtTime(side<0?118:132,now);
-  grit.frequency.exponentialRampToValueAtTime(side<0?82:94,now+0.11);
-  gritGain.gain.setValueAtTime(0.0001,now);
-  gritGain.gain.exponentialRampToValueAtTime(0.16,now+0.012);
-  gritGain.gain.exponentialRampToValueAtTime(0.0001,now+0.13);
-
-  const pan=ctx.createStereoPanner?ctx.createStereoPanner():null;
-  if(pan){
-    pan.pan.value=side<0?-0.34:0.34;
-    src.connect(band).connect(low).connect(gain).connect(pan).connect(master);
-    grit.connect(gritGain).connect(pan);
-    gritGain.connect(pan);
-  }else{
-    src.connect(band).connect(low).connect(gain).connect(master);
-    grit.connect(gritGain).connect(master);
-  }
-
-  // StereoPanner 경로의 grit 연결을 안전하게 보정
-  if(pan){
-    try{gritGain.disconnect();}catch(e){}
-    grit.connect(gritGain).connect(pan).connect(master);
-  }
-
-  // 버퍼의 시작 위치를 조금씩 바꿔 반복감 감소
-  const maxOffset=Math.max(0,noiseBuffer.duration-0.42);
-  const offset=maxOffset>0?Math.random()*maxOffset:0;
-  src.start(now,offset,0.40);
-  src.stop(now+0.41);
-  grit.start(now);
-  grit.stop(now+0.14);
-}
-
 // ============================================================
 // 청소 중 효과음
-// - 핵심: 연속 바람음이 아니라 0.38초 간격의 "쓱-싹" 마찰음
-// - 좌/우를 번갈아 재생해 브러시가 바닥을 훑는 느낌 강화
+// - 바닥 마찰음/쿵쾅 소리 없이 부드러운 "위이이잉——" 모터음
+// - 낮은 모터 기본음 + 중간 대역 회전음 + 아주 약한 흡입 노이즈
+// - 높은 단일 주파수를 피해서 모기 소리처럼 들리지 않게 구성
 // ============================================================
 function startVacuumSound(){
   if(vacuumSound)return;
@@ -3698,34 +3617,64 @@ function startVacuumSound(){
 
   const output=getAppAudioMaster(ctx);
   const now=ctx.currentTime;
+
   const master=ctx.createGain();
   master.gain.setValueAtTime(0.0001,now);
-  master.gain.exponentialRampToValueAtTime(0.145,now+0.16);
+  master.gain.exponentialRampToValueAtTime(0.105,now+0.22);
   master.connect(output);
 
-  // 아주 약한 기계 진동만 배경에 둡니다.
+  // 1) 로봇청소기 모터의 중심이 되는 낮은 회전음
   const motor=ctx.createOscillator();
   const motorGain=ctx.createGain();
   motor.type='triangle';
-  motor.frequency.value=46;
-  motorGain.gain.value=0.075;
+  motor.frequency.setValueAtTime(118,now);
+  motorGain.gain.value=0.52;
   motor.connect(motorGain).connect(master);
+
+  // 2) "위이잉" 느낌을 만드는 부드러운 2차 성분
+  const whirr=ctx.createOscillator();
+  const whirrGain=ctx.createGain();
+  whirr.type='sine';
+  whirr.frequency.setValueAtTime(236,now);
+  whirrGain.gain.value=0.28;
+  whirr.connect(whirrGain).connect(master);
+
+  // 3) 회전수가 아주 미세하게 흔들리도록 해서 기계음이 너무 인공적이지 않게 함
+  const lfo=ctx.createOscillator();
+  const lfoGainMotor=ctx.createGain();
+  const lfoGainWhirr=ctx.createGain();
+  lfo.type='sine';
+  lfo.frequency.value=1.7;
+  lfoGainMotor.gain.value=2.2;
+  lfoGainWhirr.gain.value=4.2;
+  lfo.connect(lfoGainMotor).connect(motor.frequency);
+  lfo.connect(lfoGainWhirr).connect(whirr.frequency);
+
+  // 4) 아주 약한 흡입 공기 소리. 주역이 아니라 질감만 더함.
+  const noiseLength=Math.max(1,Math.floor(ctx.sampleRate*1.0));
+  const noiseBuffer=ctx.createBuffer(1,noiseLength,ctx.sampleRate);
+  const noiseData=noiseBuffer.getChannelData(0);
+  for(let i=0;i<noiseLength;i++)noiseData[i]=Math.random()*2-1;
+
+  const noise=ctx.createBufferSource();
+  noise.buffer=noiseBuffer;
+  noise.loop=true;
+
+  const noiseFilter=ctx.createBiquadFilter();
+  noiseFilter.type='bandpass';
+  noiseFilter.frequency.value=620;
+  noiseFilter.Q.value=0.55;
+
+  const noiseGain=ctx.createGain();
+  noiseGain.gain.value=0.07;
+  noise.connect(noiseFilter).connect(noiseGain).connect(master);
+
   motor.start(now);
+  whirr.start(now);
+  lfo.start(now);
+  noise.start(now);
 
-  const noiseBuffer=createBrushNoiseBuffer(ctx,0.7);
-  let side=-1;
-
-  const triggerSweep=()=>{
-    if(!vacuumSound)return;
-    playBrushSweep(ctx,master,noiseBuffer,side);
-    side*=-1;
-  };
-
-  // 첫 소리는 즉시 들리게 하고 이후 쓱-싹 반복
-  triggerSweep();
-  const sweepTimer=setInterval(triggerSweep,380);
-
-  vacuumSound={master,motor,sweepTimer};
+  vacuumSound={master,motor,whirr,lfo,noise};
 }
 
 function stopVacuumSound(){
@@ -3733,18 +3682,21 @@ function stopVacuumSound(){
   const ctx=getAppAudioContext();
   const nodes=vacuumSound;
   vacuumSound=null;
-  if(nodes.sweepTimer)clearInterval(nodes.sweepTimer);
   if(!ctx)return;
+
   const t=ctx.currentTime;
   try{
     nodes.master.gain.cancelScheduledValues(t);
     nodes.master.gain.setValueAtTime(Math.max(nodes.master.gain.value,0.0001),t);
-    nodes.master.gain.exponentialRampToValueAtTime(0.0001,t+0.20);
+    nodes.master.gain.exponentialRampToValueAtTime(0.0001,t+0.28);
   }catch(e){}
+
   setTimeout(()=>{
-    try{nodes.motor.stop()}catch(e){}
+    ['motor','whirr','lfo','noise'].forEach(key=>{
+      try{nodes[key].stop()}catch(e){}
+    });
     try{nodes.master.disconnect()}catch(e){}
-  },240);
+  },320);
 }
 
 // ============================================================

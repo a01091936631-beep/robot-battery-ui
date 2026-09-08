@@ -3572,7 +3572,7 @@ let chargingSound=null;
 
 // 전체 효과음 출력 배율.
 // 기존 대비 2배로 키운 값입니다. 너무 크면 2.5~3.0 정도로 낮춰도 됩니다.
-const APP_SOUND_VOLUME=10;
+const APP_SOUND_VOLUME=30;
 
 function getAppAudioContext(){
   if(!appAudioCtx){

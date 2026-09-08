@@ -3564,6 +3564,7 @@ const esc=(s)=>String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").r
 // ============================================================
 let appAudioCtx=null;
 let vacuumSound=null;
+let chargingSound=null;
 
 function getAppAudioContext(){
   if(!appAudioCtx){
@@ -3589,58 +3590,89 @@ function startVacuumSound(){
   const ctx=getAppAudioContext();
   if(!ctx)return;
 
+  // 청소기 소리는 높은 단일 주파수 대신
+  // 낮은 모터음 + 넓은 대역의 흡입 풍절음을 중심으로 만듭니다.
+  // 그래서 모기 같은 "삐이잉"보다는 실제 청소기의 "우우웅-슈우웅"에 가깝습니다.
   const master=ctx.createGain();
   master.gain.setValueAtTime(0.0001,ctx.currentTime);
-  master.gain.exponentialRampToValueAtTime(0.045,ctx.currentTime+0.22);
+  master.gain.exponentialRampToValueAtTime(0.075,ctx.currentTime+0.28);
   master.connect(ctx.destination);
 
-  // 모터의 낮은 웅- 소리
+  // 낮은 모터 몸통
   const motor=ctx.createOscillator();
   const motorGain=ctx.createGain();
-  motor.type='sawtooth';
-  motor.frequency.setValueAtTime(108,ctx.currentTime);
-  motorGain.gain.value=0.34;
+  motor.type='triangle';
+  motor.frequency.setValueAtTime(68,ctx.currentTime);
+  motorGain.gain.value=0.20;
   motor.connect(motorGain).connect(master);
 
-  // 흡입 팬의 가벼운 고주파 성분
-  const fan=ctx.createOscillator();
-  const fanGain=ctx.createGain();
-  fan.type='sine';
-  fan.frequency.setValueAtTime(410,ctx.currentTime);
-  fanGain.gain.value=0.16;
-  fan.connect(fanGain).connect(master);
+  // 아주 약한 2차 고조파
+  const harmonic=ctx.createOscillator();
+  const harmonicGain=ctx.createGain();
+  harmonic.type='sine';
+  harmonic.frequency.setValueAtTime(136,ctx.currentTime);
+  harmonicGain.gain.value=0.055;
+  harmonic.connect(harmonicGain).connect(master);
 
-  // 일정한 전자음처럼 들리지 않도록 아주 약하게 음높이를 흔듭니다.
+  // 흡입 풍절음용 brown-ish noise
+  const bufferSize=Math.max(1,Math.floor(ctx.sampleRate*2));
+  const noiseBuffer=ctx.createBuffer(1,bufferSize,ctx.sampleRate);
+  const data=noiseBuffer.getChannelData(0);
+  let brown=0;
+  for(let i=0;i<bufferSize;i++){
+    const white=Math.random()*2-1;
+    brown=(brown+0.04*white)/1.04;
+    data[i]=brown*3.2;
+  }
+
+  const airflow=ctx.createBufferSource();
+  airflow.buffer=noiseBuffer;
+  airflow.loop=true;
+
+  const hp=ctx.createBiquadFilter();
+  hp.type='highpass';
+  hp.frequency.value=130;
+
+  const lp=ctx.createBiquadFilter();
+  lp.type='lowpass';
+  lp.frequency.value=1200;
+  lp.Q.value=0.45;
+
+  const airflowGain=ctx.createGain();
+  airflowGain.gain.value=0.52;
+  airflow.connect(hp).connect(lp).connect(airflowGain).connect(master);
+
+  // 바닥 브러시가 닿는 느낌의 낮은 마찰음
+  const brush=ctx.createBufferSource();
+  brush.buffer=noiseBuffer;
+  brush.loop=true;
+
+  const brushFilter=ctx.createBiquadFilter();
+  brushFilter.type='bandpass';
+  brushFilter.frequency.value=270;
+  brushFilter.Q.value=0.8;
+
+  const brushGain=ctx.createGain();
+  brushGain.gain.value=0.15;
+  brush.connect(brushFilter).connect(brushGain).connect(master);
+
+  // 기계음이 너무 고정적으로 들리지 않도록 아주 조금만 흔들어줍니다.
   const lfo=ctx.createOscillator();
   const lfoGain=ctx.createGain();
   lfo.type='sine';
-  lfo.frequency.value=2.6;
-  lfoGain.gain.value=3.5;
+  lfo.frequency.value=1.4;
+  lfoGain.gain.value=0.9;
   lfo.connect(lfoGain);
   lfoGain.connect(motor.frequency);
-  lfoGain.connect(fan.frequency);
-
-  // 바닥 흡입 느낌을 위한 약한 filtered noise
-  const bufferSize=Math.max(1,Math.floor(ctx.sampleRate*1.4));
-  const noiseBuffer=ctx.createBuffer(1,bufferSize,ctx.sampleRate);
-  const data=noiseBuffer.getChannelData(0);
-  for(let i=0;i<bufferSize;i++)data[i]=(Math.random()*2-1)*0.22;
-  const noise=ctx.createBufferSource();
-  noise.buffer=noiseBuffer;
-  noise.loop=true;
-  const noiseFilter=ctx.createBiquadFilter();
-  noiseFilter.type='bandpass';
-  noiseFilter.frequency.value=720;
-  noiseFilter.Q.value=0.65;
-  const noiseGain=ctx.createGain();
-  noiseGain.gain.value=0.08;
-  noise.connect(noiseFilter).connect(noiseGain).connect(master);
+  lfoGain.connect(harmonic.frequency);
 
   motor.start();
-  fan.start();
+  harmonic.start();
+  airflow.start();
+  brush.start();
   lfo.start();
-  noise.start();
-  vacuumSound={master,motor,fan,lfo,noise,motorGain,fanGain,noiseGain};
+
+  vacuumSound={master,motor,harmonic,airflow,brush,lfo};
 }
 
 function stopVacuumSound(){
@@ -3653,12 +3685,107 @@ function stopVacuumSound(){
   try{
     nodes.master.gain.cancelScheduledValues(t);
     nodes.master.gain.setValueAtTime(Math.max(nodes.master.gain.value,0.0001),t);
-    nodes.master.gain.exponentialRampToValueAtTime(0.0001,t+0.24);
+    nodes.master.gain.exponentialRampToValueAtTime(0.0001,t+0.32);
   }catch(e){}
   setTimeout(()=>{
-    ['motor','fan','lfo','noise'].forEach(k=>{try{nodes[k].stop()}catch(e){}});
+    ['motor','harmonic','airflow','brush','lfo'].forEach(k=>{try{nodes[k].stop()}catch(e){}});
     try{nodes.master.disconnect()}catch(e){}
-  },280);
+  },360);
+}
+
+// ============================================================
+// 충전 중 효과음
+// - 충전되는 동안만 아주 낮고 부드러운 "웅... 웅..." 느낌
+// - 충전이 끝나면 별도 완료음 없이 자연스럽게 사라집니다.
+// ============================================================
+function startChargingSound(){
+  if(chargingSound)return;
+  const ctx=getAppAudioContext();
+  if(!ctx)return;
+
+  const master=ctx.createGain();
+  master.gain.setValueAtTime(0.0001,ctx.currentTime);
+  master.gain.exponentialRampToValueAtTime(0.027,ctx.currentTime+0.35);
+  master.connect(ctx.destination);
+
+  const hum=ctx.createOscillator();
+  const humGain=ctx.createGain();
+  hum.type='sine';
+  hum.frequency.value=78;
+  humGain.gain.value=0.34;
+  hum.connect(humGain).connect(master);
+
+  const soft=ctx.createOscillator();
+  const softGain=ctx.createGain();
+  soft.type='triangle';
+  soft.frequency.value=156;
+  softGain.gain.value=0.055;
+  soft.connect(softGain).connect(master);
+
+  // 느린 펄스로 충전 중이라는 느낌만 살짝 줍니다.
+  const pulse=ctx.createOscillator();
+  const pulseGain=ctx.createGain();
+  pulse.type='sine';
+  pulse.frequency.value=0.75;
+  pulseGain.gain.value=0.055;
+  pulse.connect(pulseGain).connect(humGain.gain);
+
+  hum.start();
+  soft.start();
+  pulse.start();
+  chargingSound={master,hum,soft,pulse};
+}
+
+function stopChargingSound(){
+  if(!chargingSound)return;
+  const ctx=getAppAudioContext();
+  const nodes=chargingSound;
+  chargingSound=null;
+  if(!ctx)return;
+  const t=ctx.currentTime;
+  try{
+    nodes.master.gain.cancelScheduledValues(t);
+    nodes.master.gain.setValueAtTime(Math.max(nodes.master.gain.value,0.0001),t);
+    nodes.master.gain.exponentialRampToValueAtTime(0.0001,t+0.28);
+  }catch(e){}
+  setTimeout(()=>{
+    ['hum','soft','pulse'].forEach(k=>{try{nodes[k].stop()}catch(e){}});
+    try{nodes.master.disconnect()}catch(e){}
+  },320);
+}
+
+// ============================================================
+// 청소 완료 효과음
+// - 청소가 완전히 끝났을 때만 짧고 밝은 3음 차임
+// ============================================================
+function playCleaningCompleteSound(){
+  const ctx=getAppAudioContext();
+  if(!ctx)return;
+  const now=ctx.currentTime;
+  const master=ctx.createGain();
+  master.gain.setValueAtTime(0.0001,now);
+  master.gain.exponentialRampToValueAtTime(0.070,now+0.015);
+  master.gain.exponentialRampToValueAtTime(0.0001,now+0.82);
+  master.connect(ctx.destination);
+
+  const note=(start,freq,duration,vol)=>{
+    const osc=ctx.createOscillator();
+    const gain=ctx.createGain();
+    osc.type='sine';
+    osc.frequency.setValueAtTime(freq,start);
+    gain.gain.setValueAtTime(0.0001,start);
+    gain.gain.exponentialRampToValueAtTime(vol,start+0.012);
+    gain.gain.exponentialRampToValueAtTime(0.0001,start+duration);
+    osc.connect(gain).connect(master);
+    osc.start(start);
+    osc.stop(start+duration+0.03);
+  };
+
+  note(now,523.25,0.24,0.70);
+  note(now+0.16,659.25,0.28,0.62);
+  note(now+0.34,783.99,0.36,0.58);
+
+  setTimeout(()=>{try{master.disconnect()}catch(e){}},900);
 }
 
 function playHomeGenieTouchSound(){
@@ -4422,6 +4549,7 @@ function startFirstMapping(){
       clearInterval(timer);
       state.mapping=false;
       stopVacuumSound();
+      playCleaningCompleteSound();
       state.profileReady=true;
       state.predicted=false;
       state.progress=100;
@@ -6570,6 +6698,7 @@ function startCleaning(){
         return;
       }
 
+      playCleaningCompleteSound();
       state.cleaningRemainingSoc=0;
       state.progress=100;
       finishCleaningZoneProgress();
@@ -6692,6 +6821,7 @@ function chargeRobot(autoStart=false,purpose='current'){
   closeModal();
   switchPage("homePage");
   state.charging=true;
+  startChargingSound();
   state.robotMotion='returning';
   state.chargeComplete=false;
   render();
@@ -6712,6 +6842,7 @@ function chargeRobot(autoStart=false,purpose='current'){
     if(state.soc>=state.targetSoc){
       clearInterval(timer);
       state.charging=false;
+      stopChargingSound();
       state.robotMotion='docked';
       state.temperature=29;
       state.acceptCount+=1;

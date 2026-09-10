@@ -193,46 +193,6 @@ st.markdown(
 #rewardPage .reward-folder-tabs{margin-top:2px!important;}
 #rewardPage .section-title{margin-bottom:8px!important;}
 
-/* ===== 시스템 전체 소리 ON/OFF ===== */
-#homePage .system-sound-toggle{
-  position:absolute;
-  left:10px;
-  bottom:12px;
-  z-index:95;
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  gap:5px;
-  min-width:76px;
-  height:31px;
-  padding:0 10px;
-  border:1px solid rgba(255,255,255,.72);
-  border-radius:999px;
-  background:rgba(255,255,255,.90);
-  color:#4d6d47;
-  box-shadow:0 3px 10px rgba(70,47,27,.13);
-  backdrop-filter:blur(7px);
-  -webkit-backdrop-filter:blur(7px);
-  font-family:inherit;
-  font-size:10.5px;
-  line-height:1;
-  font-weight:800;
-  letter-spacing:-.02em;
-  cursor:pointer;
-  transition:transform .15s ease, background .18s ease, color .18s ease, opacity .18s ease;
-}
-#homePage .system-sound-toggle:active{transform:scale(.96);}
-#homePage .system-sound-toggle .sound-icon{font-size:13px;line-height:1;}
-#homePage .system-sound-toggle.off{
-  background:rgba(84,78,72,.80);
-  border-color:rgba(255,255,255,.32);
-  color:#fff;
-  opacity:.88;
-}
-#homePage .system-sound-toggle:focus-visible{
-  outline:2px solid rgba(70,160,73,.72);
-  outline-offset:2px;
-}
 
 </style>
     """,
@@ -1044,6 +1004,66 @@ button,input,select{font-family:inherit} button{cursor:pointer}
 .section-kicker{color:#76533b;font-size:9px;font-weight:900;letter-spacing:1.3px}
 .section-title{margin:2px 0 11px;font-size:22px;font-weight:900}
 .panel{border:1px solid rgba(136,87,40,.14);border-radius:17px;background:rgba(255,248,231,.96);box-shadow:var(--shadow)}
+
+
+
+/* ===== 시스템 소리 슬라이드 스위치: 홈 화면 좌측 하단 ===== */
+#homePage .system-sound-toggle{
+  position:absolute;
+  left:12px;
+  bottom:14px;
+  z-index:96;
+  width:72px;
+  height:32px;
+  padding:0;
+  border:0;
+  border-radius:999px;
+  background:linear-gradient(180deg,#98d83e 0%,#83c92f 100%);
+  box-shadow:0 4px 10px rgba(62,76,35,.18), inset 0 0 0 1px rgba(255,255,255,.28);
+  cursor:pointer;
+  transition:background .22s ease, box-shadow .22s ease, transform .14s ease;
+  appearance:none;
+  -webkit-appearance:none;
+}
+#homePage .system-sound-toggle:active{transform:scale(.96);}
+#homePage .system-sound-toggle .sound-toggle-text{
+  position:absolute;
+  left:13px;
+  top:50%;
+  transform:translateY(-50%);
+  color:#fff;
+  font-size:11px;
+  line-height:1;
+  font-weight:900;
+  letter-spacing:.4px;
+  pointer-events:none;
+  transition:left .22s ease,right .22s ease;
+}
+#homePage .system-sound-toggle .sound-toggle-knob{
+  position:absolute;
+  top:4px;
+  left:44px;
+  width:24px;
+  height:24px;
+  border-radius:50%;
+  background:#fff;
+  box-shadow:0 2px 6px rgba(50,50,50,.24), inset 0 0 0 1px rgba(0,0,0,.035);
+  pointer-events:none;
+  transition:left .22s cubic-bezier(.2,.8,.2,1), transform .14s ease;
+}
+#homePage .system-sound-toggle.off{
+  background:linear-gradient(180deg,#c9cbcd 0%,#b5b7ba 100%);
+  box-shadow:0 4px 9px rgba(50,50,50,.14), inset 0 0 0 1px rgba(255,255,255,.30);
+}
+#homePage .system-sound-toggle.off .sound-toggle-text{
+  left:auto;
+  right:10px;
+}
+#homePage .system-sound-toggle.off .sound-toggle-knob{left:4px;}
+#homePage .system-sound-toggle:focus-visible{
+  outline:2px solid rgba(255,255,255,.95);
+  outline-offset:2px;
+}
 
 /* Home */
 #homePage{padding:0;background:linear-gradient(180deg,#cfaa7d 0%,#e0c39a 39%,#d29c58 40%,#d09850 100%)}
@@ -3173,9 +3193,9 @@ strong,b{font-weight:700;}
             </div>
           </div>
 
-          <button type="button" class="system-sound-toggle" id="systemSoundToggle" data-action="toggleSystemSound" aria-pressed="true" aria-label="시스템 소리 끄기">
-            <span class="sound-icon" id="systemSoundIcon">🔊</span>
-            <span id="systemSoundLabel">소리 ON</span>
+          <button type="button" class="system-sound-toggle" id="systemSoundToggle" data-action="toggleSystemSound" aria-pressed="true" aria-label="시스템 소리 끄기" title="시스템 소리 ON/OFF">
+            <span class="sound-toggle-text" id="systemSoundLabel">ON</span>
+            <span class="sound-toggle-knob" aria-hidden="true"></span>
           </button>
           <div class="effect-layer" id="effectLayer"></div>
         </div>
@@ -3624,14 +3644,13 @@ function saveSystemSoundEnabled(){
 }
 function updateSystemSoundToggleUI(){
   const btn=$("systemSoundToggle");
-  const icon=$("systemSoundIcon");
   const label=$("systemSoundLabel");
   if(!btn)return;
   btn.classList.toggle("off",!systemSoundEnabled);
   btn.setAttribute("aria-pressed",systemSoundEnabled?"true":"false");
   btn.setAttribute("aria-label",systemSoundEnabled?"시스템 소리 끄기":"시스템 소리 켜기");
-  if(icon)icon.textContent=systemSoundEnabled?"🔊":"🔇";
-  if(label)label.textContent=systemSoundEnabled?"소리 ON":"소리 OFF";
+  btn.setAttribute("title",systemSoundEnabled?"시스템 소리 ON":"시스템 소리 OFF");
+  if(label)label.textContent=systemSoundEnabled?"ON":"OFF";
 }
 function setSystemSoundEnabled(enabled){
   systemSoundEnabled=Boolean(enabled);

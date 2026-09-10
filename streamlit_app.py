@@ -3572,7 +3572,7 @@ let chargingSound=null;
 
 // 전체 효과음 출력 배율.
 // 기존 대비 2배로 키운 값입니다. 너무 크면 2.5~3.0 정도로 낮춰도 됩니다.
-const APP_SOUND_VOLUME=15;
+const APP_SOUND_VOLUME=3.5;
 
 function getAppAudioContext(){
   if(!appAudioCtx){
@@ -3621,7 +3621,7 @@ function startVacuumSound(){
   const audio=new Audio(RECORDED_VACUUM_SOUND);
   audio.loop=true;
   audio.preload='auto';
-  audio.volume=0.1;
+  audio.volume=0.5;
 
   vacuumSound={audio};
 
@@ -3808,6 +3808,72 @@ function playHomeGenieTouchSound(){
   note(now,660,880,0.12,0.88);
   note(now+0.105,900,1180,0.16,0.78);
   setTimeout(()=>{try{master.disconnect()}catch(e){}},420);
+}
+
+
+// ============================================================
+// 홈지니 음성 코칭
+// - 브라우저 기본 한국어 TTS를 사용합니다.
+// - 너무 자주 말하지 않고 핵심 순간에만 짧게 안내합니다.
+// - 밝고 명쾌하게 들리도록 말하기 속도와 피치를 살짝 높였습니다.
+// - 부품케어 화면에서는 음성을 재생하지 않습니다.
+// ============================================================
+let homeGenieVoice=null;
+
+function refreshHomeGenieVoice(){
+  if(!('speechSynthesis' in window))return null;
+  const voices=window.speechSynthesis.getVoices()||[];
+  const koVoices=voices.filter(v=>String(v.lang||'').toLowerCase().startsWith('ko'));
+  if(!koVoices.length)return null;
+
+  // 기기마다 음성 이름이 달라서, 밝고 또렷한 계열로 알려진 이름을 우선 시도하고
+  // 없으면 사용 가능한 첫 번째 한국어 음성을 사용합니다.
+  const preferred=/sunhi|yuna|sora|heami|female|google.*한국|korean/i;
+  homeGenieVoice=koVoices.find(v=>preferred.test(v.name||'')) || koVoices[0];
+  return homeGenieVoice;
+}
+
+if('speechSynthesis' in window){
+  refreshHomeGenieVoice();
+  window.speechSynthesis.addEventListener?.('voiceschanged',refreshHomeGenieVoice);
+}
+
+function speakHomeGenie(text,onEnd=null){
+  if(!text){if(typeof onEnd==='function')onEnd();return;}
+  if(!('speechSynthesis' in window) || typeof SpeechSynthesisUtterance==='undefined'){
+    if(typeof onEnd==='function')onEnd();
+    return;
+  }
+
+  // 음성이 겹치지 않도록 직전 안내를 정리합니다.
+  try{window.speechSynthesis.cancel();}catch(e){}
+
+  const utter=new SpeechSynthesisUtterance(String(text));
+  utter.lang='ko-KR';
+  utter.rate=1.07;   // 조금 빠르고 또렷하게
+  utter.pitch=1.18;  // 밝은 인상
+  utter.volume=1.0;
+  utter.voice=homeGenieVoice || refreshHomeGenieVoice();
+
+  let finished=false;
+  const finish=()=>{
+    if(finished)return;
+    finished=true;
+    if(typeof onEnd==='function')onEnd();
+  };
+  utter.onend=finish;
+  utter.onerror=finish;
+
+  try{window.speechSynthesis.speak(utter);}catch(e){finish();}
+}
+
+function speakHomeGenieTouch(){
+  const lines=[
+    '네! 홈지니예요.',
+    '불렀어요? 홈지니가 왔어요!',
+    '오늘도 저에게 맡겨주세요!'
+  ];
+  speakHomeGenie(lines[Math.floor(Math.random()*lines.length)]);
 }
 
 document.addEventListener('pointerdown',unlockAppAudio,{once:true,capture:true});
@@ -4542,6 +4608,7 @@ function startFirstMapping(){
       state.mapping=false;
       stopVacuumSound();
       playCleaningCompleteSound();
+      setTimeout(()=>speakHomeGenie('우리 집을 모두 기억했어요. 이제 필요한 만큼만 준비할게요.'),520);
       state.profileReady=true;
       state.predicted=false;
       state.progress=100;
@@ -6141,7 +6208,7 @@ function addEvent(title,description,tag){
   while(list.children.length>30)list.removeChild(list.lastChild);
 }
 
-function petRobot(){if(state.cleaning){showToast("청소가 끝난 후 홈지니를 쓰다듬어 주세요.");return}playHomeGenieTouchSound();state.heart=Math.min(100,state.heart+2);state.exp+=1;pulseRobot();spawnEffect("💖",7);levelCheck();render();showToast("홈지니의 기분이 좋아졌어요.")}
+function petRobot(){if(state.cleaning){showToast("청소가 끝난 후 홈지니를 쓰다듬어 주세요.");return}playHomeGenieTouchSound();speakHomeGenieTouch();state.heart=Math.min(100,state.heart+2);state.exp+=1;pulseRobot();spawnEffect("💖",7);levelCheck();render();showToast("홈지니의 기분이 좋아졌어요.")}
 function feedRobot(){if(state.food<=0){showToast("음식이 부족해요. 리워드에서 구매해 주세요.");return}state.food-=1;state.soc+=12;state.exp+=8;pulseRobot();spawnEffect("⚡",8);levelCheck();render();showToast("배터리가 12% 회복되었습니다.")}
 function playRobot(){if(state.soc<5){showToast("배터리가 부족해서 놀 수 없어요.");return}state.soc-=3;state.exp+=5;pulseRobot();spawnEffect("💖",8);levelCheck();render();showToast("홈지니의 친밀도와 경험치가 올랐어요.")}
 function trainRobot(){if(state.soc<8){showToast("훈련 전에 충전이 필요해요.");return}state.soc-=6;state.health=Math.min(100,state.health+3);state.exp+=12;pulseRobot();spawnEffect("✨",8);levelCheck();render();showToast("홈지니가 훈련을 완료했습니다.")}
@@ -6620,7 +6687,10 @@ function startCleaning(){
   }
 
   state.cleaning=true;
-  startVacuumSound();
+  // 홈지니의 출발 안내가 들린 뒤 실제 청소음을 재생합니다.
+  speakHomeGenie('준비됐어요. 청소하러 다녀올게요!',()=>{
+    if(state.cleaning)startVacuumSound();
+  });
   // 바로 청소 가능한 경우에는 스테이션 복귀/출발 모션 없이 즉시 청소를 시작합니다.
   // 스테이션 출발 모션은 실제 충전 후 자동 출발할 때만 chargeRobot()에서 실행합니다.
   state.robotMotion='idle';
@@ -6681,6 +6751,7 @@ function startCleaning(){
         $("speech").innerHTML="<strong style='color:#ef8c32'>잠깐 쉬어갈게요!</strong><br>조금만 쉬고 다시 힘낼게요.";
         setGuide("홈지니가 조금 지쳤어요. 잠깐 충전하고 남은 곳을 이어서 청소할게요.","warning");
         showToast("잠깐 충전하고 남은 곳을 이어서 청소할게요.");
+        speakHomeGenie('배터리를 보호하기 위해 잠깐 충전하고 올게요.');
         setTimeout(()=>openModal("잠깐 쉬어갈게요!","제가 조금 지쳤어요.<br>잠깐 충전하고 나면<br>남은 곳도 다시 힘내서 청소할게요!<br><br>지금 배터리: <b>"+fmtSoc(state.soc)+"%</b>",{
           showCancel:true,
           cancelText:"나중에",
@@ -6691,6 +6762,7 @@ function startCleaning(){
       }
 
       playCleaningCompleteSound();
+      setTimeout(()=>speakHomeGenie('청소 완료! 오늘도 깔끔하게 마쳤어요.'),560);
       state.cleaningRemainingSoc=0;
       state.progress=100;
       finishCleaningZoneProgress();

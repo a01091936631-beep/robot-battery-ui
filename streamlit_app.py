@@ -3815,7 +3815,7 @@ function playHomeGenieTouchSound(){
 // 홈지니 음성 코칭
 // - 브라우저 기본 한국어 TTS를 사용합니다.
 // - 너무 자주 말하지 않고 핵심 순간에만 짧게 안내합니다.
-// - 밝고 명쾌하게 들리도록 말하기 속도와 피치를 살짝 높였습니다.
+// - 너무 성숙한 여성 음색으로 들리지 않도록 피치를 높이고 말끝을 가볍게 조정했습니다.
 // - 부품케어 화면에서는 음성을 재생하지 않습니다.
 // ============================================================
 let homeGenieVoice=null;
@@ -3850,8 +3850,8 @@ function speakHomeGenie(text,onEnd=null){
 
   const utter=new SpeechSynthesisUtterance(String(text));
   utter.lang='ko-KR';
-  utter.rate=1.07;   // 조금 빠르고 또렷하게
-  utter.pitch=1.18;  // 밝은 인상
+  utter.rate=1.12;   // 또렷하지만 너무 빠르지 않은 발랄한 속도
+  utter.pitch=1.55;  // 성인 여성 느낌을 줄이고 귀여운 어린 톤으로
   utter.volume=1.0;
   utter.voice=homeGenieVoice || refreshHomeGenieVoice();
 

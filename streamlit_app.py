@@ -3732,7 +3732,7 @@ function startVacuumSound(){
   const audio=new Audio(RECORDED_VACUUM_SOUND);
   audio.loop=true;
   audio.preload='auto';
-  audio.volume=0.5;
+  audio.volume=0.2;
 
   vacuumSound={audio};
 
